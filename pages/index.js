@@ -20,7 +20,7 @@ export default function Home() {
         <p>Plug a URL in the form below. This app will tell you what you have and add what you need to your shopping list.</p>
         <GetRecipe/>
         <h2>Big To-dos</h2>
-        <ul>
+        <ul className={styles.todos}>
           <li>Get Recipe Form working</li>
           <li>Parse recipe data into useable format</li>
           <li>Build general interface layout</li>

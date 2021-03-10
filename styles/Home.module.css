@@ -120,3 +120,7 @@
     flex-direction: column;
   }
 }
+
+.todos li:first-of-type {
+  font-weight: bold;
+}
