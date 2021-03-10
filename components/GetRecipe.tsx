@@ -1,19 +1,22 @@
-import axios from "axios";
-
 const GetRecipe = () => {
-  const getRecipe = event => {
+  
+  const getRecipe = async event => {
     event.preventDefault();
-    axios
-      .get(event.target.url.value)
-      .then((response) => {
-        console.log(response.data);
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+      body: JSON.stringify({
+        url: event.target.url.value
       })
-      .catch(() => "Unable to fetch recipe.")
-      .then(() => {});
+    }
+    const recipeData = await fetch('/api/get-recipe/', fetchOptions)
   };
   return (
-  <form onSumbit={getRecipe}>
-    <label for="url">Recipe URL</label>
+  <form onSubmit={getRecipe}>
+    <label htmlFor="url">Recipe URL</label>
     <input type="text" id="url" name="url" />
   </form>
   )
