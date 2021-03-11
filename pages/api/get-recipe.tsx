@@ -16,6 +16,14 @@ function runMiddleware(req, res, fn) {
   });
 }
 
+// Return type: string[]
+const getRecipeDataFromHtml(html: HTMLElement) {
+  // Grab all of the elements with an itemprop="recipeIngredient"
+  // Find the Schema JSON (if it exists) and grab its recipeIngredient array
+
+  // Return an array of ingredients from the recipe
+}
+
 async function handler(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors);
@@ -25,7 +33,9 @@ async function handler(req, res) {
   return await fetch(recipeUrl).then((response) =>
     response.text().then((responseHtml) => {
       console.log(responseHtml);
-      res.status(200).json({ name: 'Next.js' })
+      // Turn the HTML object into a JSON object with the data we want
+      const recipeData = getRecipeDataFromHtml(responseHtml)
+      res.status(200).json(recipeData)
     })
   );
 }
