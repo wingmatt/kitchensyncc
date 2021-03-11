@@ -16,8 +16,8 @@ function runMiddleware(req, res, fn) {
   });
 }
 
-// Return type: string[]
-const getRecipeDataFromHtml(html: HTMLElement) {
+const getRecipeDataFromHtml: (html: string) => string[] =
+function (html: string) : string[] {
   // Grab all of the elements with an itemprop="recipeIngredient"
   // Find the Schema JSON (if it exists) and grab its recipeIngredient array
 
