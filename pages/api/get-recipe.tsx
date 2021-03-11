@@ -18,13 +18,14 @@ function runMiddleware(req, res, fn) {
 
 async function handler(req, res) {
   // Run the middleware
+  await runMiddleware(req, res, cors);
 
-  // Rest of the API logic
+  // API Logic
   const recipeUrl = req.body.url;
   return await fetch(recipeUrl).then((response) =>
     response.text().then((responseHtml) => {
       console.log(responseHtml);
-      return responseHtml;
+      res.status(200).json({ name: 'Next.js' })
     })
   );
 }
