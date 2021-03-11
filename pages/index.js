@@ -4,7 +4,7 @@ import GetRecipe from '../components/GetRecipe'
 
 export default function Home() {
   return (
-    <div className="{styles.container}">
+    <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -21,8 +21,8 @@ export default function Home() {
         <GetRecipe/>
         <h2>Big To-dos</h2>
         <ul className={styles.todos}>
-          <li>Get Recipe Form working</li>
-          <li>Parse recipe data into useable format</li>
+          <li style={{textDecoration: 'line-through'}}>Get Recipe Form working</li>
+          <li className={styles.current}>Parse recipe data into useable format</li>
           <li>Build general interface layout</li>
           <li>Connect to persistent database</li>
           <li>Add authentication & user-specific data</li>

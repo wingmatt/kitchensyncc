@@ -121,6 +121,6 @@
   }
 }
 
-.todos li:first-of-type {
+.todos .current {
   font-weight: bold;
 }
