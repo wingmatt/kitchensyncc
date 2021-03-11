@@ -13,7 +13,9 @@ const GetRecipe = () => {
       })
     }
     const recipeData = await fetch('/api/get-recipe/', fetchOptions).then(response => {
-      console.log(response)
+      response.json().then(recipeJson => {
+        console.log(recipeJson)
+      })
     })
   };
   
