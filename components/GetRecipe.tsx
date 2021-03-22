@@ -23,6 +23,7 @@ const GetRecipe = () => {
   <form onSubmit={getRecipe}>
     <label htmlFor="url">Recipe URL</label>
     <input type="text" id="url" name="url" defaultValue="https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/"/>
+    <button type="submit">Clip Recipe</button>
   </form>
   )
   
