@@ -1,9 +1,5 @@
 import {useState} from 'react'
-
-interface Recipe {
-  url: string,
-  ingredients: string[]
-}
+import {Recipe} from '../types'
 
 const GetRecipe = () => {
   
