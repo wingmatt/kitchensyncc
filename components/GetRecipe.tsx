@@ -1,5 +1,10 @@
 import {useState} from 'react'
 
+interface Recipe {
+  url: string,
+  ingredients: string[]
+}
+
 const GetRecipe = () => {
   
   const [recipe, setRecipe] = useState({
