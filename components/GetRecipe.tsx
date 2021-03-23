@@ -7,7 +7,7 @@ interface Recipe {
 
 const GetRecipe = () => {
   
-  const [recipe, setRecipe] = useState({
+  const [recipe, setRecipe] = useState<Recipe>({
     url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
     ingredients: []
   });
