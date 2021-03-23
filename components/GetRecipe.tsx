@@ -4,8 +4,7 @@ import {Recipe} from '../types'
 const GetRecipe = () => {
   
   const [recipe, setRecipe] = useState<Recipe>({
-    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
-    ingredients: undefined
+    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/"
   });
 
   const getRecipe = async event => {
@@ -23,6 +22,7 @@ const GetRecipe = () => {
     const recipeData = await fetch('/api/get-recipe/', fetchOptions).then(response => {
       response.json().then(recipeJson => {
         console.log(recipeJson)
+        setRecipe({...recipe, ingredients: recipeJson})
       })
     })
   };
