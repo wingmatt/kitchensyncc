@@ -5,7 +5,7 @@ const GetRecipe = () => {
   
   const [recipe, setRecipe] = useState<Recipe>({
     url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
-    ingredients: []
+    ingredients: undefined
   });
 
   const getRecipe = async event => {

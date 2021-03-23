@@ -3,7 +3,7 @@ import GetRecipe from '../../components/GetRecipe'
 import {Recipe} from '../../types'
 import '@testing-library/jest-dom/extend-expect'
 
-test('Clicking "Clip Recipe" on a url creates an array of ingredients', async ()=> {
+test('GetRecipe\'s ingredients list starts out undefined', async ()=> {
   const {container } = render(<GetRecipe />)
   const recipeData = getByTestId(container, "recipe-search")
 
@@ -19,7 +19,4 @@ test('Clicking "Clip Recipe" on a url creates an array of ingredients', async ()
 
   // Assert
   expect(recipeData.ingredients).toBeDefined()
-})
-test('Submitting a URL returns an Ingredients array', async () => {
-  render(<GetRecipe />)
 })

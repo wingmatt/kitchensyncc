@@ -1,6 +1,6 @@
 export interface Recipe {
   url: string,
-  ingredients: string[]
+  ingredients: string[] | undefined
 }
 
 export interface Ingredient {
