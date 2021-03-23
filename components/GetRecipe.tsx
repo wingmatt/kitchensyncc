@@ -28,7 +28,7 @@ const GetRecipe = () => {
   };
   
   return (
-  <form onSubmit={getRecipe}>
+  <form onSubmit={getRecipe} data-testid="recipe-search">
     <label htmlFor="url">Recipe URL</label>
     {
     // TODO add change handler to make this mutable
