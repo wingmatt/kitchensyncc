@@ -1,5 +1,12 @@
+import {useState} from 'react'
+
 const GetRecipe = () => {
   
+  const [recipe, setRecipe] = useState({
+    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
+    ingredients: []
+  });
+
   const getRecipe = async event => {
     event.preventDefault();
     const fetchOptions = {
@@ -22,7 +29,10 @@ const GetRecipe = () => {
   return (
   <form onSubmit={getRecipe}>
     <label htmlFor="url">Recipe URL</label>
-    <input type="text" id="url" name="url" defaultValue="https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/"/>
+    {
+    // TODO add change handler to make this mutable
+    }
+    <input type="text" id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
     <button type="submit">Clip Recipe</button>
   </form>
   )
