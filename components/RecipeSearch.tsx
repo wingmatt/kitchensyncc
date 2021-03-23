@@ -1,10 +1,11 @@
 import {useState} from 'react'
 import {Recipe} from '../types'
 
-const GetRecipe = () => {
+const RecipeSearch = () => {
   
   const [recipe, setRecipe] = useState<Recipe>({
-    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/"
+    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
+    ingredients: ['waffles']
   });
 
   const getRecipe = async event => {
@@ -30,9 +31,6 @@ const GetRecipe = () => {
   return (
   <form onSubmit={getRecipe} data-testid="recipe-search">
     <label htmlFor="url">Recipe URL</label>
-    {
-    // TODO add change handler to make this mutable
-    }
     <input type="text" id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
     <button type="submit">Clip Recipe</button>
   </form>
@@ -40,4 +38,4 @@ const GetRecipe = () => {
   
 }
  
-export default GetRecipe
+export default RecipeSearch

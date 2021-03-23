@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import GetRecipe from '../components/GetRecipe'
+import RecipeSearch from '../components/RecipeSearch'
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <p>I'm building this app to have an easy way to keep track of my kitchen supplies. Still in the early stages!</p>
         <h2>Import recipe ingredients from recipe websites</h2>
         <p>Plug a URL in the form below. This app will tell you what you have and add what you need to your shopping list.</p>
-        <GetRecipe/>
+        <RecipeSearch/>
         <h2>Big To-dos</h2>
         <ul className={styles.todos}>
           <li style={{textDecoration: 'line-through'}}>Get Recipe Form working</li>
