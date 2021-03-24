@@ -1,6 +1,8 @@
 import Cors from "cors";
 import cheerio from "cheerio"
 import { parse } from 'recipe-ingredient-parser-v2';
+import { Ingredient } from "../../types"
+
 
 const cors = Cors({
   methods: ["GET", "HEAD"],
@@ -17,7 +19,12 @@ function runMiddleware(req, res, fn) {
     });
   });
 }
-
+function getRecipeDataFromSchemaJson(json: object): Ingredient[] {
+  // Find the Ingredients array in the JSON
+  
+  // Parse the ingredients into the Ingredient format before returning
+  return 
+}
 function getRecipeDataFromHtml(html: string): string[] {
   const recipeHtml = cheerio.load(html)
   const ingredients = []
@@ -30,6 +37,8 @@ function getRecipeDataFromHtml(html: string): string[] {
 }
 
 async function handler(req, res) {
+  const testJson = require("../../allrecipesSchema.json")
+  
   // Run the middleware
   await runMiddleware(req, res, cors);
 
