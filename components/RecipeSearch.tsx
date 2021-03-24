@@ -29,11 +29,18 @@ const RecipeSearch = () => {
   };
   
   return (
-  <form onSubmit={getRecipe} data-testid="recipe-search">
-    <label htmlFor="url">Recipe URL</label>
-    <input type="text" id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
-    <button type="submit">Clip Recipe</button>
-  </form>
+    <figure>
+      <form onSubmit={getRecipe} data-testid="recipe-search">
+        <label htmlFor="url">Recipe URL</label>
+        <input type="text" id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
+        <button type="submit">Clip Recipe</button>
+      </form>
+      <ul>
+        {recipe.ingredients.map((value, index) => {
+          return <li key={index}>{value}</li>
+        })}
+      </ul>
+    </figure>
   )
   
 }
