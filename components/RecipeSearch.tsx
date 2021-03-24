@@ -22,7 +22,6 @@ const RecipeSearch = () => {
     }
     const recipeData = await fetch('/api/get-recipe/', fetchOptions).then(response => {
       response.json().then(recipeJson => {
-        console.log(recipeJson)
         setRecipe({...recipe, ingredients: recipeJson})
       })
     })
@@ -37,7 +36,7 @@ const RecipeSearch = () => {
       </form>
       <ul>
         {recipe.ingredients.map((value, index) => {
-          return <li key={index}>{value}</li>
+          return <li key={index}>{value.ingredient}</li>
         })}
       </ul>
     </figure>

@@ -1,4 +1,6 @@
 import Cors from "cors";
+import cheerio from "cheerio"
+import { parse } from 'recipe-ingredient-parser-v2';
 
 const cors = Cors({
   methods: ["GET", "HEAD"],
@@ -17,11 +19,14 @@ function runMiddleware(req, res, fn) {
 }
 
 function getRecipeDataFromHtml(html: string): string[] {
-  // Grab all of the elements with an itemprop="recipeIngredient"
-  // Find the Schema JSON (if it exists) and grab its recipeIngredient array
-
-  // Return an array of ingredients from the recipe
-  return ["1 cup of sugar"];
+  const recipeHtml = cheerio.load(html)
+  const ingredients = []
+  recipeHtml('*[itemprop="recipeIngredient"], *[itemprop="ingredients"]').each((i, element) => {
+    let ingredientText = recipeHtml(element).text()
+    let parsedIngredient = parse(ingredientText)
+    ingredients.push(parsedIngredient)
+  })
+  return ingredients;
 }
 
 async function handler(req, res) {
@@ -32,7 +37,6 @@ async function handler(req, res) {
   const recipeUrl = req.body.url;
   return await fetch(recipeUrl).then((response) =>
     response.text().then((responseHtml) => {
-      console.log(responseHtml);
       // Turn the HTML object into a JSON object with the data we want
       const recipeData = getRecipeDataFromHtml(responseHtml);
       res.status(200).json(recipeData);
