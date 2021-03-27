@@ -14,7 +14,7 @@ test('GetRecipe\'s ingredients list starts out undefined', async ()=> {
   expect(recipeData.ingredients).not.toBeDefined()
 })
 
-test('Clicking "Clip Recipe" on a url adds an array of ingredients to the state', async ()=> {
+/*test('Clicking "Clip Recipe" on a url adds an array of ingredients to the state', async ()=> {
   // Arrange
   const {container } = render(<RecipeSearch />)
   const recipeData = getByTestId(container, "recipe-search")
@@ -25,4 +25,4 @@ test('Clicking "Clip Recipe" on a url adds an array of ingredients to the state'
 
   // Assert
   expect(recipeData.ingredients).toBeDefined()
-})
+})*/
