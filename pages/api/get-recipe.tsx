@@ -53,4 +53,6 @@ async function handler(req, res) {
   );
 }
 
+export {getRecipeDataFromSchemaJson};
+
 export default handler;
