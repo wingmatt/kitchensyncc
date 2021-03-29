@@ -1,6 +1,6 @@
 import { render, fireEvent, getByTestId, screen } from "@testing-library/react";
 import RecipeSearch from "../../components/RecipeSearch";
-import { getRecipeDataFromSchemaJson } from "./get-recipe";
+import { getRecipeDataFromSchemaJson } from "../../utils/parse-recipe";
 import "@testing-library/jest-dom/extend-expect";
 import { Ingredient } from '../../types'
 

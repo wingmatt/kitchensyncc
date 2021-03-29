@@ -1,7 +1,5 @@
 import Cors from "cors";
-import cheerio from "cheerio"
-import { parse } from 'recipe-ingredient-parser-v2';
-import { Ingredient } from "../../types"
+import { getRecipeDataFromHtml, getRecipeDataFromSchemaJson } from '../../utils/parse-recipe'
 
 
 const cors = Cors({
@@ -19,27 +17,7 @@ function runMiddleware(req, res, fn) {
     });
   });
 }
-function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
-  // Find the Ingredients array in the JSON
-  const recipeSchema = json.data.find(schemaType => schemaType["@type"] == "Recipe" )
-  const schemaIngredients = recipeSchema.recipeIngredient
-  const parsedIngredients = schemaIngredients.map(ingredient => {
-    return parse(ingredient)
-  })
-  
-  // Parse the ingredients into the Ingredient format before returning
-  return parsedIngredients
-}
-function getRecipeDataFromHtml(html: string): Ingredient[] {
-  const recipeHtml = cheerio.load(html)
-  const ingredients = []
-  recipeHtml('*[itemprop="recipeIngredient"], *[itemprop="ingredients"]').each((i, element) => {
-    let ingredientText = recipeHtml(element).text()
-    let parsedIngredient = parse(ingredientText)
-    ingredients.push(parsedIngredient)
-  })
-  return ingredients;
-}
+
 
 async function handler(req, res) {
   const testJson = require("../../allrecipesSchema.json")
@@ -57,7 +35,5 @@ async function handler(req, res) {
     })
   );
 }
-
-export {getRecipeDataFromSchemaJson};
 
 export default handler;
