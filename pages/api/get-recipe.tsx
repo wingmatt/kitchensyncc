@@ -23,11 +23,12 @@ function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
   // Find the Ingredients array in the JSON
   const recipeSchema = json.data.find(schemaType => schemaType["@type"] == "Recipe" )
   const schemaIngredients = recipeSchema.recipeIngredient
-  
-  
+  const parsedIngredients = schemaIngredients.map(ingredient => {
+    return parse(ingredient)
+  })
   
   // Parse the ingredients into the Ingredient format before returning
-  return schemaIngredients
+  return parsedIngredients
 }
 function getRecipeDataFromHtml(html: string): string[] {
   const recipeHtml = cheerio.load(html)
