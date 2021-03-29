@@ -8,16 +8,8 @@ function parseHtml (html: string) {
 }
 
 function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
-  // Find the Ingredients array in the JSON
-  const recipeSchema = json.data.find(schemaType => schemaType["@type"] == "Recipe" )
-  const schemaIngredients = recipeSchema.recipeIngredient
-  
-  
-  // Parse the ingredients into the Ingredient format before returning
-  const parsedIngredients = schemaIngredients.map(ingredient => {
-    return parse(ingredient)
-  })
-  return parsedIngredients
+  const recipeIngredient = json.data.find(schemaType => schemaType["@type"] == "Recipe" ).recipeIngredient  
+  return recipeIngredient.map(ingredient => parse(ingredient))
 }
 function getRecipeDataFromHtml(html: string): Ingredient[] {
   const recipeHtml = parseHtml(html)
