@@ -14,7 +14,6 @@ function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
 function getRecipeDataFromHtml(html: string): Ingredient[] {
   const recipeHtml = parseHtml(html)
   const ingredients = []
-  recipeHtml('script[type="application/ld+json]')
   recipeHtml('*[itemprop="recipeIngredient"], *[itemprop="ingredients"]').each((i, element) => {
     let ingredientText = recipeHtml(element).text()
     let parsedIngredient = parse(ingredientText)
@@ -26,10 +25,20 @@ function getRecipeDataFromHtml(html: string): Ingredient[] {
 // Here it is. The big one that ties it all together!
 // Are you ready for a function that takes an HTML string and plops out an array of Ingredients?
 function parseRecipe (html: string): Ingredient[] {
+  const htmlParser = parseHtml(html)
+  
+  
 // To do this magnificent feat, it will need to check for a JSON LD Recipe schema that includes a recipeIngredient array.
+  const schemaJson: JSON = JSON.parse(htmlParser('script[type="application/ld+json]').text())
 // If it finds one, it will take that array and parse it into our Ingredient format.
+  if (schemaJson) return getRecipeDataFromSchemaJson(schemaJson)
 // If it doesn't find one, it will go through the more tedious process of building the array from DOM elements.
-// If it can't build the array, it will return an error.
+  else {
+    
+    return getRecipeDataFromHtml(html)
+    // TODO: If it can't build the array, it will return an error.
+  }
+
 }
 
 export { getRecipeDataFromSchemaJson, getRecipeDataFromHtml }
