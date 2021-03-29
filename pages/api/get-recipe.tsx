@@ -30,7 +30,7 @@ function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
   // Parse the ingredients into the Ingredient format before returning
   return parsedIngredients
 }
-function getRecipeDataFromHtml(html: string): string[] {
+function getRecipeDataFromHtml(html: string): Ingredient[] {
   const recipeHtml = cheerio.load(html)
   const ingredients = []
   recipeHtml('*[itemprop="recipeIngredient"], *[itemprop="ingredients"]').each((i, element) => {
