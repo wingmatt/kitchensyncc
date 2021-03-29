@@ -1,5 +1,5 @@
 import Cors from "cors";
-import { getRecipeDataFromHtml, getRecipeDataFromSchemaJson } from '../../utils/parse-recipe'
+import { getRecipeDataFromHtml } from '../../utils/parse-recipe'
 
 
 const cors = Cors({
