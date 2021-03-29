@@ -19,11 +19,15 @@ function runMiddleware(req, res, fn) {
     });
   });
 }
-function getRecipeDataFromSchemaJson(json: object): Ingredient[] {
+function getRecipeDataFromSchemaJson(json: JSON): Ingredient[] {
   // Find the Ingredients array in the JSON
+  const recipeSchema = json.data.find(schemaType => schemaType["@type"] == "Recipe" )
+  const schemaIngredients = recipeSchema.recipeIngredient
+  
+  
   
   // Parse the ingredients into the Ingredient format before returning
-  return 
+  return schemaIngredients
 }
 function getRecipeDataFromHtml(html: string): string[] {
   const recipeHtml = cheerio.load(html)
