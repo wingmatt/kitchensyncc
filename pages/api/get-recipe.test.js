@@ -2,6 +2,7 @@ import { render, fireEvent, getByTestId, screen } from "@testing-library/react";
 import RecipeSearch from "../../components/RecipeSearch";
 import { getRecipeDataFromSchemaJson } from "./get-recipe";
 import "@testing-library/jest-dom/extend-expect";
+import { Ingredient } from '../../types'
 
 test("GetRecipe's ingredients list starts out undefined", async () => {
   // Arrange
@@ -27,16 +28,8 @@ test("GetRecipe's ingredients list starts out undefined", async () => {
   expect(recipeData.ingredients).toBeDefined()
 })*/
 
-test("Schema JSON parser finds the Ingredients property", async () => {
+test("Schema Parsing returns an array of Ingredient Objects", async () => {
   const testJson = require("../../allrecipesSchema.json");
   const parsedJson = getRecipeDataFromSchemaJson(testJson);
-  expect(parsedJson).toBe(
-    expect.objectContaining({
-      recipeIngredient: expect.any(Array)
-    })
-  );
-});
-test("Schema JSON parser returns an array of Recipe ingredients", async () => {
-  const testJson = require("../../allrecipesSchema.json");
-  const parsedJson = getRecipeDataFromSchemaJson(testJson);
+  expect(parsedJson).toEqual(expect.arrayContaining([expect.objectContaining({ingredient: 'eggs'})]));
 });
