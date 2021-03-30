@@ -1,17 +1,11 @@
 import { render, fireEvent, getByTestId, screen } from "@testing-library/react";
 import RecipeSearch from "../../components/RecipeSearch";
-import  parseRecipe, { getRecipeDataFromSchemaJson } from "../../utils/parse-recipe";
 import "@testing-library/jest-dom/extend-expect";
-import { Ingredient } from '../../types'
 
 test("GetRecipe's ingredients list starts out undefined", async () => {
-  // Arrange
   const { container } = render(<RecipeSearch />);
   const recipeData = getByTestId(container, "recipe-search");
 
-  // Act
-
-  // Assert
   expect(recipeData.ingredients).not.toBeDefined();
 });
 
