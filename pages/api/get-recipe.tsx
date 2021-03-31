@@ -1,5 +1,5 @@
 import Cors from "cors";
-import { getRecipeDataFromHtml } from '../../utils/parse-recipe'
+import parseRecipe from '../../utils/parse-recipe'
 
 
 const cors = Cors({
@@ -30,7 +30,7 @@ async function handler(req, res) {
   return await fetch(recipeUrl).then((response) =>
     response.text().then((responseHtml) => {
       // Turn the HTML object into a JSON object with the data we want
-      const recipeData = getRecipeDataFromHtml(responseHtml);
+      const recipeData = parseRecipe(responseHtml);
       res.status(200).json(recipeData);
     })
   );
