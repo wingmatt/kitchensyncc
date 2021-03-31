@@ -4,7 +4,7 @@ import {Recipe} from '../types'
 const RecipeSearch = () => {
   
   const [recipe, setRecipe] = useState<Recipe>({
-    url: "https://wingcuisine.com/recipes/recipe/smoked-gouda-fusilli-ham/",
+    url: "https://www.allrecipes.com/recipe/22180/waffles-i/",
     ingredients: ['waffles']
   });
 
