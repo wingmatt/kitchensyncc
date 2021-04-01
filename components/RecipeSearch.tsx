@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Recipe} from '../types'
+import {Recipe, Ingredient} from '../types'
 
 const RecipeSearch = () => {
   
@@ -35,8 +35,8 @@ const RecipeSearch = () => {
         <button type="submit">Clip Recipe</button>
       </form>
       <ul>
-        {recipe.ingredients.map((value, index) => {
-          return <li key={index}>{value.ingredient}</li>
+        {recipe.ingredients.map((value: Ingredient, index) => {
+          return <li key={index}><strong>{value.quantity} {value.unit}</strong> {value.ingredient}</li>
         })}
       </ul>
     </figure>
