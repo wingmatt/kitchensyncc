@@ -7,7 +7,6 @@ function parseHtml(html: string) {
 }
 
 function getRecipeDataFromSchemaJson(json: any[]): Ingredient[] {
-  console.log(json)
   const recipeIngredient = json.find(
     (schemaType) => schemaType["@type"] == "Recipe"
   ).recipeIngredient;
@@ -35,6 +34,9 @@ function parseRecipe(html: string): Ingredient[] {
   const schemaJson: JSON[] = JSON.parse(
     htmlParser('script[type="application/ld+json"]').html()
   );
+// TODO: Handle when there are multiple LD+JSON scripts, such as https://www.seriouseats.com/recipes/2021/03/pasta-alla-norcina-creamy-pasta-with-sausage.html
+// TODO MAYBE: Make sure there is a Recipe Schema Object if we are going to go down the road of JSON parsing
+
   // If it finds one, it will take that array and parse it into our Ingredient format.
   if (schemaJson) {
     return getRecipeDataFromSchemaJson(schemaJson);
