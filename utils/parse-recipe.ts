@@ -33,8 +33,8 @@ function getRecipeDataFromHtml(html: string): Ingredient[] {
 // Are you ready for a function that takes an HTML string and plops out an array of Ingredients?
 function parseRecipe(html: string): Ingredient[] {
   const document = parseHtml(html)
-  const jsonScripts = document.querySelectorAll('script[type="application/ld+json"]')
-  console.log("Da HTML: " + jsonScripts[0].rawText)
+  const jsonScripts = document.querySelectorAll('script[type="application/ld+json"]').map(script => JSON.parse(script.rawText))
+  console.log("Da HTML: " + jsonScripts)
 
   // TODO: Handle newline characters within stringified JSON properties, e.g. https://www.seriouseats.com/recipes/2021/03/pasta-alla-norcina-creamy-pasta-with-sausage.html
   // TODO MAYBE: Make sure there is a Recipe Schema Object if we are going to go down the road of JSON parsing
