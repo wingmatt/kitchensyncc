@@ -34,13 +34,16 @@ function getRecipeDataFromHtml(html: string): Ingredient[] {
 function parseRecipe(html: string): Ingredient[] {
   const document = parseHtml(html)
   const jsonScripts = document.querySelectorAll('script[type="application/ld+json"]').map(script => JSON.parse(script.rawText)).flat()
+  const jsonRecipe = jsonScripts.find(
+    (schemaType) => schemaType["@type"] == "Recipe"
+  );
   console.log("Da HTML: " + jsonScripts)
 
   // TODO: Handle newline characters within stringified JSON properties, e.g. https://www.seriouseats.com/recipes/2021/03/pasta-alla-norcina-creamy-pasta-with-sausage.html
   // TODO MAYBE: Make sure there is a Recipe Schema Object if we are going to go down the road of JSON parsing
 
   // If it finds one, it will take that array and parse it into our Ingredient format.
-  if (jsonScripts) {
+  if (jsonRecipe) {
     // Right now schemaJson will work for allrecipes, and schemaJsonArray will work for some SeriousEats
     return getRecipeDataFromSchemaJson(jsonScripts);
   }
