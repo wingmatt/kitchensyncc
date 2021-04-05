@@ -1,4 +1,4 @@
-import { parse as htmlParser } from 'node-html-parser';
+import { parse as htmlParser } from "node-html-parser";
 import { parse } from "recipe-ingredient-parser-v2";
 import { Ingredient } from "../types";
 
@@ -7,7 +7,7 @@ interface ParsedHtml {
 }
 
 function parseHtml(html: string): any {
-  return htmlParser(html)
+  return htmlParser(html);
 }
 
 function getRecipeDataFromSchemaJson(json: any[]): Ingredient[] {
@@ -32,12 +32,15 @@ function getRecipeDataFromHtml(html: string): Ingredient[] {
 // Here it is. The big one that ties it all together!
 // Are you ready for a function that takes an HTML string and plops out an array of Ingredients?
 function parseRecipe(html: string): Ingredient[] {
-  const document = parseHtml(html)
-  const jsonScripts = document.querySelectorAll('script[type="application/ld+json"]').map(script => JSON.parse(script.rawText)).flat()
+  const document = parseHtml(html);
+  const jsonScripts = document
+    .querySelectorAll('script[type="application/ld+json"]')
+    .map((script) => JSON.parse(script.rawText))
+    .flat();
   const jsonRecipe = jsonScripts.find(
     (schemaType) => schemaType["@type"] == "Recipe"
   );
-  console.log("Da HTML: " + jsonScripts)
+  console.log("Da HTML: " + jsonScripts);
 
   // TODO: Handle newline characters within stringified JSON properties, e.g. https://www.seriouseats.com/recipes/2021/03/pasta-alla-norcina-creamy-pasta-with-sausage.html
   // TODO MAYBE: Make sure there is a Recipe Schema Object if we are going to go down the road of JSON parsing
