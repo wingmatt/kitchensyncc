@@ -28,8 +28,16 @@ function getRecipeDataFromHtml(html: string): Ingredient[] {
   return ingredients;
 }
 
-// Here it is. The big one that ties it all together!
-// Are you ready for a function that takes an HTML string and plops out an array of Ingredients?
+function parseRecipeHtml(document: HTMLElement): string[] {
+  return Array.from(
+    document.querySelectorAll(
+      '*[itemprop="recipeIngredient"], *[itemprop="ingredients"]'
+    )
+  )
+    .map((script) => script.textContent)
+    .flat();
+}
+
 function parseRecipe(html: string): Ingredient[] {
   const document = parseHtml(html);
   const jsonScripts = document
@@ -42,15 +50,9 @@ function parseRecipe(html: string): Ingredient[] {
   if (jsonRecipe) {
     // Right now schemaJson will work for allrecipes, and schemaJsonArray will work for some SeriousEats
     return getRecipeDataFromSchemaJson(jsonRecipe);
-  }
-  else {
-    const htmlRecipe = document
-      .querySelectorAll(
-        '*[itemprop="recipeIngredient"], *[itemprop="ingredients"]'
-      )
-      .map((script) => script.rawText)
-      .flat();
-      console.log(htmlRecipe);
+  } else {
+    const htmlRecipe = parseRecipeHtml(document);
+    console.log(htmlRecipe);
     return getRecipeDataFromHtml(html);
   }
 }
