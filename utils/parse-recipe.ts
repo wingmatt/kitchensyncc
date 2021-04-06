@@ -15,27 +15,13 @@ function getRecipeDataFromSchemaJson(json: any): Ingredient[] {
   return recipeIngredient.map((ingredient) => parse(ingredient));
 }
 
-function getRecipeDataFromHtml(html: string): Ingredient[] {
-  const recipeHtml = parseHtml(html);
-  const ingredients = [];
-  recipeHtml('*[itemprop="recipeIngredient"], *[itemprop="ingredients"]').each(
-    (i, element) => {
-      let ingredientText = recipeHtml(element).text();
-      let parsedIngredient = parse(ingredientText);
-      ingredients.push(parsedIngredient);
-    }
-  );
-  return ingredients;
-}
-
-function parseRecipeHtml(document: HTMLElement): string[] {
+function parseRecipeHtml(document: HTMLElement): Ingredient[] {
   return Array.from(
     document.querySelectorAll(
       '*[itemprop="recipeIngredient"], *[itemprop="ingredients"]'
     )
   )
-    .map((script) => script.textContent)
-    .flat();
+    .map((script) => parse(script.textContent))
 }
 
 function parseRecipe(html: string): Ingredient[] {
@@ -51,12 +37,10 @@ function parseRecipe(html: string): Ingredient[] {
     // Right now schemaJson will work for allrecipes, and schemaJsonArray will work for some SeriousEats
     return getRecipeDataFromSchemaJson(jsonRecipe);
   } else {
-    const htmlRecipe = parseRecipeHtml(document);
-    console.log(htmlRecipe);
-    return getRecipeDataFromHtml(html);
+    return parseRecipeHtml(document);
   }
 }
 
-export { getRecipeDataFromSchemaJson, getRecipeDataFromHtml };
+export { getRecipeDataFromSchemaJson };
 
 export default parseRecipe;
