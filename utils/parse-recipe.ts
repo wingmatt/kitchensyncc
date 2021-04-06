@@ -10,9 +10,18 @@ function parseHtml(html: string): any {
   return htmlParser(html);
 }
 
-function getRecipeDataFromSchemaJson(json: any): Ingredient[] {
-  const recipeIngredient = json.recipeIngredient;
-  return recipeIngredient.map((ingredient) => parse(ingredient));
+function parseRecipeJson(document: HTMLElement): Ingredient[] | null {
+  const jsonScripts = Array.from(
+    document.querySelectorAll('script[type="application/ld+json"]')
+  )
+    .map((script) => JSON.parse(script.innerHTML))
+    .flat();
+  const jsonRecipe = jsonScripts.find(
+    (schemaType) => schemaType["@type"] == "Recipe"
+  );
+  if (jsonRecipe) {
+    return jsonRecipe.recipeIngredient.map((ingredient) => parse(ingredient));
+  } else return null;
 }
 
 function parseRecipeHtml(document: HTMLElement): Ingredient[] {
@@ -20,27 +29,18 @@ function parseRecipeHtml(document: HTMLElement): Ingredient[] {
     document.querySelectorAll(
       '*[itemprop="recipeIngredient"], *[itemprop="ingredients"]'
     )
-  )
-    .map((script) => parse(script.textContent))
+  ).map((script) => parse(script.textContent));
 }
 
 function parseRecipe(html: string): Ingredient[] {
   const document = parseHtml(html);
-  const jsonScripts = document
-    .querySelectorAll('script[type="application/ld+json"]')
-    .map((script) => JSON.parse(script.rawText))
-    .flat();
-  const jsonRecipe = jsonScripts.find(
-    (schemaType) => schemaType["@type"] == "Recipe"
-  );
-  if (jsonRecipe) {
+  const recipeJson = parseRecipeJson(document);
+  if (recipeJson) {
     // Right now schemaJson will work for allrecipes, and schemaJsonArray will work for some SeriousEats
-    return getRecipeDataFromSchemaJson(jsonRecipe);
+    return recipeJson;
   } else {
     return parseRecipeHtml(document);
   }
 }
-
-export { getRecipeDataFromSchemaJson };
 
 export default parseRecipe;
