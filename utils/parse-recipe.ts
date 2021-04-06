@@ -11,14 +11,12 @@ function parseHtml(html: string): any {
 }
 
 function parseRecipeJson(document: HTMLElement): Ingredient[] | null {
-  const jsonScripts = Array.from(
+  const jsonRecipe = Array.from(
     document.querySelectorAll('script[type="application/ld+json"]')
   )
     .map((script) => JSON.parse(script.innerHTML))
-    .flat();
-  const jsonRecipe = jsonScripts.find(
-    (schemaType) => schemaType["@type"] == "Recipe"
-  );
+    .flat()
+    .find((schema) => schema["@type"] == "Recipe");
   if (jsonRecipe) {
     return jsonRecipe.recipeIngredient.map((ingredient) => parse(ingredient));
   } else return null;
