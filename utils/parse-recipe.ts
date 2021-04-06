@@ -2,10 +2,6 @@ import { parse as htmlParser } from "node-html-parser";
 import { parse } from "recipe-ingredient-parser-v2";
 import { Ingredient } from "../types";
 
-interface ParsedHtml {
-  jsonSchema: any[];
-}
-
 function parseHtml(html: string): any {
   return htmlParser(html);
 }
@@ -34,7 +30,6 @@ function parseRecipe(html: string): Ingredient[] {
   const document = parseHtml(html);
   const recipeJson = parseRecipeJson(document);
   if (recipeJson) {
-    // Right now schemaJson will work for allrecipes, and schemaJsonArray will work for some SeriousEats
     return recipeJson;
   } else {
     return parseRecipeHtml(document);
