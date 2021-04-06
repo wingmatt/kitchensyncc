@@ -5,9 +5,9 @@ export interface Recipe {
 }
 
 export interface Ingredient {
-  quantity: number,
+  quantity: string,
   unit: string,
   ingredient: string,
-  minQty: number,
-  maxQty: number
+  minQty: string,
+  maxQty: string
 }
