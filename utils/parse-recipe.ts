@@ -2,7 +2,7 @@ import { parse as htmlParser } from "node-html-parser";
 import { parse } from "recipe-ingredient-parser-v2";
 import { Ingredient } from "../types";
 
-function parseHtml(html: string): any {
+function htmlStringtoDom(html: string): any {
   return htmlParser(html);
 }
 
@@ -27,7 +27,7 @@ function parseRecipeHtml(document: HTMLElement): Ingredient[] {
 }
 
 function parseRecipe(html: string): Ingredient[] {
-  const document = parseHtml(html);
+  const document = htmlStringtoDom(html);
   const recipeJson = parseRecipeJson(document);
   if (recipeJson) {
     return recipeJson;
