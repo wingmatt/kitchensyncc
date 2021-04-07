@@ -21,9 +21,9 @@ export default function Home() {
         <RecipeSearch/>
         <h2>Big To-dos</h2>
         <ul className={styles.todos}>
-          <li style={{textDecoration: 'line-through'}}>Get Recipe Form working</li>
-          <li className={styles.current}>Parse recipe data into useable format</li>
-          <li>Build general interface layout</li>
+          <li className={styles.done}>Get Recipe Form working</li>
+          <li className={styles.done}>Parse recipe data into useable format</li>
+          <li className={styles.current}>Build general interface layout</li>
           <li>Connect to persistent database</li>
           <li>Add authentication & user-specific data</li>
           <li>Add Pantry - Show which recipe ingredients we already have</li>
