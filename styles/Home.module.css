@@ -124,3 +124,7 @@
 .todos .current {
   font-weight: bold;
 }
+
+.todos .done {
+  text-decoration: line-through;
+}
