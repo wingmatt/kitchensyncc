@@ -14,7 +14,9 @@ function parseRecipeJson(document: HTMLElement): Ingredient[] | null {
     .flat() // Flatten the result — sometimes a script contains an array of objects instead of an object
     .find((schema) => schema["@type"] == "Recipe"); // Grab the Recipe schema out of all the collected JSON
   if (jsonRecipe) {
-    return jsonRecipe.recipeIngredient.map((ingredient) => parseIngredient(ingredient));
+    return jsonRecipe.recipeIngredient.map((ingredient) =>
+      parseIngredient(ingredient)
+    );
   } else return null;
 }
 
