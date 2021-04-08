@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Menu from "./Menu"
 import styles from "../styles/Home.module.css";
 
 export default function Layout({ children, title = "Kitchen Syncc" }) {
@@ -15,6 +16,7 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
         </h1>
         {children}
       </main>
+      <Menu/>
 
       <footer className={styles.footer}>
         <a
