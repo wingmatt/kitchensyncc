@@ -20,6 +20,7 @@ h1 {
   padding: .25em 0;
 }
 main {
+  width: 95vw;
   padding: 1rem;
   background: white;
   box-shadow: 1px 1px 7px rgba(0, 0, 0, .25);
@@ -30,19 +31,25 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: whitesmoke;
+  background: #c7c5c6;
   position: fixed;
   bottom: 0;
   width: 100vw;
   padding: .5em;
+  height: clamp(2rem, 10vh, 75px);
 }
 nav a {
   padding: 1em;
-  border: 4px solid transparent;
-  border-radius: 10px;
+  border-radius: 100px;
 }
 
 nav a:hover {
   background: #69C1C9;
-  border-color: #A19FA0;
+}
+
+button {
+  margin: 1rem;
+  padding: .5em 1em;
+  background: #69C1C9;
+  border: none;
 }
