@@ -9,11 +9,10 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <h1 className={styles.title}>
           <a href="https://nextjs.org">{title}</a>
         </h1>
+      <main className={styles.main}>
         {children}
       </main>
       <Menu/>
