@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import styles from '../styles/components/RecipeSearch.module.css'
 import {Recipe, Ingredient} from '../types'
+import { RiScissors2Fill } from "react-icons/ri";
 
 const RecipeSearch = () => {
   
@@ -29,11 +30,11 @@ const RecipeSearch = () => {
   };
   
   return (
-    <figure>
-      <form onSubmit={getRecipe} className={styles.container}>
+    <figure className={styles.container}>
+      <form onSubmit={getRecipe} className={styles.form}>
         <label htmlFor="url">Recipe URL</label>
         <input type="text" className={styles.search} id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
-        <button type="submit" className={styles.button}>Clip Recipe</button>
+        <button type="submit" className={styles.button}><RiScissors2Fill/> Clip Recipe</button>
       </form>
       <ul>
         {recipe.ingredients.map((value: Ingredient, index) => {
