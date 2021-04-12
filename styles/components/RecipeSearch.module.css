@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+}
+.container label {
+  margin-bottom: .25rem;
+}
+.search {
+  flex: 100%;
+  padding: .25em;
+  border: 1px solid #203B3D;
+}
+.button {
+  margin: 0;
+  flex: 100%;
+}
