@@ -62,7 +62,7 @@ nav a {
   border-radius: 100px;
 }
 
-nav a:hover {
+nav a.active {
   background: var(--highlight);
 }
 input, button {
