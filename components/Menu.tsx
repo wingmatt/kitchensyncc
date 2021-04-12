@@ -1,4 +1,16 @@
-import MenuLink from "../components/MenuLink"
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+function MenuLink(props) {
+  const isActiveLink = useRouter().pathname == props.href;
+  return (
+    <Link href={props.href}>
+      <a className={`menu-link ${isActiveLink ? "active" : ""}`}>
+        {props.label}
+      </a>
+    </Link>
+  );
+}
 
 export default function Menu() {
   return (
