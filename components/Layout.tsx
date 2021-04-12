@@ -10,7 +10,7 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className={styles.title}>
-          <a href="https://nextjs.org">{title}</a>
+          <a href="/">{title}</a>
         </h1>
       <main className={styles.main}>
         {children}
