@@ -2,12 +2,12 @@ import {useState} from 'react'
 import styles from '../styles/components/RecipeSearch.module.css'
 import {Recipe, Ingredient} from '../types'
 import { RiScissors2Fill } from "react-icons/ri";
+import IngredientList from '../components/IngredientList'
 
 const RecipeSearch = () => {
   
   const [recipe, setRecipe] = useState<Recipe>({
-    url: "https://www.allrecipes.com/recipe/22180/waffles-i/",
-    ingredients: ['waffles']
+    url: "https://www.allrecipes.com/recipe/22180/waffles-i/"
   });
 
   const getRecipe = async event => {
@@ -36,11 +36,7 @@ const RecipeSearch = () => {
         <input type="text" className={styles.search} id="url" name="url" defaultValue={recipe.url} onChange={event => setRecipe({...recipe, url: event.target.value})} />
         <button type="submit" className={styles.button}><RiScissors2Fill/> Clip Recipe</button>
       </form>
-      <ul>
-        {recipe.ingredients.map((value: Ingredient, index) => {
-          return <li key={index}><strong>{value.quantity} {value.unit}</strong> {value.ingredient}</li>
-        })}
-      </ul>
+      {recipe.ingredients?<IngredientList title="Clipped Ingredients" ingredients={recipe.ingredients}/> : ""}
     </figure>
   )
   
