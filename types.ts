@@ -1,6 +1,6 @@
 export interface Recipe {
   url: string,
-  ingredients?: string[],
+  ingredients?: Ingredient[],
   parsedIngredients?: Ingredient
 }
 
