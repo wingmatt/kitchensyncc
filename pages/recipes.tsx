@@ -3,7 +3,7 @@ import RecipeSearch from '../components/RecipeSearch'
 import Recipe from '../components/Recipe'
 
 export default function Pantry(){
-  const demoIngredients= [{quantity: "1", unit: "thing", name: "falafel ingredients", minQty: "1", maxQty: "2"}
+  const demoIngredients= [{quantity: "1", unit: "thing", ingredient: "falafel ingredients", minQty: "1", maxQty: "2"}
 ]
   return (
     <Layout title="Recipes">
