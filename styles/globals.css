@@ -103,3 +103,19 @@ button {
   border: none;
   border-radius: var(--edge-rounding);
 }
+
+h2 button {
+  all: inherit;
+}
+
+[aria-expanded="true"] .vert {
+  display: none;
+}
+
+h2 button:focus svg {
+  outline: 2px solid;
+}
+
+[aria-expanded] rect {
+  fill: currentColor;
+}
