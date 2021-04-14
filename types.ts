@@ -1,7 +1,8 @@
 export interface Recipe {
   url: string,
+  imgUrl: string,
+  name: string,
   ingredients?: Ingredient[],
-  parsedIngredients?: Ingredient
 }
 
 export interface Ingredient {
