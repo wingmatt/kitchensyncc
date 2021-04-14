@@ -44,7 +44,8 @@ h1 {
 }
 
 ul {
-  list-style: square;
+  list-style: square inside;
+  padding: 0;
 }
 main {
   width: 95vw;
@@ -75,7 +76,7 @@ nav a {
 nav a.active {
   background: var(--highlight);
 }
-input, button {
+input, button, a.button {
   padding: .75em .5em;
   border-radius: var(--edge-rounding);
 }
@@ -96,13 +97,15 @@ input[type="text"] {
   border-width: 2px;
 }
 
-button {
+button, a.button {
   font-family: var(--font);
   font-weight: bold;
   background: var(--highlight);
   border: none;
   border-radius: var(--edge-rounding);
 }
+
+/* Collapsible Panel styling */
 
 h2 button {
   all: inherit;
@@ -118,4 +121,30 @@ h2 button:focus svg {
 
 [aria-expanded] rect {
   fill: currentColor;
+}
+
+svg {
+  width: 1em;
+}
+
+.collapsible-panel h2 {
+  margin: 0;
+}
+.collapsible-panel button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapsible-panel > div {
+  border: 1px solid var(--highlight);
+  border-top-width: 0;
+  padding: .5em;
+}
+
+a.button {
+  font-size: 14px;
+  display: block;
+  text-align: center;
 }
