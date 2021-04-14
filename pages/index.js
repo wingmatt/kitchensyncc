@@ -15,11 +15,28 @@ export default function Home() {
           <li className={styles.done}>Get Recipe Form working</li>
           <li className={styles.done}>Parse recipe data into useable format</li>
           <li className={styles.current}>Build general interface layout</li>
+          <ul>
+            <li>Ingredient list component(s)</li>
+            <li>Recipe card component</li>
+            <li>Floating button component</li>
+            <li>Search box component</li>
+          </ul>
           <li>Connect to persistent database</li>
-          <li>Add authentication & user-specific data</li>
+          <li>Add authentication &amp; user-specific data</li>
           <li>Add Pantry - Show which recipe ingredients we already have</li>
+          <ul>
+            <li>Context menu for Pantry ingredients</li>
+            <li>Pantry expiration date indicator</li>
+          </ul>
           <li>Add Shopping List - Add missing recipe ingredients to list in 1 click</li>
-          <li>Add Menu - Saved parsed recipe links for easy access</li>
+          <ul>
+            <li>Context menu for List ingredients</li>
+            <li>Ability to rearrage list categories</li>
+          </ul>
+          <li>Add Recipes - Saved parsed recipe links for easy access</li>
+          <ul>
+            <li>Weekly plan component?</li>
+          </ul>
         </ul>
     </Layout>
   )
