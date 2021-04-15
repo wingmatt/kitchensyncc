@@ -17,7 +17,7 @@ export default function Home() {
           <li className={styles.current}>Build general interface layout</li>
           <ul>
             <li>Ingredient list component(s)</li>
-            <li>Recipe card component</li>
+            <li className={styles.done}>Recipe card component</li>
             <li>Floating button component</li>
             <li>Search box component</li>
           </ul>
