@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+}
+.form label {
+  margin-bottom: .25rem;
+}
+.search {
+  flex: 100%;
+}
+
+.button {
+  margin: 1em 0;
+}

@@ -1,20 +1,11 @@
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import RecipeSearch from '../components/RecipeSearch'
+import Layout from '../components/Layout'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          <a href="https://nextjs.org">Kitchen Syncc</a>
-        </h1>
-        <h2>Track your shopping list and pantry</h2>
+    <Layout>
+      <h2>Track your shopping list and pantry</h2>
         <p>I'm building this app to have an easy way to keep track of my kitchen supplies. Still in the early stages!</p>
         <h2>Import recipe ingredients from recipe websites</h2>
         <p>Plug a URL in the form below. This app will tell you what you have and add what you need to your shopping list.</p>
@@ -24,23 +15,29 @@ export default function Home() {
           <li className={styles.done}>Get Recipe Form working</li>
           <li className={styles.done}>Parse recipe data into useable format</li>
           <li className={styles.current}>Build general interface layout</li>
+          <ul>
+            <li>Ingredient list component(s)</li>
+            <li>Recipe card component</li>
+            <li>Floating button component</li>
+            <li>Search box component</li>
+          </ul>
           <li>Connect to persistent database</li>
-          <li>Add authentication & user-specific data</li>
+          <li>Add authentication &amp; user-specific data</li>
           <li>Add Pantry - Show which recipe ingredients we already have</li>
+          <ul>
+            <li>Context menu for Pantry ingredients</li>
+            <li>Pantry expiration date indicator</li>
+          </ul>
           <li>Add Shopping List - Add missing recipe ingredients to list in 1 click</li>
-          <li>Add Menu - Saved parsed recipe links for easy access</li>
+          <ul>
+            <li>Context menu for List ingredients</li>
+            <li>Ability to rearrage list categories</li>
+          </ul>
+          <li>Add Recipes - Saved parsed recipe links for easy access</li>
+          <ul>
+            <li>Weekly plan component?</li>
+          </ul>
         </ul>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://wingmatt.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          By Matt Wing @WingMattDev
-        </a>
-      </footer>
-    </div>
+    </Layout>
   )
 }
