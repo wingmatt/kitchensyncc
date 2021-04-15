@@ -1,6 +1,5 @@
 export interface Recipe {
   url: string,
-  imgUrl: string,
   name: string,
   ingredients?: Ingredient[],
 }

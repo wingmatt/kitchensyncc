@@ -109,8 +109,12 @@ button, a.button {
 
 h2 button {
   all: inherit;
+  cursor: pointer;
 }
-
+[aria-expanded="true"] {
+  border: 1px solid var(--highlight);
+  border-bottom: 0;
+}
 [aria-expanded="true"] .vert {
   display: none;
 }
@@ -123,12 +127,15 @@ h2 button:focus svg {
   fill: currentColor;
 }
 
-svg {
+h2 button svg {
   width: 1em;
 }
-
-.collapsible-panel h2 {
+.collapsible-panel > * {
+  margin: .5em 0;
+}
+.collapsible-panel > h2 {
   margin: 0;
+
 }
 .collapsible-panel button {
   width: 100%;
@@ -140,11 +147,9 @@ svg {
 .collapsible-panel > div {
   border: 1px solid var(--highlight);
   border-top-width: 0;
+  margin: 0;
   padding: .5em;
 }
-
-a.button {
-  font-size: 14px;
-  display: block;
-  text-align: center;
+.collapsible-panel div > * {
+  padding: .5em;
 }
