@@ -5,7 +5,7 @@ import { RiScissors2Fill } from "react-icons/ri";
 import IngredientList from "../components/IngredientList";
 
 const RecipeSearch = () => {
-  const [recipe, setRecipe] = useState<Recipe>({
+  const [recipe, setRecipe] = useState({
     url: "https://www.allrecipes.com/recipe/22180/waffles-i/",
   });
 
