@@ -5,8 +5,9 @@ import Ingredient from '../components/Ingredient'
 export default function Pantry(){
   return (
     <Layout title="Pantry">
-      <ul>
-        <Ingredient>Pantry stuff!</Ingredient>
+      <ul className="content-list">
+        <Ingredient quantity="1" unit="cup" ingredient="sugar" />
+        <Ingredient quantity="1" unit="cup" ingredient="Salt" />
       </ul>
     </Layout>
   )

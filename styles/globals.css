@@ -105,12 +105,17 @@ button, a.button {
   border-radius: var(--edge-rounding);
 }
 
+.content-list {
+  width: 100%;
+}
+
 /* Collapsible Panel styling */
 
 h2 button {
   all: inherit;
   cursor: pointer;
   padding: .5em;
+  text-transform: capitalize;
 }
 [aria-expanded="true"] {
   border: 1px solid var(--highlight);
@@ -131,6 +136,11 @@ h2 button:focus svg {
 h2 button svg {
   width: 1em;
 }
+
+.collapsible-panel {
+  width: 100%;
+}
+
 .collapsible-panel > h2 {
   margin: 0;
 
@@ -150,4 +160,8 @@ h2 button svg {
 }
 .collapsible-panel div > * {
   padding: .5em;
+}
+
+ul ul {
+  margin-left: 1em;
 }
