@@ -6,7 +6,7 @@ export default function IngredientList(props: {
 }) {
   return (
     <section>
-      <h2>{props.title}</h2>
+      <h3>{props.title}</h3>
       <ul>
         {props.ingredients.map((value: Ingredient, index) => {
           return (
