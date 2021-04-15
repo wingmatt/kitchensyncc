@@ -120,7 +120,7 @@ h2 button {
 }
 
 h2 button:focus svg {
-  outline: 2px solid;
+  outline: 2px dashed;
 }
 
 [aria-expanded] rect {
