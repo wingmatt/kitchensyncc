@@ -2,6 +2,7 @@
   --font: "Josefin Sans", sans-serif;
   --off-black: #203B3D;
   --highlight: #69C1C9;
+  --color-confirm: #80CC85;
   --menu-height: clamp(2rem, 10vh, 75px);
   --edge-rounding: 100px;
 }
@@ -160,6 +161,10 @@ h2 button svg {
 }
 .collapsible-panel div > * {
   padding: .5em;
+}
+
+.collapsible-panel li {
+  list-style: none;
 }
 
 ul ul {
