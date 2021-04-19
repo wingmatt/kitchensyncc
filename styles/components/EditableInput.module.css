@@ -1,0 +1,23 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputContainer:first-child::before {
+  content: "•";
+  color: var(--highlight);
+}
+
+.inputContainer > * {
+  margin: .25rem;
+  height: 20px;
+}
+
+.inputContainer input {
+  flex: 1;
+  padding: 0;
+}
+.inputContainer button {
+  flex: 0;
+  background: var(--color-confirm);
+}
