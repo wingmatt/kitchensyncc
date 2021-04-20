@@ -77,6 +77,10 @@ nav a {
 nav a.active {
   background: var(--highlight);
 }
+
+figure {
+  margin: 0;
+}
 input, button, a.button {
   padding: .75em .5em;
   border-radius: var(--edge-rounding);
@@ -150,9 +154,16 @@ h2 button svg {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
+.collapsible-panel button > * {
+  flex: 0 auto;
+}
+
+.collapsible-panel button > span {
+  flex: 1;
+  margin: 0 .66em;
+}
 .collapsible-panel > div {
   border: 1px solid var(--highlight);
   border-top-width: 0;
@@ -169,4 +180,18 @@ h2 button svg {
 
 ul ul {
   margin-left: 1em;
+}
+
+.ok, .warning, .critical {
+
+}
+
+.ok {
+  color: var(--color-confirm);
+}
+.warning {
+  color: #CDB472;
+}
+.critical {
+  color: salmon;
 }

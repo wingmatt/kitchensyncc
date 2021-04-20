@@ -9,5 +9,6 @@ export interface Ingredient {
   unit: string,
   ingredient: string,
   minQty?: string,
-  maxQty?: string
+  maxQty?: string,
+  status?: 'ok' | 'warning' | 'critical'
 }

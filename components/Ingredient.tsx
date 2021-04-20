@@ -9,7 +9,7 @@ export default function Ingredient (props: IngredientInterface) {
   
   return (
   <li className={styles.ingredient}>
-    <CollapsiblePanel title={"⚫ " + props.ingredient}>
+    <CollapsiblePanel title={ props.ingredient} status={props.status}>
       <ul>
         <EditableInput editing={editing}>{props.quantity} {props.unit}</EditableInput>
         <EditableInput editing={editing}>Expires 01/01/1000</EditableInput>
