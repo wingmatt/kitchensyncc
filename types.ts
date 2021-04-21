@@ -10,5 +10,6 @@ export interface Ingredient {
   ingredient: string,
   minQty?: string,
   maxQty?: string,
-  status?: 'ok' | 'warning' | 'critical'
+  status?: 'ok' | 'warning' | 'critical' | undefined,
+  type?: 'pantry' | 'shopping' | 'recipe'
 }
