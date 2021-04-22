@@ -1,0 +1,15 @@
+.listItem {
+  list-style-type: none;
+}
+.listItem label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: .33em;
+}
+.listItem span {
+  padding-left: .33em;
+}
+.listItem input[type="checkbox"] {
+  display: none;
+}
