@@ -1,6 +1,7 @@
-import { FiXCircle, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { FiCircle, FiXCircle, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { Ingredient } from '../types'
 
-const statusIcon = (status: 'ok' | 'warning' | 'critical') => {
+const statusIcon = (status: Ingredient["status"]) => {
   switch(status) {
     case 'ok':
       return <FiCheckCircle />
@@ -12,7 +13,7 @@ const statusIcon = (status: 'ok' | 'warning' | 'critical') => {
       return <FiXCircle />
       break
     default:
-      return ''
+      return <FiCircle />
   }
 }
 
