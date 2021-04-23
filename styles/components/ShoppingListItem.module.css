@@ -5,10 +5,14 @@
   font-size: 18px;
   display: flex;
   align-items: center;
-  padding: .33em;
+  padding: .1em;
 }
 .listItem span {
-  padding-left: .33em;
+  padding: .33em 0 0 .33em;
+  text-transform: capitalize;
+}
+.listItem .checked span {
+  text-decoration: line-through;
 }
 .listItem input[type="checkbox"] {
   display: none;

@@ -115,6 +115,11 @@ button, a.button {
 
 .content-list {
   width: 100%;
+  margin: 0;
+}
+.content-list h2 {
+  margin: 1em 0 0;
+  border-bottom: 1px solid var(--off-black)
 }
 
 /* Collapsible Panel styling */
