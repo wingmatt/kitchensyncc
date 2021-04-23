@@ -10,6 +10,7 @@ const InputActions = (props: {
   editing: any
 }) => {
   const {
+    // @ts-ignore: Initializer provides no value for this binding element and the binding element has no default value.
     editing: [editing, setEditing]
   } = {
     editing: useState(false), // This also works if we just set it to props.editing
