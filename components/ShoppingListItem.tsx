@@ -9,7 +9,7 @@ export default function ShoppingListItem(props: IngredientInterface) {
 
   return (
     <li className={styles.listItem}>
-      <label>
+      <label className={checked ? styles.checked : ""}>
         {checked ? <FiCheckSquare/> : <FiSquare/>}
         <input
           type="checkbox"

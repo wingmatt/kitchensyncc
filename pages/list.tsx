@@ -19,6 +19,13 @@ export default function List(){
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" type="shopping"/>
       </ul>
       <ul className="content-list">
+        <h2>Meat</h2>
+        <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" type="shopping" />
+        <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream" type="shopping"/>
+        <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron" type="shopping"/>
+        <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" type="shopping"/>
+      </ul>
+      <ul className="content-list">
         <h2>Dairy</h2>
         <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" type="shopping" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream" type="shopping"/>
