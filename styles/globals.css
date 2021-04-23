@@ -2,6 +2,9 @@
   --font: "Josefin Sans", sans-serif;
   --off-black: #203B3D;
   --highlight: #69C1C9;
+  --color-confirm: #3FA646;
+  --color-warning: #B09140;
+  --color-critical: #e67265;
   --menu-height: clamp(2rem, 10vh, 75px);
   --edge-rounding: 100px;
 }
@@ -76,6 +79,10 @@ nav a {
 nav a.active {
   background: var(--highlight);
 }
+
+figure {
+  margin: 0;
+}
 input, button, a.button {
   padding: .75em .5em;
   border-radius: var(--edge-rounding);
@@ -88,6 +95,7 @@ label {
 input {
   border-color: var(--off-black);
   margin: .5rem 0;
+  font-size: 16px;
 }
 input:focus {
   border-color: var(--highlight);
@@ -105,12 +113,21 @@ button, a.button {
   border-radius: var(--edge-rounding);
 }
 
+.content-list {
+  width: 100%;
+  margin: 0;
+}
+.content-list h2 {
+  margin: 1em 0 0;
+}
+
 /* Collapsible Panel styling */
 
 h2 button {
   all: inherit;
   cursor: pointer;
   padding: .5em;
+  text-transform: capitalize;
 }
 [aria-expanded="true"] {
   border: 1px solid var(--highlight);
@@ -131,6 +148,11 @@ h2 button:focus svg {
 h2 button svg {
   width: 1em;
 }
+
+.collapsible-panel {
+  width: 100%;
+}
+
 .collapsible-panel > h2 {
   margin: 0;
 
@@ -139,15 +161,39 @@ h2 button svg {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
+.collapsible-panel button > * {
+  flex: 0 auto;
+}
+
+.collapsible-panel button > span {
+  flex: 1;
+  margin: 0 .66em;
+}
 .collapsible-panel > div {
   border: 1px solid var(--highlight);
   border-top-width: 0;
   margin: 0;
+}
+.collapsible-panel div > ul {
   padding: .5em;
 }
-.collapsible-panel div > * {
-  padding: .5em;
+
+.collapsible-panel li {
+  list-style: none;
+}
+
+ul ul {
+  margin-left: 1em;
+}
+
+.ok {
+  color: var(--color-confirm);
+}
+.warning {
+  color: var(--color-warning);
+}
+.critical {
+  color: var(--color-critical);
 }
