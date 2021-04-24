@@ -140,8 +140,6 @@ h2 button {
 
 h2 button:focus svg {
   outline: 2px dashed var(--highlight);
-  height: 100%;
-  width: 100%;
 }
 
 [aria-expanded] rect {
@@ -150,6 +148,7 @@ h2 button:focus svg {
 
 h2 button svg {
   width: 1em;
+  height: 1em;
 }
 
 .collapsible-panel {
