@@ -25,10 +25,18 @@
   display: block;
   text-align: center;
   flex: 1;
+  font-weight: 420;
   border-radius: 0;
   cursor: pointer;
 }
 
 .actions button:nth-of-type(2n) {
   background: var(--color-critical);
+}
+
+.actions button:first-of-type {
+  border-radius: 0 0 0 .8rem;
+}
+.actions button:last-of-type {
+  border-radius: 0 0 .8rem 0;
 }
