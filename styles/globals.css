@@ -41,6 +41,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-weight: 350;
 }
 h1 {
   padding: .25em 0;
@@ -74,6 +75,7 @@ nav {
 nav a {
   padding: 1em;
   border-radius: var(--edge-rounding);
+  font-weight: 370;
 }
 
 nav a.active {
