@@ -41,6 +41,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-weight: 350;
 }
 h1 {
   padding: .25em 0;
@@ -74,6 +75,7 @@ nav {
 nav a {
   padding: 1em;
   border-radius: var(--edge-rounding);
+  font-weight: 370;
 }
 
 nav a.active {
@@ -130,8 +132,7 @@ h2 button {
   text-transform: capitalize;
 }
 [aria-expanded="true"] {
-  border: 1px solid var(--highlight);
-  border-bottom: 0;
+  padding-bottom: 0;
 }
 [aria-expanded="true"] .vert {
   display: none;
@@ -139,6 +140,8 @@ h2 button {
 
 h2 button:focus svg {
   outline: 2px dashed var(--highlight);
+  height: 100%;
+  width: 100%;
 }
 
 [aria-expanded] rect {
@@ -174,7 +177,8 @@ h2 button svg {
 .collapsible-panel > div {
   border: 1px solid var(--highlight);
   border-top-width: 0;
-  margin: 0;
+  border-radius: 0 0 1rem 1rem;
+  margin:  0 1.1rem 1.1rem;
 }
 .collapsible-panel div > ul {
   padding: .5em;
