@@ -157,6 +157,10 @@ h2 button svg {
   width: 100%;
 }
 
+.collapsible-panel > * {
+  
+}
+
 .collapsible-panel > h2 {
   margin: 0;
 
@@ -176,9 +180,13 @@ h2 button svg {
   margin: 0 .66em;
 }
 .collapsible-panel > div {
-  border: 1px solid var(--highlight);
-  border-top-width: 0;
   box-shadow: 0px 7px 7px rgba(0,0,0,.11);
+}
+.collapsible-panel > div > * {
+  margin: 0;
+  border-width: 0 1px 0 1px;
+  border-color: var(--highlight);
+  border-style: solid;
 }
 .collapsible-panel div > ul {
   padding: .5em;
