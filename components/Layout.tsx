@@ -11,21 +11,11 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
       </Head>
       <h1 className={styles.title}>
           <a href="/">{title}</a>
-        </h1>
+      </h1>
+      <Menu/>
       <main className={styles.main}>
         {children}
       </main>
-      <Menu/>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://wingmatt.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          By Matt Wing @WingMattDev
-        </a>
-      </footer>
     </div>
   );
 }
