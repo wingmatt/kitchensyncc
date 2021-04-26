@@ -10,6 +10,12 @@ export interface Ingredient {
   ingredient: string,
   minQty?: string,
   maxQty?: string,
-  status?: 'ok' | 'warning' | 'critical' | undefined,
-  type?: 'pantry' | 'shopping' | 'recipe'
+  expires?: string,
+  status?: 'ok' | 'warning' | 'critical',
+}
+
+export interface ListCategory {
+  title: string,
+  ingredients?: Ingredient[],
+  position: number
 }
