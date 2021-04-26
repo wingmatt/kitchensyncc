@@ -3,6 +3,7 @@ import {Ingredient as IngredientInterface} from '../types'
 import CollapsiblePanel from './CollapsiblePanel'
 import styles from '../styles/components/Ingredient.module.css'
 import EditableInput from './EditableInput'
+import {FiEdit, FiRepeat} from 'react-icons/fi'
 
 const InputActions = (props: {
   type: IngredientInterface["type"],
@@ -20,8 +21,8 @@ const InputActions = (props: {
     case 'pantry':
       return (
         <div className={styles.actions}>
-          <button onClick={() => setEditing(!editing)}>Edit</button>
-          <button>Reorder</button>
+          <button onClick={() => setEditing(!editing)}><FiEdit/>Edit</button>
+          <button><FiRepeat/>Reorder</button>
         </div>
       )
     case 'shopping':

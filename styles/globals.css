@@ -5,7 +5,7 @@
   --color-confirm: #3FA646;
   --color-warning: #B09140;
   --color-critical: #e67265;
-  --menu-height: clamp(2rem, 10vh, 75px);
+  --menu-height: clamp(1.5rem, 7vh, 5rem);
   --edge-rounding: 100px;
 }
 
@@ -65,21 +65,22 @@ nav {
   justify-content: center;
   align-items: center;
   background: whitesmoke;
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  padding: .5em;
-  height: var(--menu-height);
+  position: sticky;
+  top: 0;
+  width: 95vw;
   font-weight: 500;
 }
 nav a {
-  padding: 1em;
-  border-radius: var(--edge-rounding);
+  padding: 1em 1.5em;
   font-weight: 370;
+  text-decoration: underline;
+  border-width: 0 0 3px 0;
+  border-color: transparent;
+  border-style: solid;
 }
 
 nav a.active {
-  background: var(--highlight);
+  border-color: var(--highlight);
 }
 
 figure {
@@ -110,9 +111,10 @@ input[type="text"] {
 button, a.button {
   font-family: var(--font);
   font-weight: bold;
-  background: var(--highlight);
+  text-decoration: underline;
   border: none;
   border-radius: var(--edge-rounding);
+  background: transparent;
 }
 
 .content-list {
