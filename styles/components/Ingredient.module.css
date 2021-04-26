@@ -32,6 +32,12 @@
   cursor: pointer;
 }
 
+.actions button > svg {
+  position: relative;
+  top: .2em;
+  margin-right: .2em;
+}
+
 .actions button:nth-of-type(2n) {
-  background: var(--color-critical);
+  color: #cc4b3c;
 }
