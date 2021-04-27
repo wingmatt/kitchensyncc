@@ -6,7 +6,6 @@ import EditableInput from './EditableInput'
 import {FiEdit, FiRepeat} from 'react-icons/fi'
 
 const PantryActions = (props: {
-  type: IngredientInterface["type"],
   className: string,
   editing: any
 }) => {
@@ -35,7 +34,7 @@ export default function Ingredient (props: IngredientInterface) {
         <EditableInput editing={editing}>At least {props.quantity} {props.unit}</EditableInput>
         <EditableInput editing={editing}>Expires 01/01/1000</EditableInput>
       </ul>
-      <PantryActions type={props.type} className={styles.actions} editing={{editing: [editing, setEditing]}} />
+      <PantryActions className={styles.actions} editing={{editing: [editing, setEditing]}} />
     </CollapsiblePanel>
     
   </li>
