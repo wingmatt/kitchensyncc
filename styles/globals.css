@@ -132,12 +132,13 @@ button, a.button {
 h2 button {
   all: inherit;
   cursor: pointer;
-  padding: .5em;
+  padding: .25em;
   text-transform: capitalize;
 }
 [aria-expanded="true"] {
   border: 1px solid var(--highlight);
   border-bottom-width: 0;
+  margin-top: .33em;
 }
 [aria-expanded="true"] .vert {
   display: none;
@@ -164,6 +165,7 @@ h2 button svg {
 .collapsible-panel > div {
   border: 1px solid var(--highlight);
   border-top: 0;
+  margin-bottom: .33em;
 }
 
 .collapsible-panel > h2 {
@@ -182,11 +184,9 @@ h2 button svg {
 
 .collapsible-panel button > span {
   flex: 1;
-  margin: 0 .66em;
+  margin: 0 .33em;
 }
-.collapsible-panel > div {
-  box-shadow: 0px 7px 7px rgba(0,0,0,.11);
-}
+
 .collapsible-panel div > ul {
   padding: .5em;
 }

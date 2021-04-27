@@ -1,7 +1,6 @@
 .ingredient {
   display: flex;
   width: clamp(200px, 100%, 500px);
-  padding: .25rem 0;
 }
 
 .ingredient h2 {
