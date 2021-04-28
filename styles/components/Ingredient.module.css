@@ -23,18 +23,7 @@
 .actions button {
   -webkit-appearance: none;
   display: block;
-  text-align: center;
   flex: 1;
-  font-size: 16px;
-  font-weight: 350;
-  border-radius: 0;
-  cursor: pointer;
-}
-
-.actions button > svg {
-  position: relative;
-  top: .2em;
-  margin-right: .2em;
 }
 
 .actions button:nth-of-type(2n) {
