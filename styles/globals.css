@@ -127,7 +127,7 @@ button > svg, a.button > svg {
 }
 
 .content-list {
-  width: 100%;
+  width: clamp(200px, 100%, 500px);
   margin: 0;
 }
 .content-list > h2 {
@@ -168,7 +168,7 @@ h2 button svg {
 }
 
 .collapsible-panel {
-  width: 100%;
+  width: clamp(200px, 100%, 500px);
 }
 
 .collapsible-panel > div {
@@ -179,7 +179,7 @@ h2 button svg {
 
 .collapsible-panel > h2 {
   margin: 0;
-
+  font-size: 18px;
 }
 .collapsible-panel > h2 button {
   width: 100%;
@@ -202,6 +202,11 @@ h2 button svg {
 
 .collapsible-panel li {
   list-style: none;
+}
+
+.collapsible-panel div ul li:before {
+  content: "•";
+  color: var(--highlight);
 }
 
 ul ul {

@@ -3,11 +3,6 @@
   align-items: center;
 }
 
-.inputContainer:first-child::before {
-  content: "•";
-  color: var(--highlight);
-}
-
 .inputContainer > * {
   margin: .25rem;
   height: 20px;
