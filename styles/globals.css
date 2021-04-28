@@ -110,12 +110,10 @@ input[type="text"] {
 }
 
 button, a.button {
-  font-family: var(--font);
-  font-weight: bold;
   text-decoration: underline;
+  text-decoration-color: var(--highlight);
+  background: none;
   border: none;
-  border-radius: var(--edge-rounding);
-  background: transparent;
 }
 
 .content-list {
