@@ -3,10 +3,6 @@
   width: clamp(200px, 100%, 500px);
 }
 
-.ingredient h2 {
-  font-size: 18px;
-}
-
 .ingredient input {
   border-radius: 0;
   border-width: 0 0 2px 0;

@@ -1,11 +1,6 @@
 .list {
   width: 100%;
 }
-.recipe {
-  width: clamp(200px, 100%, 500px);
-  padding: .25rem;
-  margin: 1rem 0;
-}
 
 .recipe > * {
   margin: .5em 0;
