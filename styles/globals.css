@@ -110,10 +110,20 @@ input[type="text"] {
 }
 
 button, a.button {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 350;
   text-decoration: underline;
-  text-decoration-color: var(--highlight);
   background: none;
   border: none;
+  cursor: pointer;
+}
+
+button > svg, a.button > svg {
+  position: relative;
+  top: .2em;
+  margin-right: .2em;
 }
 
 .content-list {
@@ -171,7 +181,7 @@ h2 button svg {
   margin: 0;
 
 }
-.collapsible-panel button {
+.collapsible-panel > h2 button {
   width: 100%;
   display: flex;
   justify-content: space-between;
