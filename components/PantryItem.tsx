@@ -24,7 +24,7 @@ const PantryActions = (props: {
   )
 }
 
-export default function Ingredient (props: IngredientInterface) {
+export default function PantryItem (props: IngredientInterface) {
   const [editing, setEditing] = useState(false)
   
   return (
