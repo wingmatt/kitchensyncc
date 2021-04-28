@@ -1,39 +1,35 @@
 import Layout from '../components/Layout'
+import ItemGroup from '../components/ItemGroup'
 import ShoppingListItem from '../components/ShoppingListItem'
-import styles from "../styles/components/ShoppingListItem.module.css";
 
 
 export default function List(){
   return (
     <Layout title="Shopping List">
-      <ul className="content-list">
-        <h2 className={styles.category}>Produce</h2>
+      <ItemGroup title="Produce">
         <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
-      </ul>
-      <ul className="content-list">
-        <h2 className={styles.category}>Spices</h2>
+      </ItemGroup>
+      <ItemGroup title="Spices">
         <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
-      </ul>
-      <ul className="content-list">
-        <h2 className={styles.category}>Meat</h2>
+      </ItemGroup>
+      <ItemGroup title="Meat">
         <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
-      </ul>
-      <ul className="content-list">
-        <h2 className={styles.category}>Dairy</h2>
+      </ItemGroup>
+      <ItemGroup title="Dairy">
         <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
-      </ul>
+      </ItemGroup>
     </Layout>
   )
 }
