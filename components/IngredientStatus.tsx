@@ -5,13 +5,10 @@ const statusIcon = (status: Ingredient["status"]) => {
   switch(status) {
     case 'ok':
       return <FiCheckCircle />
-      break
     case 'warning':
       return <FiAlertCircle />
-      break
     case 'critical':
       return <FiXCircle />
-      break
     default:
       return <FiCircle />
   }
@@ -20,7 +17,7 @@ const statusIcon = (status: Ingredient["status"]) => {
 export default function IngredientStatus (props) {
 
 return (
-  <figure className={props.status}>
+  <figure className={props.status} title={props.statusLabel} >
     {statusIcon(props.status)}
   </figure>
 )

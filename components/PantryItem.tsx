@@ -18,10 +18,21 @@ const PantryActions = (props: {
   }
   return (
     <div className={styles.actions}>
-      <button onClick={() => setEditing(!editing)}><FiEdit/>Edit</button>
-      <button><FiRepeat/>Reorder</button>
+      <button onClick={() => setEditing(!editing)}><FiEdit focusable="false" />Edit</button>
+      <button><FiRepeat focusable="false" />Reorder</button>
     </div>
   )
+}
+
+const statusToLabel = (status) => {
+  switch (status) {
+    case "ok":
+      return "Have"
+    case "warning":
+      return "Expiring Soon"
+    case "critical":
+      return "Expired"
+  }
 }
 
 export default function PantryItem (props: IngredientInterface) {
@@ -29,7 +40,7 @@ export default function PantryItem (props: IngredientInterface) {
   
   return (
   <li className={styles.ingredient}>
-    <CollapsiblePanel title={ props.ingredient} status={props.status}>
+    <CollapsiblePanel title={ props.ingredient} status={props.status} statusLabel={statusToLabel(props.status)}>
       <ul>
         <EditableInput editing={editing}>At least {props.quantity} {props.unit}</EditableInput>
         <EditableInput editing={editing}>Expires 01/01/1000</EditableInput>

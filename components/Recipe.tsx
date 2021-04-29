@@ -8,8 +8,8 @@ export default function Recipe(props: RecipeInterface) {
   
   return (
     <article className={styles.recipe}>
-      <CollapsiblePanel title={props.name}>
-        <a href={props.url} className={"button " + styles.button}><FiExternalLink/>Go to Recipe </a>
+      <CollapsiblePanel title={props.name} status={props.status}>
+        <a href={props.url} className={"button " + styles.button}><FiExternalLink focusable="false" />Go to Recipe </a>
         <IngredientList title="Ingredients" ingredients={props.ingredients} />
       </CollapsiblePanel>
     </article>

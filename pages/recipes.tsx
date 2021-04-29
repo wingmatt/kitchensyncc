@@ -10,7 +10,7 @@ export default function Pantry(){
   return (
     <Layout title="Recipes">
       <ul className={styles.list}>
-        <Recipe name="Waffle" url="https://www.seriouseats.com/recipes/2016/03/the-food-lab-vegan-experience-best-homemade-falafel-recipe.html" ingredients={demoIngredients} />
+        <Recipe name="Waffle" url="https://www.seriouseats.com/recipes/2016/03/the-food-lab-vegan-experience-best-homemade-falafel-recipe.html" ingredients={demoIngredients} status="ok"/>
         <Recipe name="Offal" url="https://www.seriouseats.com/recipes/2016/03/the-food-lab-vegan-experience-best-homemade-falafel-recipe.html" ingredients={demoIngredients} />
         <Recipe name="Falafel" url="https://www.seriouseats.com/recipes/2016/03/the-food-lab-vegan-experience-best-homemade-falafel-recipe.html" ingredients={demoIngredients} />
       </ul>
