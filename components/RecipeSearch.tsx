@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../styles/components/RecipeSearch.module.css";
 import { Recipe } from "../types";
 import { RiScissors2Fill } from "react-icons/ri";
-import IngredientList from "../components/IngredientList";
+import ItemGroup from "./ItemGroup";
 
 const RecipeSearch = () => {
   const [recipe, setRecipe] = useState<any>({
@@ -49,10 +49,18 @@ const RecipeSearch = () => {
         </button>
       </form>
       {recipe.ingredients ? (
-        <IngredientList
-          title="Clipped Ingredients"
-          ingredients={recipe.ingredients}
-        />
+        <ItemGroup title="Clipped Ingredients">
+          {recipe.ingredients.map((value: IngredientInterface, index) => {
+            return (
+              <li key={index}>
+                <strong>
+                  {value.quantity} {value.unit}
+                </strong>{" "}
+                {value.ingredient}
+              </li>
+            );
+          })}
+        </ItemGroup>
       ) : (
         ""
       )}
