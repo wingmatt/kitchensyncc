@@ -31,7 +31,7 @@ export default function List(){
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
       </ItemGroup>
-      <div>
+      <div className="floating-button-container">
         <FloatingButton action="editShoppingList" />
         <FloatingButton action="updateShoppingList" />
       </div>
