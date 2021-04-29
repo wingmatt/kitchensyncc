@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/components/RecipeSearch.module.css";
-import { Recipe } from "../types";
+import { Ingredient as IngredientInterface  } from "../types";
 import { RiScissors2Fill } from "react-icons/ri";
 import ItemGroup from "./ItemGroup";
 
