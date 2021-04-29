@@ -5,7 +5,7 @@ export default function IngredientList(props: {
   ingredients?: Ingredient[];
 }) {
   return (
-    <section>
+    <>
       <h3>{props.title}</h3>
       <ul>
         {props.ingredients.map((value: Ingredient, index) => {
@@ -19,6 +19,6 @@ export default function IngredientList(props: {
           );
         })}
       </ul>
-    </section>
+    </>
   );
 }
