@@ -45,7 +45,7 @@ const RecipeSearch = () => {
           }
         />
         <button type="submit" className={styles.button}>
-          <RiScissors2Fill /> Clip Recipe
+          <RiScissors2Fill focusable="false" />Clip Recipe
         </button>
       </form>
       {recipe.ingredients ? (
