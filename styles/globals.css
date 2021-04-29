@@ -222,3 +222,16 @@ ul ul {
 .critical {
   color: var(--color-critical);
 }
+
+.floating-button-container {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.floating-button-container button {
+  border-radius: 1em;
+  margin: 1em;
+}
