@@ -28,6 +28,5 @@ export interface ListCategory {
 export interface FloatingButton {
   action: 'editShoppingList' | 'updateShoppingList',
   label: string,
-  color: string,
-  icon: string
+  icon: any
 }
