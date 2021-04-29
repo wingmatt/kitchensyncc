@@ -2,8 +2,8 @@ export interface Recipe {
   url: string,
   name: string,
   ingredients?: Ingredient[],
+  status?: Status["code"],
 }
-
 export interface Ingredient {
   quantity: string,
   unit: string,
@@ -11,7 +11,12 @@ export interface Ingredient {
   minQty?: string,
   maxQty?: string,
   expires?: string,
-  status?: 'ok' | 'warning' | 'critical',
+  status?: Status["code"],
+}
+
+export interface Status {
+  code: 'ok' | 'warning' | 'critical',
+  label: string
 }
 
 export interface ListCategory {
