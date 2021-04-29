@@ -24,3 +24,10 @@ export interface ListCategory {
   ingredients?: Ingredient[],
   position: number
 }
+
+export interface FloatingButton {
+  action: 'editShoppingList' | 'updateShoppingList',
+  label: string,
+  color: string,
+  icon: string
+}
