@@ -25,6 +25,16 @@
 	font-stretch: 25% 151%;
 }
 
+.sr-only {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
 html,
 body {
   padding: 0;
@@ -232,6 +242,15 @@ ul ul {
 }
 
 .floating-button-container button {
-  border-radius: 1em;
+  border-radius: 100%;
+  font-size: 20px;
+  padding: .66em;
   margin: 1em;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, .25);
+}
+
+.floating-button-container button svg {
+  top: .1em;
+  margin-right: 0;
+
 }

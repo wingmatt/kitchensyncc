@@ -1,5 +1,5 @@
 import {FloatingButton as FloatingButtonInterface} from '../types'
-import {FiEdit, FiCheck} from 'react-icons/fi'
+import {FiEdit2, FiCheck} from 'react-icons/fi'
 import styles from '../styles/components/FloatingButton.module.css'
 
 const labelFromAction = (action: FloatingButtonInterface["action"]): FloatingButtonInterface => {
@@ -7,14 +7,14 @@ const labelFromAction = (action: FloatingButtonInterface["action"]): FloatingBut
     case 'editShoppingList':
       return {
         action: action,
-        label: "Edit",
-        icon: <FiEdit/>
+        label: "Edit List",
+        icon: <FiEdit2 focusable="false"/>
       }
     case 'updateShoppingList':
       return {
         action: action,
-        label: "Update",
-        icon: <FiCheck/>
+        label: "Update List",
+        icon: <FiCheck focusable="false"/>
       }
   }
 }
@@ -23,8 +23,8 @@ export default function FloatingButton (props) {
   const {action, label, icon} = labelFromAction(props.action)
   
   return (
-    <button className={styles[action]} >
-      {icon}{label}
+    <button className={styles[action]} title={label} >
+      {icon}
     </button>
   )
 }
