@@ -99,7 +99,6 @@ figure {
 }
 input, button, a.button {
   padding: .75em .5em;
-  border-radius: var(--edge-rounding);
 }
 
 label {
