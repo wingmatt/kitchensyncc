@@ -18,7 +18,7 @@ const PantryActions = (props: {
   }
   return (
     <div className={styles.actions}>
-      <button onClick={() => setEditing(!editing)}><FiEdit focusable="false" />Edit</button>
+      <button onClick={() => setEditing(!editing)}><FiEdit focusable="false"/>Edit</button>
       <button><FiRepeat focusable="false" />Reorder</button>
     </div>
   )
