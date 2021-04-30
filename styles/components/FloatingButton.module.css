@@ -1,0 +1,7 @@
+.editShoppingList  {
+ background: var(--highlight);
+}
+
+.updateShoppingList {
+  background: var(--color-confirm);
+}

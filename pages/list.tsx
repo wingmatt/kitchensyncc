@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
 import ItemGroup from '../components/ItemGroup'
 import ShoppingListItem from '../components/ShoppingListItem'
+import FloatingButton from '../components/FloatingButton'
 
 
 export default function List(){
@@ -30,6 +31,10 @@ export default function List(){
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
       </ItemGroup>
+      <div className="floating-button-container">
+        <FloatingButton action="editShoppingList" />
+        <FloatingButton action="updateShoppingList" />
+      </div>
     </Layout>
   )
 }

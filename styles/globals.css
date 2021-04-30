@@ -25,6 +25,16 @@
 	font-stretch: 25% 151%;
 }
 
+.sr-only {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
 html,
 body {
   padding: 0;
@@ -89,7 +99,6 @@ figure {
 }
 input, button, a.button {
   padding: .75em .5em;
-  border-radius: var(--edge-rounding);
 }
 
 label {
@@ -221,4 +230,26 @@ ul ul {
 }
 .critical {
   color: var(--color-critical);
+}
+
+.floating-button-container {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.floating-button-container button {
+  border-radius: 100%;
+  font-size: 20px;
+  padding: .66em;
+  margin: 1em;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, .25);
+}
+
+.floating-button-container button svg {
+  top: .1em;
+  margin-right: 0;
+
 }
