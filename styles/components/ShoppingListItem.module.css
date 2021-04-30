@@ -15,9 +15,6 @@
 .listItem .checked span {
   text-decoration: line-through;
 }
-.listItem input[type="checkbox"] {
-  display: none;
-}
 .category {
   border-bottom: 1px solid var(--off-black);
   font-weight: 300;
