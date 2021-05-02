@@ -24,7 +24,7 @@ export default function FloatingButton (props) {
   
   return (
     <button className={styles[action]} title={label} >
-      {icon}
+      {icon}{label}
     </button>
   )
 }

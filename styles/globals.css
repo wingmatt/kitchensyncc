@@ -241,15 +241,12 @@ ul ul {
 }
 
 .floating-button-container button {
-  border-radius: 100%;
-  font-size: 20px;
-  padding: .66em;
+  border-radius: 2em;
+  padding: .66em 1em;
   margin: 1em;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, .25);
 }
 
 .floating-button-container button svg {
   top: .1em;
-  margin-right: 0;
-
 }
