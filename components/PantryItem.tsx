@@ -29,7 +29,7 @@ const statusToLabel = (status) => {
     case "ok":
       return "Have"
     case "warning":
-      return "Expiring Soon"
+      return "Need to Use"
     case "critical":
       return "Expired"
   }
