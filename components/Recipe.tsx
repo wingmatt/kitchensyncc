@@ -2,7 +2,6 @@ import { Recipe as RecipeInterface, Ingredient as IngredientInterface } from "..
 import styles from "../styles/components/Recipe.module.css"
 import CollapsiblePanel from "./CollapsiblePanel"
 import { FiExternalLink } from "react-icons/fi"
-import ItemGroup from '../components/ItemGroup'
 
 export default function Recipe(props: RecipeInterface) {
   
@@ -10,7 +9,8 @@ export default function Recipe(props: RecipeInterface) {
     <article className={styles.recipe}>
       <CollapsiblePanel title={props.name} status={props.status}>
         <a href={props.url} className={"button " + styles.button}><FiExternalLink focusable="false" />Go to Recipe </a>
-        <ItemGroup title="Ingredients">
+        <ul>
+          <h3>Ingredients</h3>
           {props.ingredients.map((value: IngredientInterface, index) => {
             return (
               <li key={index}>
@@ -21,7 +21,7 @@ export default function Recipe(props: RecipeInterface) {
               </li>
             );
           })}
-        </ItemGroup>
+        </ul>
       </CollapsiblePanel>
     </article>
   );

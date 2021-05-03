@@ -9,3 +9,13 @@
 .button {
   color: var(--color-confirm);
 }
+
+.recipe h3 {
+  margin: .5em 0;
+  font-weight: 300;
+  font-size: 1.25rem;
+}
+
+.recipe ul {
+  margin: 0;
+}
