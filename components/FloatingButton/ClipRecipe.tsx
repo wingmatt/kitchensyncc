@@ -5,7 +5,7 @@ const clipRecipe = () => {
 
 }
 
-export default function ClipRecipe (props) {
+export default function ClipRecipe () {
   return (
     <FloatingButton action="clipRecipe" label="Clip Recipe" icon={<FiScissors focusable="false"/>} />
   )

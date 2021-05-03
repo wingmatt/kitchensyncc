@@ -5,7 +5,7 @@ const updateShoppingList = () => {
 
 }
 
-export default function UpdateShoppingList (props) {
+export default function UpdateShoppingList () {
   return (
     <FloatingButton action="updateShoppingList" label="Update List" icon={<FiCheck focusable="false"/>} />
   )
