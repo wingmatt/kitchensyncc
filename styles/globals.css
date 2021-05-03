@@ -188,12 +188,13 @@ h2 button svg {
 
 .collapsible-panel > h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 1rem;
 }
 .collapsible-panel > h2 button {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .collapsible-panel button > * {
@@ -241,6 +242,7 @@ ul ul {
 }
 
 .floating-button-container button {
+  background-color: var(--highlight);
   border-radius: 2em;
   padding: .66em 1em;
   margin: 1em;
