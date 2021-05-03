@@ -163,8 +163,8 @@ h2 button {
   display: none;
 }
 
-h2 button:focus svg {
-  outline: 1px dashed var(--highlight);
+h2 button:focus-visible {
+  outline: 2px dashed var(--highlight);
 }
 
 
@@ -195,7 +195,6 @@ h2 button svg {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .collapsible-panel button > * {
