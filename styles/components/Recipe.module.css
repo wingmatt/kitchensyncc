@@ -6,12 +6,13 @@
   margin: .5em 0;
 }
 
-.button {
+a.button {
   color: var(--color-confirm);
+  padding: .15em .5em;
 }
 
 .recipe h3 {
-  margin: .5em 0;
+  margin: .1em 0;
   font-weight: 300;
   font-size: 1.25rem;
 }
