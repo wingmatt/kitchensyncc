@@ -20,3 +20,10 @@ a.button {
 .recipe ul {
   margin: 0;
 }
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 .5rem;
+}
