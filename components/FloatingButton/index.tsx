@@ -1,4 +1,4 @@
-import styles from '../styles/components/FloatingButton.module.css'
+import styles from '../../styles/components/FloatingButton.module.css'
 
 export default function FloatingButton (props) {
    return (
