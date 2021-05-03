@@ -31,7 +31,7 @@ const RecipeSearch = () => {
   };
 
   return (
-    <figure className={styles.container}>
+    <figure className={styles.container} id="recipe-search">
       <form onSubmit={getRecipe} className={styles.form}>
         <label htmlFor="url">Recipe URL</label>
         <input

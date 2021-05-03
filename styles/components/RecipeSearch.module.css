@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  margin-bottom: 2.7rem;
 }
 
 .form {
@@ -10,10 +11,13 @@
 .form label {
   margin-bottom: .25rem;
 }
+.form input {
+  margin: 0;
+}
 .search {
   flex: 100%;
 }
 
 .button {
-  margin: 1em 0;
+  margin: 0;
 }
