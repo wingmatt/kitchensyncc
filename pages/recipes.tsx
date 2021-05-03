@@ -1,6 +1,8 @@
 import Layout from '../components/Layout'
 import RecipeSearch from '../components/RecipeSearch'
 import Recipe from '../components/Recipe'
+import SearchRecipes from '../components/FloatingButton/SearchRecipes'
+import ClipRecipe from '../components/FloatingButton/ClipRecipe'
 import styles from "../styles/components/Recipe.module.css"
 
 export default function Pantry(){
@@ -15,6 +17,10 @@ export default function Pantry(){
         <Recipe name="Falafel" url="https://www.seriouseats.com/recipes/2016/03/the-food-lab-vegan-experience-best-homemade-falafel-recipe.html" ingredients={demoIngredients} />
       </ul>
       <RecipeSearch/>
+      <div className="floating-button-container">
+        <SearchRecipes />
+        <ClipRecipe />
+      </div>
     </Layout>
   )
 }
