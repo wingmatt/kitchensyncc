@@ -1,6 +1,5 @@
 .inputContainer {
-  display: flex;
-  align-items: center;
+  display: inline; 
 }
 
 .inputContainer > * {
@@ -9,9 +8,9 @@
 }
 
 .inputContainer input {
-  flex: 1;
   padding: 0;
 }
+
 .inputContainer button {
   flex: 0;
   background: var(--color-confirm);
