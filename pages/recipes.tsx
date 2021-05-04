@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import RecipeSearch from '../components/RecipeSearch'
-import Recipe from '../components/Recipe'
+import Recipe from '../components/ListItem/Recipe'
 import SearchRecipes from '../components/FloatingButton/SearchRecipes'
 import ClipRecipe from '../components/FloatingButton/ClipRecipe'
 import styles from "../styles/components/Recipe.module.css"

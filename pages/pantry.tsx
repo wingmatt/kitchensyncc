@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
 import ItemGroup from '../components/ItemGroup'
-import PantryItem from '../components/PantryItem'
+import PantryItem from '../components/ListItem/PantryItem'
+import AddToPantry from '../components/FloatingButton/AddToPantry'
 
 export default function Pantry(){
   return (
@@ -11,6 +12,9 @@ export default function Pantry(){
         <PantryItem quantity="1" unit="cup" ingredient="Saffron" status="critical"/>
         <PantryItem quantity="1" unit="cup" ingredient="Salt"/>
       </ItemGroup>
+      <div className="floating-button-container">
+        <AddToPantry />
+      </div>
     </Layout>
   )
 }

@@ -1,6 +1,6 @@
-import { Recipe as RecipeInterface, Ingredient as IngredientInterface } from "../types";
-import styles from "../styles/components/Recipe.module.css"
-import CollapsiblePanel from "./CollapsiblePanel"
+import { Recipe as RecipeInterface, Ingredient as IngredientInterface } from "../../types";
+import styles from "../../styles/components/Recipe.module.css"
+import CollapsiblePanel from "../CollapsiblePanel"
 import { FiExternalLink } from "react-icons/fi"
 
 export default function Recipe(props: RecipeInterface) {
