@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import ItemGroup from '../components/ItemGroup'
-import PantryItem from '../components/PantryItem'
+import PantryItem from '../components/ListItem/PantryItem'
 
 export default function Pantry(){
   return (
