@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import ItemGroup from '../components/ItemGroup'
-import ShoppingListItem from '../components/ShoppingListItem'
+import ShoppingListItem from '../components/ListItem/ShoppingListItem'
 import FloatingButton from '../components/FloatingButton'
 
 
