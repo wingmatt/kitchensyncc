@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@reach/skip-nav": "^0.15.0",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "cors": "^2.8.5",
