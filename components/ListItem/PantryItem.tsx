@@ -42,8 +42,9 @@ export default function PantryItem (props: IngredientInterface) {
   <li className={styles.ingredient}>
     <CollapsiblePanel title={ props.ingredient} status={props.status} statusLabel={statusToLabel(props.status)}>
       <ul>
-        <EditableInput editing={editing}>At least {props.quantity} {props.unit}</EditableInput>
-        <EditableInput editing={editing}>Expires 01/01/1000</EditableInput>
+        <EditableInput label="Amount" type="number" editing={editing}>{props.quantity}</EditableInput>
+        <EditableInput label="Unit" type="text" editing={editing}>{props.unit}</EditableInput>
+        <EditableInput label="Expires" type="date"editing={editing}>01/01/1000</EditableInput>
       </ul>
       <PantryActions className={styles.actions} editing={{editing: [editing, setEditing]}} />
     </CollapsiblePanel>
