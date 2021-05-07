@@ -3,7 +3,7 @@ import { Ingredient as IngredientInterface } from "../../types";
 import CollapsiblePanel from "../CollapsiblePanel";
 import styles from "../../styles/components/Ingredient.module.css";
 import EditableInput from "../EditableInput";
-import IngredientUnitInput from "../EditableInput/IngredientUnitInput"
+import IngredientUnitInput from "../Input/IngredientUnitInput"
 import { FiEdit, FiRepeat } from "react-icons/fi";
 
 const PantryActions = (props: { className: string; editing: any }) => {

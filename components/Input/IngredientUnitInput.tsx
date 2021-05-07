@@ -16,7 +16,6 @@ export default function IngredientUnitInput(props) {
         <ComboboxPopover>
           <ComboboxList>
             <ComboboxOption value="Cup" />
-            <ComboboxOption value="Clove" />
             <ComboboxOption value="Ounce" />
             <ComboboxOption value="Teaspoon" /> 
             <ComboboxOption value="Tablespoon" />
