@@ -19,6 +19,7 @@ export default function Home() {
             <li className={styles.done}>Ingredient list component(s)</li>
             <li className={styles.done}>Recipe card component</li>
             <li className={styles.done}>Floating button component</li>
+            <li>Pantry Ingredient Inputs</li>
             <li>Search box component</li>
           </ul>
           <li>Connect to persistent database</li>
