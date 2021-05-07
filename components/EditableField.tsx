@@ -1,17 +1,17 @@
 import { useState } from "react";
-import styles from "../styles/components/EditableInput.module.css"
+import styles from "../styles/components/EditableInput.module.css";
+import IngredientUnitInput from "./Input/IngredientUnitInput";
+import InputContainer from "./Input/InputContainer";
+
 
 const Input = function (props) {
   const [input, setInput] = useState({ value: props.content });
   return (
-    <label className={styles.inputContainer}>
-    <span className="sr-only">{props.label}</span>
     <input 
       type={props.type}
       value={input.value}
       onChange={(event) => setInput({ value: event.target.value })}
     />
-  </label>
   );
 };
 
@@ -27,12 +27,14 @@ const updateInput = (event) => {
 
 export default function EditableInput(props) {
   return (
-    <li>
+    <>
       {props.editing ? (
-        <Input content={props.children} type={props.type} label={props.label}/>
+        <InputContainer label={props.label} className={styles.inputContainer}>
+          <Input content={props.children} type={props.type} />
+        </InputContainer>
       ) : (
         <Text content={props.children} label={props.label}/>
       )}
-    </li>
+    </>
   );
 }

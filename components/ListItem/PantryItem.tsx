@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Ingredient as IngredientInterface } from "../../types";
 import CollapsiblePanel from "../CollapsiblePanel";
 import styles from "../../styles/components/Ingredient.module.css";
-import EditableInput from "../EditableInput";
+import EditableField from "../EditableField";
 import IngredientUnitInput from "../Input/IngredientUnitInput"
 import { FiEdit, FiRepeat } from "react-icons/fi";
 
@@ -52,18 +52,18 @@ export default function PantryItem(props: IngredientInterface) {
         <ul>
           <li>
             Amount: 
-            <EditableInput label="Amount" type="number" editing={editing}>
+            <EditableField label="Amount" type="number" editing={editing}>
               {props.quantity}
-            </EditableInput>
+            </EditableField>
             <IngredientUnitInput label="Unit" type="text" editing={editing}>
               {props.unit}
             </IngredientUnitInput>
           </li>
           <li>
             Expires: 
-            <EditableInput label="Expires" type="date" editing={editing}>
+            <EditableField label="Expires" type="date" editing={editing}>
               01/01/1000
-            </EditableInput>
+            </EditableField>
           </li>
         </ul>
         <PantryActions
