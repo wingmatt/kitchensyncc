@@ -1,6 +1,5 @@
 import { useState } from "react";
-import styles from "../styles/components/EditableInput.module.css";
-import IngredientUnitInput from "./Input/IngredientUnitInput";
+import styles from "../styles/components/EditableField.module.css";
 import InputContainer from "./Input/InputContainer";
 
 
