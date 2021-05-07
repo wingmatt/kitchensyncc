@@ -8,7 +8,11 @@
 }
 
 .inputContainer input {
+  display: inline;
   padding: 0;
+}
+.inputContainer input[type="number"] {
+  max-width: 50px;
 }
 
 .inputContainer button {
