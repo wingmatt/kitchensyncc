@@ -8,10 +8,25 @@
   border-width: 0 0 2px 0;
   border-color: var(--off-black);
 }
+.ingredient input[type=number]::-webkit-inner-spin-button, 
+.ingredient input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
+.ingredient input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+  max-width: 2em;
+  margin-right: .75em;
+  }
 .ingredient input:focus {
   border-color: var(--highlight);
-
+}
+.ingredient input[type="text"] {
+  width: 7em;
+}
+.ingredient input[type="date"] {
+  width: 10em;
 }
 .actions {
   display: flex;
