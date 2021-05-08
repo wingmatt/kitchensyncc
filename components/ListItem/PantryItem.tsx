@@ -3,7 +3,6 @@ import { Ingredient as IngredientInterface } from "../../types";
 import CollapsiblePanel from "../CollapsiblePanel";
 import styles from "../../styles/components/Ingredient.module.css";
 import EditableField from "../EditableField";
-import IngredientUnitInput from "../Input/IngredientUnitInput"
 import { FiEdit, FiRepeat } from "react-icons/fi";
 
 const PantryActions = (props: { className: string; editing: any }) => {
@@ -55,14 +54,14 @@ export default function PantryItem(props: IngredientInterface) {
             <EditableField label="Amount" type="number" editing={editing}>
               {props.quantity}
             </EditableField>
-            <IngredientUnitInput label="Unit" type="text" editing={editing}>
+            <EditableField label="Unit" type="text" editing={editing}>
               {props.unit}
-            </IngredientUnitInput>
+            </EditableField>
           </li>
           <li>
             Expires: 
             <EditableField label="Expires" type="date" editing={editing}>
-              01/01/1000
+              1970-01-01
             </EditableField>
           </li>
         </ul>
