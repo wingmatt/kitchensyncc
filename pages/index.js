@@ -14,15 +14,14 @@ export default function Home() {
         <ul className={styles.todos}>
           <li className={styles.done}>Get Recipe Form working</li>
           <li className={styles.done}>Parse recipe data into useable format</li>
-          <li className={styles.current}>Build general interface layout</li>
+          <li className={styles.done}>Build general interface layout</li>
           <ul>
             <li className={styles.done}>Ingredient list component(s)</li>
             <li className={styles.done}>Recipe card component</li>
             <li className={styles.done}>Floating button component</li>
-            <li>Pantry Ingredient Inputs</li>
-            <li>Search box component</li>
+            <li className={styles.done}>Pantry Ingredient Inputs</li>
           </ul>
-          <li>Connect to persistent database</li>
+          <li className={styles.current}>Connect to persistent database</li>
           <li>Add authentication &amp; user-specific data</li>
           <li>Add Pantry - Show which recipe ingredients we already have</li>
           <ul>
