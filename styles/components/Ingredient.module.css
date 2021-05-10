@@ -21,6 +21,9 @@
   max-width: 2em;
   margin-right: .75em;
   }
+  .ingredient input[type=date] {
+    font-family: sans-serif;
+  }
 .ingredient input:focus {
   border-color: var(--highlight);
 }
