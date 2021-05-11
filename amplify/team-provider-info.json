@@ -10,6 +10,11 @@
       "StackName": "amplify-kitchensyncc-dev-212353",
       "StackId": "arn:aws:cloudformation:us-west-2:040949699144:stack/amplify-kitchensyncc-dev-212353/892b1af0-b147-11eb-b008-0203778a50e1",
       "AmplifyAppId": "d1nyqx77hq9pjc"
+    },
+    "categories": {
+      "auth": {
+        "kitchensyncce31fd10c": {}
+      }
     }
   }
 }
