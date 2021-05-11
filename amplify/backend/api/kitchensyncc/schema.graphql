@@ -18,3 +18,33 @@ type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
   post: Post @connection(fields: ["postID"])
   content: String!
 }
+
+type Recipe @model {
+  id: ID!,
+  url: String,
+  ingredients: [Ingredient] @connection(keyName: "byRecipe", fields: ["id"]),
+  status: String
+}
+
+type Ingredient @model 
+  @key (name: "byRecipe", fields: ["recipeID", "ingredient"])
+  @key (name: "byItemList", fields: ["listID", "ingredient"]) {
+  id: ID!
+  recipeID: ID
+  listID: ID
+  quantity: String
+  unit: String
+  ingredient: String!
+  minQty: String
+  maxQty: String
+  expires: String
+  status: String
+}
+
+type ItemList @model {
+  id: ID!
+  title: String!
+  ingredients: [Ingredient] @connection(keyName: "byItemList", fields: ["id"]),
+  type: String!
+  order: Int
+}
