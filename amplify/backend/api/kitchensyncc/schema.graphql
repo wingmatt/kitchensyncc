@@ -1,4 +1,5 @@
-type Recipe @model {
+type Recipe @model 
+  @auth(rules: [{ allow: owner }]) {
   id: ID!,
   url: String,
   ingredients: [Ingredient] @connection(keyName: "byRecipe", fields: ["id"]),
@@ -6,6 +7,7 @@ type Recipe @model {
 }
 
 type Ingredient @model 
+  @auth(rules: [{ allow: owner }])
   @key (name: "byRecipe", fields: ["recipeID", "ingredient"])
   @key (name: "byItemList", fields: ["listID", "ingredient"]) {
   id: ID!
@@ -20,7 +22,8 @@ type Ingredient @model
   status: String
 }
 
-type ItemList @model {
+type ItemList @model 
+  @auth(rules: [{ allow: owner }]) {
   id: ID!
   title: String!
   ingredients: [Ingredient] @connection(keyName: "byItemList", fields: ["id"]),
