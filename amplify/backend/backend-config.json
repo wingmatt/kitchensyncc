@@ -6,10 +6,9 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": "Kitchen Syncc GQL API"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authkitchensyncce31fd10c"
             }
           },
           "additionalAuthenticationProviders": []
