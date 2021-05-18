@@ -6,8 +6,11 @@ const addList = async (event) => {
   event.preventDefault();
   try {
     const newItemList = await API.graphql(graphqlOperation(createItemList, {
-      title: event.target.title.value,
-      type: "shoppingList"
+      input: {
+        title: event.target.title.value,
+        type: "shoppingList"
+      }
+      
     }))
     console.log(newItemList)
   } catch (err) {
