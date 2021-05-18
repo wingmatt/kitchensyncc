@@ -2,23 +2,27 @@ import Layout from '../components/Layout'
 import ItemGroup from '../components/ItemGroup'
 import PantryItem from '../components/ListItem/PantryItem'
 import AddToPantry from '../components/FloatingButton/AddToPantry'
-import { API } from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 import { useEffect, useState } from 'react'
 import { getItemList, listItemLists } from '../src/graphql/queries'
 
 export default function Pantry(){
   const [itemLists, setItemLists] = useState([]);
-  useEffect(() => {
+  useEffect(async () => {
     const getPantryLists = async () => {
       try {
-        const pantryLists = await API.graphql({query: listItemLists/*,variables: {type:"pantryList"}*/}) //as Promise<ListItemListResult>
+        const pantryLists = await API.graphql(graphqlOperation(listItemLists)) //as Promise<ListItemListResult>
         console.log(pantryLists)
         //setItemLists(pantryLists)
+        return pantryLists.data.listItemLists.items
       } catch (err) {
         console.log("GraphQL Fetch Error:", err)
+        return 
       }
     }
-    console.log(getPantryLists)
+    await getPantryLists().then((pantryList) => {
+      setItemLists(pantryList)
+    })
   }, [])
   return (
     <Layout title="Pantry">
@@ -31,12 +35,13 @@ export default function Pantry(){
       <h2>Real Data</h2>
       {itemLists.map((itemList) => {
         return (
-          <ItemGroup title={itemList.title}>
-            {itemList.ingredients.map((ingredient) => {
+          <ItemGroup key={itemList.id} title={itemList.title}>
+            Yes!
+            {/*itemList.ingredients.map((ingredient) => {
               return (
                 <PantryItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
               )
-            })}
+            })*/}
           </ItemGroup>
         )
       })}
