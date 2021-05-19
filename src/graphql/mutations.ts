@@ -11,7 +11,16 @@ export const createRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
       status
       createdAt
@@ -29,7 +38,16 @@ export const updateRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
       status
       createdAt
@@ -47,74 +65,17 @@ export const deleteRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const createIngredient = /* GraphQL */ `
-  mutation CreateIngredient(
-    $input: CreateIngredientInput!
-    $condition: ModelIngredientConditionInput
-  ) {
-    createIngredient(input: $input, condition: $condition) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updateIngredient = /* GraphQL */ `
-  mutation UpdateIngredient(
-    $input: UpdateIngredientInput!
-    $condition: ModelIngredientConditionInput
-  ) {
-    updateIngredient(input: $input, condition: $condition) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deleteIngredient = /* GraphQL */ `
-  mutation DeleteIngredient(
-    $input: DeleteIngredientInput!
-    $condition: ModelIngredientConditionInput
-  ) {
-    deleteIngredient(input: $input, condition: $condition) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
       status
       createdAt
       updatedAt
@@ -130,8 +91,11 @@ export const createItemList = /* GraphQL */ `
     createItemList(input: $input, condition: $condition) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order
@@ -149,8 +113,11 @@ export const updateItemList = /* GraphQL */ `
     updateItemList(input: $input, condition: $condition) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order
@@ -168,8 +135,11 @@ export const deleteItemList = /* GraphQL */ `
     deleteItemList(input: $input, condition: $condition) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order

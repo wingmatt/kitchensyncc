@@ -8,7 +8,16 @@ export const getRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
       status
       createdAt
@@ -36,58 +45,16 @@ export const listRecipes = /* GraphQL */ `
     }
   }
 `;
-export const getIngredient = /* GraphQL */ `
-  query GetIngredient($id: ID!) {
-    getIngredient(id: $id) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listIngredients = /* GraphQL */ `
-  query ListIngredients(
-    $filter: ModelIngredientFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listIngredients(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        recipeID
-        listID
-        quantity
-        unit
-        ingredient
-        minQty
-        maxQty
-        expires
-        status
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getItemList = /* GraphQL */ `
   query GetItemList($id: ID!) {
     getItemList(id: $id) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order

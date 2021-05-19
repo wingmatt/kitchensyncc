@@ -8,7 +8,16 @@ export const onCreateRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
       status
       createdAt
@@ -23,7 +32,16 @@ export const onUpdateRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
       status
       createdAt
@@ -38,65 +56,17 @@ export const onDeleteRecipe = /* GraphQL */ `
       id
       url
       ingredients {
-        nextToken
+        id
+        recipeID
+        listID
+        quantity
+        unit
+        ingredient
+        minQty
+        maxQty
+        expires
+        status
       }
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateIngredient = /* GraphQL */ `
-  subscription OnCreateIngredient($owner: String!) {
-    onCreateIngredient(owner: $owner) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateIngredient = /* GraphQL */ `
-  subscription OnUpdateIngredient($owner: String!) {
-    onUpdateIngredient(owner: $owner) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
-      status
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteIngredient = /* GraphQL */ `
-  subscription OnDeleteIngredient($owner: String!) {
-    onDeleteIngredient(owner: $owner) {
-      id
-      recipeID
-      listID
-      quantity
-      unit
-      ingredient
-      minQty
-      maxQty
-      expires
       status
       createdAt
       updatedAt
@@ -109,8 +79,11 @@ export const onCreateItemList = /* GraphQL */ `
     onCreateItemList(owner: $owner) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order
@@ -125,8 +98,11 @@ export const onUpdateItemList = /* GraphQL */ `
     onUpdateItemList(owner: $owner) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order
@@ -141,8 +117,11 @@ export const onDeleteItemList = /* GraphQL */ `
     onDeleteItemList(owner: $owner) {
       id
       title
-      ingredients {
-        nextToken
+      pantryDetails {
+        order
+      }
+      shoppingDetails {
+        order
       }
       type
       order

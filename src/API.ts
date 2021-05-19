@@ -5,6 +5,20 @@
 export type CreateRecipeInput = {
   id?: string | null,
   url?: string | null,
+  ingredients?: Array< IngredientInput | null > | null,
+  status?: string | null,
+};
+
+export type IngredientInput = {
+  id: string,
+  recipeID?: string | null,
+  listID?: string | null,
+  quantity?: string | null,
+  unit?: string | null,
+  ingredient: string,
+  minQty?: string | null,
+  maxQty?: string | null,
+  expires?: string | null,
   status?: string | null,
 };
 
@@ -60,17 +74,11 @@ export type Recipe = {
   __typename: "Recipe",
   id?: string,
   url?: string | null,
-  ingredients?: ModelIngredientConnection,
+  ingredients?:  Array<Ingredient | null > | null,
   status?: string | null,
   createdAt?: string,
   updatedAt?: string,
   owner?: string | null,
-};
-
-export type ModelIngredientConnection = {
-  __typename: "ModelIngredientConnection",
-  items?:  Array<Ingredient | null > | null,
-  nextToken?: string | null,
 };
 
 export type Ingredient = {
@@ -85,14 +93,12 @@ export type Ingredient = {
   maxQty?: string | null,
   expires?: string | null,
   status?: string | null,
-  createdAt?: string,
-  updatedAt?: string,
-  owner?: string | null,
 };
 
 export type UpdateRecipeInput = {
   id: string,
   url?: string | null,
+  ingredients?: Array< IngredientInput | null > | null,
   status?: string | null,
 };
 
@@ -100,71 +106,22 @@ export type DeleteRecipeInput = {
   id?: string | null,
 };
 
-export type CreateIngredientInput = {
-  id?: string | null,
-  recipeID?: string | null,
-  listID?: string | null,
-  quantity?: string | null,
-  unit?: string | null,
-  ingredient: string,
-  minQty?: string | null,
-  maxQty?: string | null,
-  expires?: string | null,
-  status?: string | null,
-};
-
-export type ModelIngredientConditionInput = {
-  recipeID?: ModelIDInput | null,
-  listID?: ModelIDInput | null,
-  quantity?: ModelStringInput | null,
-  unit?: ModelStringInput | null,
-  ingredient?: ModelStringInput | null,
-  minQty?: ModelStringInput | null,
-  maxQty?: ModelStringInput | null,
-  expires?: ModelStringInput | null,
-  status?: ModelStringInput | null,
-  and?: Array< ModelIngredientConditionInput | null > | null,
-  or?: Array< ModelIngredientConditionInput | null > | null,
-  not?: ModelIngredientConditionInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type UpdateIngredientInput = {
-  id: string,
-  recipeID?: string | null,
-  listID?: string | null,
-  quantity?: string | null,
-  unit?: string | null,
-  ingredient?: string | null,
-  minQty?: string | null,
-  maxQty?: string | null,
-  expires?: string | null,
-  status?: string | null,
-};
-
-export type DeleteIngredientInput = {
-  id?: string | null,
-};
-
 export type CreateItemListInput = {
   id?: string | null,
   title: string,
+  pantryDetails?: PantryDetailsInput | null,
+  shoppingDetails?: ShoppingDetailsInput | null,
   type: string,
+  order?: number | null,
+};
+
+export type PantryDetailsInput = {
+  ingredients?: Array< IngredientInput | null > | null,
+  order?: number | null,
+};
+
+export type ShoppingDetailsInput = {
+  ingredients?: Array< IngredientInput | null > | null,
   order?: number | null,
 };
 
@@ -193,7 +150,8 @@ export type ItemList = {
   __typename: "ItemList",
   id?: string,
   title?: string,
-  ingredients?: ModelIngredientConnection,
+  pantryDetails?: PantryDetails,
+  shoppingDetails?: ShoppingDetails,
   type?: string,
   order?: number | null,
   createdAt?: string,
@@ -201,9 +159,23 @@ export type ItemList = {
   owner?: string | null,
 };
 
+export type PantryDetails = {
+  __typename: "PantryDetails",
+  ingredients?:  Array<Ingredient | null > | null,
+  order?: number | null,
+};
+
+export type ShoppingDetails = {
+  __typename: "ShoppingDetails",
+  ingredients?:  Array<Ingredient | null > | null,
+  order?: number | null,
+};
+
 export type UpdateItemListInput = {
   id: string,
   title?: string | null,
+  pantryDetails?: PantryDetailsInput | null,
+  shoppingDetails?: ShoppingDetailsInput | null,
   type?: string | null,
   order?: number | null,
 };
@@ -221,26 +193,26 @@ export type ModelRecipeFilterInput = {
   not?: ModelRecipeFilterInput | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type ModelRecipeConnection = {
   __typename: "ModelRecipeConnection",
   items?:  Array<Recipe | null > | null,
   nextToken?: string | null,
-};
-
-export type ModelIngredientFilterInput = {
-  id?: ModelIDInput | null,
-  recipeID?: ModelIDInput | null,
-  listID?: ModelIDInput | null,
-  quantity?: ModelStringInput | null,
-  unit?: ModelStringInput | null,
-  ingredient?: ModelStringInput | null,
-  minQty?: ModelStringInput | null,
-  maxQty?: ModelStringInput | null,
-  expires?: ModelStringInput | null,
-  status?: ModelStringInput | null,
-  and?: Array< ModelIngredientFilterInput | null > | null,
-  or?: Array< ModelIngredientFilterInput | null > | null,
-  not?: ModelIngredientFilterInput | null,
 };
 
 export type ModelItemListFilterInput = {
@@ -269,10 +241,19 @@ export type CreateRecipeMutation = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -290,10 +271,19 @@ export type UpdateRecipeMutation = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -311,82 +301,19 @@ export type DeleteRecipeMutation = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type CreateIngredientMutationVariables = {
-  input?: CreateIngredientInput,
-  condition?: ModelIngredientConditionInput | null,
-};
-
-export type CreateIngredientMutation = {
-  createIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type UpdateIngredientMutationVariables = {
-  input?: UpdateIngredientInput,
-  condition?: ModelIngredientConditionInput | null,
-};
-
-export type UpdateIngredientMutation = {
-  updateIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type DeleteIngredientMutationVariables = {
-  input?: DeleteIngredientInput,
-  condition?: ModelIngredientConditionInput | null,
-};
-
-export type DeleteIngredientMutation = {
-  deleteIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -404,9 +331,13 @@ export type CreateItemListMutation = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -426,9 +357,13 @@ export type UpdateItemListMutation = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -448,9 +383,13 @@ export type DeleteItemListMutation = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -469,10 +408,19 @@ export type GetRecipeQuery = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -502,58 +450,6 @@ export type ListRecipesQuery = {
   } | null,
 };
 
-export type GetIngredientQueryVariables = {
-  id?: string,
-};
-
-export type GetIngredientQuery = {
-  getIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type ListIngredientsQueryVariables = {
-  filter?: ModelIngredientFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListIngredientsQuery = {
-  listIngredients?:  {
-    __typename: "ModelIngredientConnection",
-    items?:  Array< {
-      __typename: "Ingredient",
-      id: string,
-      recipeID?: string | null,
-      listID?: string | null,
-      quantity?: string | null,
-      unit?: string | null,
-      ingredient: string,
-      minQty?: string | null,
-      maxQty?: string | null,
-      expires?: string | null,
-      status?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetItemListQueryVariables = {
   id?: string,
 };
@@ -563,9 +459,13 @@ export type GetItemListQuery = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -607,10 +507,19 @@ export type OnCreateRecipeSubscription = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -627,10 +536,19 @@ export type OnUpdateRecipeSubscription = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -647,79 +565,19 @@ export type OnDeleteRecipeSubscription = {
     __typename: "Recipe",
     id: string,
     url?: string | null,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
-    } | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type OnCreateIngredientSubscriptionVariables = {
-  owner?: string,
-};
-
-export type OnCreateIngredientSubscription = {
-  onCreateIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type OnUpdateIngredientSubscriptionVariables = {
-  owner?: string,
-};
-
-export type OnUpdateIngredientSubscription = {
-  onUpdateIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
-    status?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-  } | null,
-};
-
-export type OnDeleteIngredientSubscriptionVariables = {
-  owner?: string,
-};
-
-export type OnDeleteIngredientSubscription = {
-  onDeleteIngredient?:  {
-    __typename: "Ingredient",
-    id: string,
-    recipeID?: string | null,
-    listID?: string | null,
-    quantity?: string | null,
-    unit?: string | null,
-    ingredient: string,
-    minQty?: string | null,
-    maxQty?: string | null,
-    expires?: string | null,
+    ingredients?:  Array< {
+      __typename: "Ingredient",
+      id: string,
+      recipeID?: string | null,
+      listID?: string | null,
+      quantity?: string | null,
+      unit?: string | null,
+      ingredient: string,
+      minQty?: string | null,
+      maxQty?: string | null,
+      expires?: string | null,
+      status?: string | null,
+    } | null > | null,
     status?: string | null,
     createdAt: string,
     updatedAt: string,
@@ -736,9 +594,13 @@ export type OnCreateItemListSubscription = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -757,9 +619,13 @@ export type OnUpdateItemListSubscription = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
@@ -778,9 +644,13 @@ export type OnDeleteItemListSubscription = {
     __typename: "ItemList",
     id: string,
     title: string,
-    ingredients?:  {
-      __typename: "ModelIngredientConnection",
-      nextToken?: string | null,
+    pantryDetails?:  {
+      __typename: "PantryDetails",
+      order?: number | null,
+    } | null,
+    shoppingDetails?:  {
+      __typename: "ShoppingDetails",
+      order?: number | null,
     } | null,
     type: string,
     order?: number | null,
