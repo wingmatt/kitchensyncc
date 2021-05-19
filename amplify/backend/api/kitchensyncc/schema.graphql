@@ -2,14 +2,20 @@ type Recipe @model
   @auth(rules: [{ allow: owner }]) {
   id: ID!,
   url: String,
-  ingredients: [Ingredient] @connection(keyName: "byRecipe", fields: ["id"]),
+  ingredients: [Ingredient],
   status: String
 }
 
-type Ingredient @model 
-  @auth(rules: [{ allow: owner }])
-  @key (name: "byRecipe", fields: ["recipeID", "ingredient"])
-  @key (name: "byItemList", fields: ["listID", "ingredient"]) {
+type ItemList @model 
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  title: String!
+  pantryDetails: PantryDetails,
+  shoppingDetails: ShoppingDetails,
+  type: String!
+  order: Int
+}
+type Ingredient {
   id: ID!
   recipeID: ID
   listID: ID
@@ -21,12 +27,11 @@ type Ingredient @model
   expires: String
   status: String
 }
-
-type ItemList @model 
-  @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  title: String!
-  ingredients: [Ingredient] @connection(keyName: "byItemList", fields: ["id"]),
-  type: String!
+type PantryDetails {
+  ingredients: [Ingredient],
+  order: Int
+}
+type ShoppingDetails {
+  ingredients: [Ingredient],
   order: Int
 }
