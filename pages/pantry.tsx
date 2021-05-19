@@ -11,9 +11,7 @@ export default function Pantry(){
   useEffect(async () => {
     const getPantryLists = async () => {
       try {
-        const pantryLists = await API.graphql(graphqlOperation(listItemLists)) //as Promise<ListItemListResult>
-        console.log(pantryLists)
-        //setItemLists(pantryLists)
+        const pantryLists = await API.graphql(graphqlOperation(listItemLists))
         return pantryLists.data.listItemLists.items
       } catch (err) {
         console.log("GraphQL Fetch Error:", err)
