@@ -3,9 +3,27 @@ import ItemGroup from '../components/ItemGroup'
 import ShoppingListItem from '../components/ListItem/ShoppingListItem'
 import FloatingButton from '../components/FloatingButton'
 import NewItemList from '../components/NewItemList'
+import { API, graphqlOperation } from 'aws-amplify'
+import { useEffect, useState } from 'react'
+import { listItemLists } from '../src/graphql/queries'
 
 
 export default function List(){
+  const [itemLists, setItemLists] = useState([]);
+  useEffect(async () => {
+    const getPantryLists = async () => {
+      try {
+        const pantryLists = await API.graphql(graphqlOperation(listItemLists))
+        return pantryLists.data.listItemLists.items
+      } catch (err) {
+        console.log("GraphQL Fetch Error:", err)
+        return 
+      }
+    }
+    await getPantryLists().then((pantryList) => {
+      setItemLists(pantryList)
+    })
+  }, [])
   return (
     <Layout title="Shopping List">
       <ItemGroup title="Produce">
@@ -32,6 +50,19 @@ export default function List(){
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron"/>
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt"/>
       </ItemGroup>
+      <h2>Real Data</h2>
+      {itemLists.map((itemList) => {
+        return (
+          <ItemGroup key={itemList.id} title={itemList.title}>
+            Yes!
+            {/*itemList.ingredients.map((ingredient) => {
+              return (
+                <PantryItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
+              )
+            })*/}
+          </ItemGroup>
+        )
+      })}
       <NewItemList/>
       <div className="floating-button-container">
         <FloatingButton action="editShoppingList" />
