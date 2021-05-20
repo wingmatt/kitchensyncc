@@ -4,7 +4,7 @@ import PantryItem from '../components/ListItem/PantryItem'
 import AddToPantry from '../components/FloatingButton/AddToPantry'
 import { API, graphqlOperation } from 'aws-amplify'
 import { useEffect, useState } from 'react'
-import { getItemList, listItemLists } from '../src/graphql/queries'
+import { listItemLists } from '../src/graphql/queries'
 
 export default function Pantry(){
   const [itemLists, setItemLists] = useState([]);
