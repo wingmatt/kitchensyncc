@@ -8,25 +8,10 @@ import "@reach/skip-nav/styles.css";
 import { Auth } from "aws-amplify";
 import { createContext, useState, useEffect } from "react";
 
+
 export default function Layout({ children, title = "Kitchen Syncc" }) {
-  const UserContext = createContext({});
-  const [userData, setUserData] = useState(null);
-  const [loading,setLoading]=useState(false);
-
-  const getUserData = async ()=>{
-    setLoading(true)
-    const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
-    const {sub: id} = currentAuthenticatedUser.attributes
-    setUserData({id})
-    setLoading(false)
-  }
-
-  useEffect(()=> {
-    getUserData()
-  },[])
 
   return (
-    <UserContext.Provider value={{loading, user: userData}}>
       <div className={styles.container}>
         <Head>
           <title>{title}</title>
@@ -42,6 +27,5 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
           {children}
         </main>
       </div>
-    </UserContext.Provider>
   );
 }
