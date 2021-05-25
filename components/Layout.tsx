@@ -5,10 +5,6 @@ import styles from "../styles/Home.module.css";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 import "@reach/skip-nav/styles.css";
 
-import { Auth } from "aws-amplify";
-import { createContext, useState, useEffect } from "react";
-
-
 export default function Layout({ children, title = "Kitchen Syncc" }) {
 
   return (
