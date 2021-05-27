@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps }) {
     setLoading(true)
     const currentAuthenticatedUser = await Amplify.Auth.currentAuthenticatedUser();
     const {sub: id} = currentAuthenticatedUser.attributes
+    // Await a query for all itemLists
+    // Await a query for all recipes?
+    // Add itemLists to context
+    // Add recipes to context
     setUserData({id})
     setLoading(false)
   }
