@@ -79,17 +79,6 @@ export const onCreateItemList = /* GraphQL */ `
     onCreateItemList(owner: $owner) {
       id
       title
-      pantryDetails {
-        order
-      }
-      shoppingDetails {
-        order
-      }
-      type
-      order
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
