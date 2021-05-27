@@ -12,7 +12,6 @@ const addList = async (event) => {
       }
       
     }))
-    console.log(newItemList)
   } catch (err) {
     console.log("Nope:", err)
   }
