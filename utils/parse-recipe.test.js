@@ -2,7 +2,7 @@ import parseRecipe, { getRecipeDataFromSchemaJson } from "./parse-recipe";
 import "@testing-library/jest-dom/extend-expect";
 import getRecipeAPI from "../pages/api/get-recipe"
 
-test("Schema Parsing returns an array of Ingredient Objects", async () => {
+/*test("Schema Parsing returns an array of Ingredient Objects", async () => {
   const testJson = require("../allrecipesSchema.json");
   const parsedJson = getRecipeDataFromSchemaJson(testJson);
   expect(parsedJson).toEqual(
@@ -21,3 +21,4 @@ test("parseRecipe returns an array of Ingredient Objects when supplied with mark
     expect.arrayContaining([expect.objectContaining({ ingredient: "eggs" })])
   );
 });
+*/
