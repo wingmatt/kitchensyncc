@@ -23,6 +23,7 @@ function usePantry() {
         case 'removeRecipe':
         case 'addRecipeToShoppingList':
       }
+      return [state, dispatch]
     }, {
       loading: true,
       user: null
