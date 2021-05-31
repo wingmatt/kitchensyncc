@@ -3,23 +3,31 @@ import {Auth} from 'aws-amplify'
 
 const UserContext = React.createContext({});
 
-function userDataReducer (state, action) {
-  switch (action.type) {
-    case 'setUserData':
-      return {user: action.payload, loading: false, ...state}
-    case 'addPantryItem':
-    case 'editPantryItem':
-    case 'removePantryItem':
-    case 'movePantryItemToShoppingList':
-    case 'addShoppingListItem':
-    case 'editShoppingListItem':
-    case 'removeShoppingListItem':
-    case 'moveShoppingListItemToPantry':
-    case 'addRecipe':
-    case 'editRecipe':
-    case 'removeRecipe':
-    case 'addRecipeToShoppingList':
-  }
+// Custom hook for accessing 
+function usePantry() {
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'setUserData':
+          return {user: action.payload, loading: false, ...state}
+        case 'addPantryItem':
+        case 'editPantryItem':
+        case 'removePantryItem':
+        case 'movePantryItemToShoppingList':
+        case 'addShoppingListItem':
+        case 'editShoppingListItem':
+        case 'removeShoppingListItem':
+        case 'moveShoppingListItemToPantry':
+        case 'addRecipe':
+        case 'editRecipe':
+        case 'removeRecipe':
+        case 'addRecipeToShoppingList':
+      }
+    }, {
+      loading: true,
+      user: null
+    }
+  )
 }
 
 const getUserData = async ()=>{
