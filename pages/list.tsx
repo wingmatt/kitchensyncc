@@ -7,11 +7,12 @@ import { API, graphqlOperation } from "aws-amplify";
 import { useEffect, useState, useContext } from "react";
 import { listItemLists } from "../src/graphql/queries";
 import { onCreateItemList } from "../src/graphql/subscriptions";
+import {usePantry} from '../src/user-context'
 
 import { UserContext } from "../pages/_app";
 
 export default function List() {
-  const [itemLists, setItemLists] = useState([]);
+  const [{itemLists}, dispatch]: any = usePantry()
   const context = useContext(UserContext);
   useEffect(async () => {
     const getPantryLists = async () => {
@@ -23,11 +24,11 @@ export default function List() {
         return;
       }
     };
-    await getPantryLists().then((pantryList) => {
+    /*await getPantryLists().then((pantryList) => {
       setItemLists(pantryList);
-    });
+    });*/
   }, []);
-  /*useEffect (()=> {
+  useEffect (()=> {
     const subscription = API.graphql(
       // TODO: Wait until there's a user ID within context to run this
       graphqlOperation(onCreateItemList, { owner: context.user.id })
@@ -38,15 +39,15 @@ export default function List() {
           title: value.data.onCreateItemList.title,
           ingredients: [],
         };
-        console.log(...itemLists);
-        setItemLists([...itemLists, newItemList]);
+        console.log(itemLists);
+        dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
         subscription.unsubscribe();
       },
       error: (error) => {
         console.warn(error);
       },
     });
-  }, [itemLists])*/
+  }, [itemLists])
   
   return (
     <Layout title="Shopping List">
