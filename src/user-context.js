@@ -22,6 +22,14 @@ function usePantry() {
               action.payload
             ]
           }
+          case "ADD_ITEM_LISTS":
+          return {
+            ...state,
+            itemLists: [
+              ...state.itemLists,
+              ...action.payload
+            ]
+          }
         case "addPantryItem":
           return {
             ...state,

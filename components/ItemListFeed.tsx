@@ -30,9 +30,9 @@ const ItemListFeed = (props) => {
         return;
       }
     };
-    /*await getPantryLists().then((pantryList) => {
-      setItemLists(pantryList);
-    });*/
+    await getPantryLists().then((pantryList) => {
+      dispatch({type: "ADD_ITEM_LISTS", payload: pantryList})
+    });
   }, []);
   useEffect (()=> {
     const subscription = API.graphql(
