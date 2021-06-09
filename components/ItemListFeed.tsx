@@ -36,7 +36,6 @@ const ItemListFeed = (props) => {
   }, []);
   useEffect (()=> {
     const subscription = API.graphql(
-      // TODO: Wait until there's a user ID within context to run this
       graphqlOperation(onCreateItemList, { owner: props.user.id })
     ).subscribe({
       next: ({ provider, value }) => {
