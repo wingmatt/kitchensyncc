@@ -1,13 +1,12 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { listItemLists } from "../src/graphql/queries";
 import { onCreateItemList } from "../src/graphql/subscriptions";
-import { UserContext } from "../pages/_app";
 import {usePantry} from '../src/user-context'
 import ItemGroup from "./ItemGroup"
 
 const WaitUntilUserData = (props) => {
-  const context: any = useContext(UserContext);
+  const context: any = usePantry();
   if (context.user !== null) {
     return (
       <ItemListFeed user={context.user}>{props.children}</ItemListFeed>
@@ -19,7 +18,6 @@ const WaitUntilUserData = (props) => {
 
 const ItemListFeed = (props) => {
   const [{itemLists}, dispatch]: any = usePantry()
-  const context = useContext(UserContext);
   useEffect(async () => {
     const getPantryLists = async () => {
       try {
