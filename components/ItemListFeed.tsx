@@ -6,18 +6,18 @@ import {usePantry} from '../src/user-context'
 import ItemGroup from "./ItemGroup"
 
 const WaitUntilUserData = (props) => {
-  const context: any = usePantry();
-  if (context.user !== null) {
+  const {state} = usePantry();
+  if (state.user !== null) {
     return (
-      <ItemListFeed user={context.user}>{props.children}</ItemListFeed>
+      <ItemListFeed user={state.user}>{props.children}</ItemListFeed>
     )
   } else {
     return <>Loading...</>;
   }
 };
 
-const ItemListFeed = (props) => {
-  const [{itemLists}, dispatch]: any = usePantry()
+const ItemListFeed = () => {
+  const {state, dispatch} = usePantry()
   useEffect(async () => {
     const getPantryLists = async () => {
       try {
@@ -34,7 +34,7 @@ const ItemListFeed = (props) => {
   }, []);
   useEffect (()=> {
     const subscription = API.graphql(
-      graphqlOperation(onCreateItemList, { owner: props.user.id })
+      graphqlOperation(onCreateItemList, { owner: state.user })
     ).subscribe({
       next: ({ provider, value }) => {
         let newItemList = {
@@ -42,7 +42,7 @@ const ItemListFeed = (props) => {
           title: value.data.onCreateItemList.title,
           ingredients: [],
         };
-        console.log(itemLists);
+        console.log();
         dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
         subscription.unsubscribe();
       },
@@ -50,8 +50,8 @@ const ItemListFeed = (props) => {
         console.warn(error);
       },
     });
-  }, [itemLists])
-  return <>{itemLists.map((itemList) => {
+  })
+  return <>{state.itemLists.map((itemList) => {
     return (
       <ItemGroup key={itemList.id} title={itemList.title}>
         Yes!
