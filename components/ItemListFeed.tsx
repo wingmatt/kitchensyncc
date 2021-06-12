@@ -32,26 +32,6 @@ const ItemListFeed = () => {
       dispatch({type: "ADD_ITEM_LISTS", payload: pantryList})
     });
   }, []);
-  useEffect (()=> {
-    const subscription = API.graphql(
-      graphqlOperation(onCreateItemList, { owner: state.user })
-    ).subscribe({
-      next: ({ provider, value }) => {
-        let newItemList = {
-          id: value.data.onCreateItemList.id,
-          title: value.data.onCreateItemList.title,
-          ingredients: [],
-        };
-        let notDuplicate = (state.itemLists.filter(itemList => itemList.id === newItemList.id).length === 0);
-        console.log({ state, value });
-        if (notDuplicate) dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
-        
-      },
-      error: (error) => {
-        console.warn(error);
-      },
-    });
-  })
   return <>{state.itemLists.map((itemList) => {
     return (
       <ItemGroup key={itemList.id} title={itemList.title}>
