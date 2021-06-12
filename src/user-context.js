@@ -58,7 +58,7 @@ function UserProvider({ children }) {
 function usePantry() {
   const context = React.useContext(UserContext)
   if (context === undefined) {
-    throw new Error('usePantry must be used within a CountProvider')
+    throw new Error('usePantry must be used within a UserProvider')
   }
   return context
 }
