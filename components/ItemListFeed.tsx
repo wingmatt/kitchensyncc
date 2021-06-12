@@ -42,9 +42,10 @@ const ItemListFeed = () => {
           title: value.data.onCreateItemList.title,
           ingredients: [],
         };
-        console.log();
-        dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
-        subscription.unsubscribe();
+        let notDuplicate = (state.itemLists.filter(itemList => itemList.id === newItemList.id).length === 0);
+        console.log({ state, value });
+        if (notDuplicate) dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
+        
       },
       error: (error) => {
         console.warn(error);
