@@ -1,9 +1,9 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { useEffect } from "react";
 import { listItemLists } from "../src/graphql/queries";
-import { onCreateItemList } from "../src/graphql/subscriptions";
 import {usePantry} from '../src/user-context'
 import ItemGroup from "./ItemGroup"
+import ShoppingListItem from "./ListItem/ShoppingListItem";
 
 const WaitUntilUserData = (props) => {
   const {state} = usePantry();
@@ -33,16 +33,25 @@ const ItemListFeed = () => {
     });
   }, []);
   return <>{state.itemLists.map((itemList) => {
-    return (
-      <ItemGroup key={itemList.id} title={itemList.title}>
-        Yes!
-        {/*itemList.ingredients.map((ingredient) => {
-          return (
-            <PantryItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
-          )
-        })*/}
-      </ItemGroup>
-    );
+    console.log(itemList);
+    if (itemList.shoppingDetails) {
+      return (
+        <ItemGroup key={itemList.id} title={itemList.title}>
+          { itemList.shoppingDetails.ingredients.map((ingredient) => {
+            return (
+              <ShoppingListItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
+            )
+          })}
+        </ItemGroup>
+      );
+    } else {
+      return (
+        <ItemGroup key={itemList.id} title={itemList.title}>
+          Empty.
+        </ItemGroup>
+      );
+    }
+    
   })}</>
 }
 
