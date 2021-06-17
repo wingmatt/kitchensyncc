@@ -27,6 +27,22 @@ function userDataReducer (state, action) {
           ...action.payload
         ]
       }
+    case "ADD_ITEM":
+      const listToUpdate = state.itemLists.find(list => list.id === action.payload.id)
+      const typeToUpdate = listToUpdate[action.payload.type]
+      const ingredientsToUpdate = typeToUpdate.ingredients
+      ingredientsToUpdate.push({
+        ingredient: action.payload.ingredient,
+        quantity: action.payload.quantity ?? null,
+        unit: action.payload.unit ?? null
+      })
+      return {
+        ...state,
+        itemLists: [
+          ...state.itemLists,
+          listToUpdate[action.payload.type].ingredients = ingredientsToUpdate
+        ]
+      }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }

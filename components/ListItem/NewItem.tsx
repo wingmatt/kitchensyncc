@@ -25,7 +25,13 @@ export default function NewItem (props) {
           }
         }
       }))
-      //dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
+      const newItem = {
+        id: graphqlResponse.data.updateItemList.id,
+        ingredient: graphqlResponse.data.updateItemList.shoppingDetails.ingredients[0].ingredient,
+        type: "shoppingDetails",
+
+      }
+      dispatch({type: "ADD_ITEM", payload: newItem})
     } catch (err) {
       console.log("Nope:", err)
     }
