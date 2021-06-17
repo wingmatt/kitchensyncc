@@ -16,9 +16,6 @@ type ItemList @model
   order: Int
 }
 type Ingredient {
-  id: ID!
-  recipeID: ID
-  listID: ID
   quantity: String
   unit: String
   ingredient: String!

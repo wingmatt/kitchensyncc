@@ -80,7 +80,6 @@ export const listItemLists = /* GraphQL */ `
         updatedAt
         shoppingDetails {
           ingredients {
-            id
             quantity
             unit
             ingredient
