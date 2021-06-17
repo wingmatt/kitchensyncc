@@ -34,7 +34,6 @@ const ItemListFeed = () => {
     });
   }, []);
   return <>{state.itemLists.map((itemList) => {
-    console.log(itemList);
     if (itemList.shoppingDetails) {
       return (
         <ItemGroup key={itemList.id} title={itemList.title}>
