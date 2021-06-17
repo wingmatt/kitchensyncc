@@ -4,6 +4,7 @@ import { listItemLists } from "../src/graphql/queries";
 import {usePantry} from '../src/user-context'
 import ItemGroup from "./ItemGroup"
 import ShoppingListItem from "./ListItem/ShoppingListItem";
+import NewItem from "./ListItem/NewItem"
 
 const WaitUntilUserData = (props) => {
   const {state} = usePantry();
@@ -42,12 +43,13 @@ const ItemListFeed = () => {
               <ShoppingListItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
             )
           })}
+          <NewItem itemListId={itemList.id} />
         </ItemGroup>
       );
     } else {
       return (
         <ItemGroup key={itemList.id} title={itemList.title}>
-          Empty.
+          <NewItem itemListId={itemList.id} />
         </ItemGroup>
       );
     }
