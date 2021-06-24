@@ -6,10 +6,11 @@ import {usePantry} from '../../src/user-context'
 
 
 export default function NewItem (props) {
-  const {dispatch} = usePantry();
+  const {state, dispatch} = usePantry();
   const [title, setTitle] = useState<any>({
     title: "",
   });
+  const currentItemList = state.itemLists.find(itemList => itemList.id === props.itemListId)
   const addItem = async (event) => {
     event.preventDefault();
     try {
@@ -18,6 +19,7 @@ export default function NewItem (props) {
           id: props.itemListId,
           shoppingDetails: {
             ingredients: [
+              ...currentItemList.shoppingDetails.ingredients,
               {
                 ingredient: event.target.title.value
               }
@@ -25,9 +27,10 @@ export default function NewItem (props) {
           }
         }
       }))
+      const [newestIngredient] = graphqlResponse.data.updateItemList.shoppingDetails.ingredients.slice(-1)
       const newItem = {
         id: graphqlResponse.data.updateItemList.id,
-        ingredient: graphqlResponse.data.updateItemList.shoppingDetails.ingredients[0].ingredient,
+        ingredient: newestIngredient.ingredient,
         type: "shoppingDetails",
 
       }
