@@ -38,10 +38,7 @@ function userDataReducer (state, action) {
       })
       return {
         ...state,
-        itemLists: [
-          ...state.itemLists,
-          listToUpdate[action.payload.type].ingredients = ingredientsToUpdate
-        ]
+        itemLists: state.itemLists
       }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
