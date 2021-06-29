@@ -16,13 +16,24 @@ export default function NewItemList (props) {
       const graphqlResponse = await API.graphql(graphqlOperation(createItemList, {
         input: {
           title: event.target.title.value,
-          type: "shoppingList"
+          type: "shoppingList",
+          pantryDetails: {
+            ingredients: []
+          },
+          shoppingDetails: {
+            ingredients: []
+          }
         }
       }))
       const newItemList = {
         id: graphqlResponse.data.createItemList.id,
         title: graphqlResponse.data.createItemList.title,
-        ingredients: []
+        pantryDetails: {
+          ingredients: []
+        },
+        shoppingDetails: {
+          ingredients: []
+        }
       }
       dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
     } catch (err) {
