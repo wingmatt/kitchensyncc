@@ -40,8 +40,8 @@ export default function NewItem (props) {
     }
   } 
   return (
-      <form onSubmit={addItem}>
-        <label>Title: <input
+      <form onSubmit={addItem} className="new-item data-entry">
+        <label>Name <input
           type="text"
           id="title"
           name="title"

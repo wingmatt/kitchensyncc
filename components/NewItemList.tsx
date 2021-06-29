@@ -41,8 +41,8 @@ export default function NewItemList (props) {
     }
   } 
   return (
-      <form onSubmit={addList}>
-        <label>Title: <input
+      <form onSubmit={addList} className="new-item-list data-entry">
+        <label>Title <input
           type="text"
           id="title"
           name="title"
