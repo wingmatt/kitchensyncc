@@ -34,6 +34,7 @@ export default function List() {
       </ItemGroup>
       <h2>Real Data</h2>
       <WaitUntilUserData/>
+      <h2>Add a New List</h2>
       <NewItemList />
       <div className="floating-button-container">
         <FloatingButton action="editShoppingList" />
