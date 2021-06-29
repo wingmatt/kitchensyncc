@@ -114,10 +114,14 @@ export const updateItemList = /* GraphQL */ `
       id
       title
       pantryDetails {
-        order
+        ingredients {
+          ingredient
+        }
       }
       shoppingDetails {
-        order
+        ingredients {
+          ingredient
+        }
       }
       type
       order

@@ -78,6 +78,13 @@ export const listItemLists = /* GraphQL */ `
         order
         createdAt
         updatedAt
+        shoppingDetails {
+          ingredients {
+            quantity
+            unit
+            ingredient
+          }
+        }
         owner
       }
       nextToken

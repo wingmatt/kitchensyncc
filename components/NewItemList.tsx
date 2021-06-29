@@ -1,27 +1,34 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createItemList } from '../src/graphql/mutations'
+import {usePantry} from '../src/user-context'
 
-const addList = async (event) => {
-  event.preventDefault();
-  try {
-    const newItemList = await API.graphql(graphqlOperation(createItemList, {
-      input: {
-        title: event.target.title.value,
-        type: "shoppingList"
-      }
-      
-    }))
-  } catch (err) {
-    console.log("Nope:", err)
-  }
-} 
+
 
 export default function NewItemList (props) {
+  const {dispatch} = usePantry();
   const [title, setTitle] = useState<any>({
     title: "",
   });
-
+  const addList = async (event) => {
+    event.preventDefault();
+    try {
+      const graphqlResponse = await API.graphql(graphqlOperation(createItemList, {
+        input: {
+          title: event.target.title.value,
+          type: "shoppingList"
+        }
+      }))
+      const newItemList = {
+        id: graphqlResponse.data.createItemList.id,
+        title: graphqlResponse.data.createItemList.title,
+        ingredients: []
+      }
+      dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
+    } catch (err) {
+      console.log("Nope:", err)
+    }
+  } 
   return (
       <form onSubmit={addList}>
         <label>Title: <input
