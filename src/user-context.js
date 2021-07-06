@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Auth } from "aws-amplify";
+import { gql_add_item } from "./graphql-actions"
 
 const UserContext = React.createContext();
 
@@ -29,13 +30,7 @@ function userDataReducer (state, action) {
       }
     case "ADD_ITEM":
       const listToUpdate = state.itemLists.find(list => list.id === action.payload.id)
-      const typeToUpdate = listToUpdate[action.payload.type]
-      const ingredientsToUpdate = typeToUpdate.ingredients
-      ingredientsToUpdate.push({
-        ingredient: action.payload.ingredient,
-        quantity: action.payload.quantity ?? null,
-        unit: action.payload.unit ?? null
-      })
+      listToUpdate[action.payload.type].ingredients = action.payload[action.payload.type].ingredients;
       return {
         ...state,
         itemLists: state.itemLists
@@ -45,8 +40,6 @@ function userDataReducer (state, action) {
     }
   }
 }
-
-
 
 function UserProvider({ children }) {
   const [state, dispatch] = React.useReducer(userDataReducer, {
