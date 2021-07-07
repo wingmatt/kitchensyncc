@@ -15,7 +15,7 @@ export default function NewItem (props) {
       const input = {
         itemListId: props.itemListId,
         ingredient: event.target.title.value,
-        type: "shoppingDetails"
+        type: props.type
       }
       gql_add_item(state, input).then(graphqlResponse => {
         const responseData = graphqlResponse.data.updateItemList;
