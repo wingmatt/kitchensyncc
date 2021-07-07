@@ -33,7 +33,7 @@ export default function List() {
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
       </ItemGroup>
       <h2>Real Data</h2>
-      <WaitUntilUserData/>
+      <WaitUntilUserData type="shoppingDetails"/>
       <h2>Add a New List</h2>
       <NewItemList />
       <div className="floating-button-container">
