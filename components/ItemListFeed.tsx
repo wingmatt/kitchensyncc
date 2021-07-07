@@ -1,10 +1,10 @@
-import { API, graphqlOperation } from "aws-amplify";
 import { useEffect } from "react";
-import { listItemLists } from "../src/graphql/queries";
 import {usePantry} from '../src/user-context'
 import ItemGroup from "./ItemGroup"
 import ShoppingListItem from "./ListItem/ShoppingListItem";
 import NewItem from "./ListItem/NewItem"
+
+import { gql_get_item_lists } from '../src/graphql-actions'
 
 const WaitUntilUserData = (props) => {
   const {state} = usePantry();
@@ -19,17 +19,8 @@ const WaitUntilUserData = (props) => {
 
 const ItemListFeed = () => {
   const {state, dispatch} = usePantry()
-  useEffect(async () => {
-    const getPantryLists = async () => {
-      try {
-        const pantryLists = await API.graphql(graphqlOperation(listItemLists));
-        return pantryLists.data.listItemLists.items;
-      } catch (err) {
-        console.log("GraphQL Fetch Error:", err);
-        return;
-      }
-    };
-    await getPantryLists().then((pantryList) => {
+  useEffect(() => {
+    gql_get_item_lists().then((pantryList) => {
       dispatch({type: "ADD_ITEM_LISTS", payload: pantryList})
     });
   }, []);
@@ -42,13 +33,13 @@ const ItemListFeed = () => {
               <ShoppingListItem quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
             )
           })}
-          <NewItem itemListId={itemList.id} />
+          <NewItem itemListId={itemList.id} type="shoppingDetails" />
         </ItemGroup>
       );
     } else {
       return (
         <ItemGroup key={itemList.id} title={itemList.title}>
-          <NewItem itemListId={itemList.id} />
+          <NewItem itemListId={itemList.id} type="shoppingDetails" />
         </ItemGroup>
       );
     }
