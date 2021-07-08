@@ -14,24 +14,6 @@ export default function List() {
         <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron" />
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
       </ItemGroup>
-      <ItemGroup title="Spices">
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
-      </ItemGroup>
-      <ItemGroup title="Meat">
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
-      </ItemGroup>
-      <ItemGroup title="Dairy">
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sugar" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="sour cream" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Saffron" />
-        <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
-      </ItemGroup>
       <h2>Real Data</h2>
       <WaitUntilUserData type="shoppingDetails"/>
       <h2>Add a New List</h2>
