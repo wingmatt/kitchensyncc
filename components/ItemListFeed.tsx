@@ -21,7 +21,7 @@ const ItemListFeed = (props) => {
   const {state, dispatch} = usePantry()
   useEffect(() => {
     gql_get_item_lists().then((pantryList) => {
-      dispatch({type: "ADD_ITEM_LISTS", payload: pantryList})
+      dispatch({type: "SET_ITEM_LISTS", payload: pantryList})
     });
   }, []);
   return <>{state.itemLists.map((itemList) => {

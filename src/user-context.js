@@ -6,7 +6,7 @@ const UserContext = React.createContext();
 
 function userDataReducer (state, action) {
   switch(action.type) {
-    case "ADD_USER_DATA":
+    case "SET_USER_DATA":
       return {
         ...state,
         user: action.payload,
@@ -20,7 +20,7 @@ function userDataReducer (state, action) {
           action.payload
         ]
       }
-    case "ADD_ITEM_LISTS":
+    case "SET_ITEM_LISTS":
       return {
         ...state,
         itemLists: [
@@ -54,8 +54,8 @@ function UserProvider({ children }) {
     const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
     if (currentAuthenticatedUser) {
       const { sub: id } = currentAuthenticatedUser.attributes;
-      dispatch({type: "ADD_USER_DATA", payload: id} )
-    } else dispatch({type: "ADD_USER_DATA", payload: null} )
+      dispatch({type: "SET_USER_DATA", payload: id} )
+    } else dispatch({type: "SET_USER_DATA", payload: null} )
   };
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
