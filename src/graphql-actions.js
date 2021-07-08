@@ -1,6 +1,6 @@
 import { API, graphqlOperation } from 'aws-amplify'
-import { updateItemList } from './graphql/mutations'
-import { listItemLists } from "../src/graphql/queries";
+import { updateItemList } from './graphql/custom-mutations'
+import { listItemLists } from "./graphql/custom-queries";
 
 const setDefaultDetails = (itemList) => {
   ['pantryDetails', 'shoppingDetails']
