@@ -14,25 +14,16 @@ const ItemListFeed = (props) => {
     });
   }, []);
   return <>{state.itemLists.map((itemList) => {
-    if (itemList[props.type]) {
-      return (
-        <ItemGroup key={itemList.id} title={itemList.title}>
-          { itemList[props.type].ingredients.map((ingredient) => {
-            return (
-              <Item type={props.type} quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
-            )
-          })}
-          <NewItem itemListId={itemList.id} type={props.type} />
-        </ItemGroup>
-      );
-    } else {
-      return (
-        <ItemGroup key={itemList.id} title={itemList.title}>
-          <NewItem itemListId={itemList.id} type={props.type} />
-        </ItemGroup>
-      );
-    }
-    
+    return (
+      <ItemGroup key={itemList.id} title={itemList.title}>
+        { itemList[props.type]?.ingredients.map((ingredient) => {
+          return (
+            <Item type={props.type} quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
+          )
+        })}
+        <NewItem itemListId={itemList.id} type={props.type} />
+      </ItemGroup>
+    );
   })}</>
 }
 
