@@ -5,7 +5,6 @@ export const updateItemList = /* GraphQL */ `
   ) {
     updateItemList(input: $input, condition: $condition) {
       id
-      title
       pantryDetails {
         ingredients {
           ingredient
@@ -16,11 +15,6 @@ export const updateItemList = /* GraphQL */ `
           ingredient
         }
       }
-      type
-      order
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

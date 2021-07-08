@@ -8,10 +8,15 @@ export const listItemLists = /* GraphQL */ `
       items {
         id
         title
-        type
         order
         createdAt
-        updatedAt
+        pantryDetails {
+          ingredients {
+            quantity
+            unit
+            ingredient
+          }
+        }
         shoppingDetails {
           ingredients {
             quantity
