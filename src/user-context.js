@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Auth } from "aws-amplify";
-import { gql_add_item } from "./graphql-actions"
 
 const UserContext = React.createContext();
 
