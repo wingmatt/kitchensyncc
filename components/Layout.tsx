@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Menu from "./Menu"
 import styles from "../styles/Home.module.css";
+import { usePantry } from '../src/user-context'
 
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 import "@reach/skip-nav/styles.css";
@@ -20,8 +21,19 @@ export default function Layout({ children, title = "Kitchen Syncc" }) {
         <Menu/>
         <main className={styles.main}>
           <SkipNavContent/>
-          {children}
+          <WaitUntilUserData>
+            {children}
+          </WaitUntilUserData>
         </main>
       </div>
   );
 }
+
+const WaitUntilUserData = ({children}) => {
+  const {state} = usePantry();
+  if (state.user !== null) {
+    return <>{children}</>;
+  } else {
+    return <>Loading...</>;
+  }
+};

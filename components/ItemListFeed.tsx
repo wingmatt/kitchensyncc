@@ -6,17 +6,6 @@ import NewItem from "./ListItem/NewItem"
 
 import { gql_get_item_lists } from '../src/graphql-actions'
 
-const WaitUntilUserData = (props) => {
-  const {state} = usePantry();
-  if (state.user !== null) {
-    return (
-      <ItemListFeed user={state.user} type={props.type}>{props.children}</ItemListFeed>
-    )
-  } else {
-    return <>Loading...</>;
-  }
-};
-
 const ItemListFeed = (props) => {
   const {state, dispatch} = usePantry()
   useEffect(() => {
@@ -47,4 +36,4 @@ const ItemListFeed = (props) => {
   })}</>
 }
 
-export default WaitUntilUserData
+export default ItemListFeed

@@ -3,7 +3,7 @@ import ItemGroup from "../components/ItemGroup";
 import ShoppingListItem from "../components/ListItem/ShoppingListItem";
 import FloatingButton from "../components/FloatingButton";
 import NewItemList from "../components/NewItemList";
-import WaitUntilUserData from "../components/ItemListFeed"
+import ItemListFeed from "../components/ItemListFeed"
 
 export default function List() {  
   return (
@@ -15,7 +15,7 @@ export default function List() {
         <ShoppingListItem quantity="1" unit="cup" ingredient="Salt" />
       </ItemGroup>
       <h2>Real Data</h2>
-      <WaitUntilUserData type="shoppingDetails"/>
+      <ItemListFeed type="shoppingDetails"/>
       <h2>Add a New List</h2>
       <NewItemList />
       <div className="floating-button-container">
