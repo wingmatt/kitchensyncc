@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
-import { updateItemList } from '../../src/graphql/mutations'
+import { gql_add_item } from '../../src/graphql-actions'
 import {usePantry} from '../../src/user-context'
 
 
@@ -10,38 +9,26 @@ export default function NewItem (props) {
   const [title, setTitle] = useState<any>({
     title: "",
   });
-  const currentItemList = state.itemLists.find(itemList => itemList.id === props.itemListId)
   const addItem = async (event) => {
     event.preventDefault();
     try {
-      const graphqlResponse = await API.graphql(graphqlOperation(updateItemList, {
-        input: {
-          id: props.itemListId,
-          shoppingDetails: {
-            ingredients: [
-              ...currentItemList.shoppingDetails.ingredients,
-              {
-                ingredient: event.target.title.value
-              }
-            ]
-          }
-        }
-      }))
-      const [newestIngredient] = graphqlResponse.data.updateItemList.shoppingDetails.ingredients.slice(-1)
-      const newItem = {
-        id: graphqlResponse.data.updateItemList.id,
-        ingredient: newestIngredient.ingredient,
-        type: "shoppingDetails",
-
+      const input = {
+        itemListId: props.itemListId,
+        ingredient: event.target.title.value,
+        type: props.type
       }
-      dispatch({type: "ADD_ITEM", payload: newItem})
+      gql_add_item(state, input).then(graphqlResponse => {
+        const responseData = graphqlResponse.data.updateItemList;
+        responseData.type = input.type;
+        dispatch({type: "ADD_ITEM", payload: responseData})
+      })
     } catch (err) {
       console.log("Nope:", err)
     }
   } 
   return (
-      <form onSubmit={addItem}>
-        <label>Title: <input
+      <form onSubmit={addItem} className="new-item data-entry">
+        <label>Name <input
           type="text"
           id="title"
           name="title"
