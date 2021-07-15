@@ -23,7 +23,6 @@ function userDataReducer (state, action) {
       return {
         ...state,
         itemLists: [
-          ...state.itemLists,
           ...action.payload
         ]
       }
