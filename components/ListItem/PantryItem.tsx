@@ -89,6 +89,6 @@ const reorderPantryItem = (state, dispatch, itemListId, index) => {
   }).then(graphqlResponse => {
     const responseData = graphqlResponse.data.updateItemList;
     responseData.type = "pantryDetails";
-    dispatch({type: "ADD_ITEM", payload: responseData})
+    dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
   })
 }
