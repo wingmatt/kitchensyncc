@@ -4,8 +4,11 @@ import CollapsiblePanel from "../CollapsiblePanel";
 import styles from "../../styles/components/Ingredient.module.css";
 import EditableField from "../EditableField";
 import { FiEdit, FiRepeat } from "react-icons/fi";
+import {usePantry} from "../../src/user-context"
+import { gql_move_ingredient } from "../../src/graphql-actions"
 
-const PantryActions = (props: { className: string; editing: any }) => {
+const PantryActions = (props: { className: string; editing: any; index: number; itemListId: string }) => {
+  const {state, dispatch} = usePantry();
   const {
     // @ts-ignore: Initializer provides no value for this binding element and the binding element has no default value.
     editing: [editing, setEditing],
@@ -19,7 +22,7 @@ const PantryActions = (props: { className: string; editing: any }) => {
         <FiEdit focusable="false" />
         Edit
       </button>
-      <button>
+      <button onClick={() => reorderPantryItem(state, dispatch, props.itemListId, props.index)}>
         <FiRepeat focusable="false" />
         Reorder
       </button>
@@ -42,7 +45,7 @@ export default function PantryItem(props: IngredientInterface) {
   const [editing, setEditing] = useState(false);
 
   return (
-    <li className={styles.ingredient}>
+    <li className={styles.ingredient} key={props.index}>
       <CollapsiblePanel
         title={props.ingredient}
         status={props.status}
@@ -61,15 +64,27 @@ export default function PantryItem(props: IngredientInterface) {
           <li>
             Expires: 
             <EditableField label="Expires" type="date" editing={editing}>
-              1970-01-01
+              {props.expires}
             </EditableField>
           </li>
         </ul>
         <PantryActions
           className={styles.actions}
           editing={{ editing: [editing, setEditing] }}
+          index={props.index}
+          itemListId={props.itemListId}
         />
       </CollapsiblePanel>
     </li>
   );
+}
+
+const reorderPantryItem = (state, dispatch, itemListId, index) => {
+  
+  console.log(gql_move_ingredient(state, {
+    itemListId: itemListId,
+    itemToMove: index,
+    origin: "pantryDetails",
+    destination: "shoppingDetails"
+  }))
 }
