@@ -81,10 +81,14 @@ export default function PantryItem(props: IngredientInterface) {
 
 const reorderPantryItem = (state, dispatch, itemListId, index) => {
   
-  console.log(gql_move_ingredient(state, {
+  gql_move_ingredient(state, {
     itemListId: itemListId,
     itemToMove: index,
     origin: "pantryDetails",
     destination: "shoppingDetails"
-  }))
+  }).then(graphqlResponse => {
+    const responseData = graphqlResponse.data.updateItemList;
+    responseData.type = "pantryDetails";
+    dispatch({type: "ADD_ITEM", payload: responseData})
+  })
 }
