@@ -47,3 +47,18 @@ export async function gql_add_item (state, payload) {
   }
 }
 
+export const gql_move_ingredient = async (state, payload) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const origin = currentItemList[payload.origin].ingredients
+  const destination = currentItemList[payload.destination].ingredients
+  const displacedItem = origin.splice(payload.itemToMove, 1)
+  destination.push(...displacedItem)
+  // Send the updated array to graphQL
+  try {
+    return await API.graphql(graphqlOperation(updateItemList, {
+      input: currentItemList
+    }))
+  } catch (err) {
+    console.log("GraphQL Error:", err)
+  }
+}

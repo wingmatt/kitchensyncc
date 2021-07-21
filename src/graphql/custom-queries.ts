@@ -9,7 +9,6 @@ export const listItemLists = /* GraphQL */ `
         id
         title
         order
-        createdAt
         pantryDetails {
           ingredients {
             quantity
@@ -24,7 +23,6 @@ export const listItemLists = /* GraphQL */ `
             ingredient
           }
         }
-        owner
       }
       nextToken
     }
