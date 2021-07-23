@@ -9,7 +9,7 @@ export default function ShoppingListItem(props: IngredientInterface) {
   return (
     <li className={styles.listItem} key={props.index}>
       <label className={checked ? styles.checked : ""}>
-        {checked ? <FiCheckSquare focusable="false" title={(checked) ? "Unchecked" : "Checked"} /> : <FiSquare/>}
+        {checked ? <FiCheckSquare focusable="false" title="Checked" /> : <FiSquare focusable="false" title="Unchecked"/>}
         <input className="sr-only"
           type="checkbox"
           checked={checked}
