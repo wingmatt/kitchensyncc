@@ -12,8 +12,6 @@ export const createRecipe = /* GraphQL */ `
       url
       ingredients {
         id
-        recipeID
-        listID
         quantity
         unit
         ingredient
@@ -21,6 +19,7 @@ export const createRecipe = /* GraphQL */ `
         maxQty
         expires
         status
+        checked
       }
       status
       createdAt
@@ -39,8 +38,6 @@ export const updateRecipe = /* GraphQL */ `
       url
       ingredients {
         id
-        recipeID
-        listID
         quantity
         unit
         ingredient
@@ -48,6 +45,7 @@ export const updateRecipe = /* GraphQL */ `
         maxQty
         expires
         status
+        checked
       }
       status
       createdAt
@@ -66,8 +64,6 @@ export const deleteRecipe = /* GraphQL */ `
       url
       ingredients {
         id
-        recipeID
-        listID
         quantity
         unit
         ingredient
@@ -75,6 +71,7 @@ export const deleteRecipe = /* GraphQL */ `
         maxQty
         expires
         status
+        checked
       }
       status
       createdAt
@@ -97,7 +94,6 @@ export const createItemList = /* GraphQL */ `
       shoppingDetails {
         order
       }
-      type
       order
       createdAt
       updatedAt
@@ -114,16 +110,11 @@ export const updateItemList = /* GraphQL */ `
       id
       title
       pantryDetails {
-        ingredients {
-          ingredient
-        }
+        order
       }
       shoppingDetails {
-        ingredients {
-          ingredient
-        }
+        order
       }
-      type
       order
       createdAt
       updatedAt
@@ -145,7 +136,6 @@ export const deleteItemList = /* GraphQL */ `
       shoppingDetails {
         order
       }
-      type
       order
       createdAt
       updatedAt

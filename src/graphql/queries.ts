@@ -9,8 +9,6 @@ export const getRecipe = /* GraphQL */ `
       url
       ingredients {
         id
-        recipeID
-        listID
         quantity
         unit
         ingredient
@@ -18,6 +16,7 @@ export const getRecipe = /* GraphQL */ `
         maxQty
         expires
         status
+        checked
       }
       status
       createdAt
@@ -56,7 +55,6 @@ export const getItemList = /* GraphQL */ `
       shoppingDetails {
         order
       }
-      type
       order
       createdAt
       updatedAt
@@ -74,17 +72,9 @@ export const listItemLists = /* GraphQL */ `
       items {
         id
         title
-        type
         order
         createdAt
         updatedAt
-        shoppingDetails {
-          ingredients {
-            quantity
-            unit
-            ingredient
-          }
-        }
         owner
       }
       nextToken

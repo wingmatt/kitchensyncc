@@ -11,6 +11,7 @@ export const listItemLists = /* GraphQL */ `
         order
         pantryDetails {
           ingredients {
+            id
             quantity
             unit
             ingredient
@@ -18,9 +19,11 @@ export const listItemLists = /* GraphQL */ `
         }
         shoppingDetails {
           ingredients {
+            id
             quantity
             unit
             ingredient
+            checked
           }
         }
       }

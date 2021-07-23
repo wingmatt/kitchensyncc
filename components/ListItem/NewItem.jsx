@@ -13,6 +13,7 @@ export default function NewItem (props) {
     event.preventDefault();
     try {
       const input = {
+        ingredientId: Date.now().toString(),
         itemListId: props.itemListId,
         ingredient: event.target.title.value,
         type: props.type
