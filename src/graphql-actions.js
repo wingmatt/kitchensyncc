@@ -94,3 +94,25 @@ export const gql_update_shopping_list = async (state, payload) => {
     console.log("GraphQL Error:", err)
   }
 }
+
+export const gql_move_checked_items = async (state, input) => {
+    const itemLists = state.itemLists;
+    itemLists.forEach(itemList => {
+      const origin = itemList.shoppingDetails.ingredients
+      const destination = itemList.pantryDetails.ingredients
+      itemList.forEach((item, index) => {
+        if (item.checked) {
+          const displacedItem = origin.splice(index, 1)
+          destination.push(...displacedItem)
+        }
+      })
+      
+    })
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemLists
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
+}
