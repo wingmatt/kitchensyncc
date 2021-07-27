@@ -7,7 +7,7 @@ import { FiEdit, FiRepeat } from "react-icons/fi";
 import {usePantry} from "../../src/user-context"
 import { gql_move_ingredient } from "../../src/graphql-actions"
 
-const PantryActions = (props: { className: string; editing: any; index: number; itemListId: string }) => {
+const PantryActions = (props: { className: string; editing: any; id: string; itemListId: string }) => {
   const {state, dispatch} = usePantry();
   const {
     // @ts-ignore: Initializer provides no value for this binding element and the binding element has no default value.
@@ -22,7 +22,7 @@ const PantryActions = (props: { className: string; editing: any; index: number; 
         <FiEdit focusable="false" />
         Edit
       </button>
-      <button onClick={() => reorderPantryItem(state, dispatch, props.itemListId, props.index)}>
+      <button onClick={() => reorderPantryItem(state, dispatch, props.itemListId, props.id)}>
         <FiRepeat focusable="false" />
         Reorder
       </button>
@@ -45,7 +45,7 @@ export default function PantryItem(props: IngredientInterface) {
   const [editing, setEditing] = useState(false);
 
   return (
-    <li className={styles.ingredient} key={props.index}>
+    <li className={styles.ingredient} key={props.id}>
       <CollapsiblePanel
         title={props.ingredient}
         status={props.status}
@@ -71,7 +71,7 @@ export default function PantryItem(props: IngredientInterface) {
         <PantryActions
           className={styles.actions}
           editing={{ editing: [editing, setEditing] }}
-          index={props.index}
+          id={props.id}
           itemListId={props.itemListId}
         />
       </CollapsiblePanel>
@@ -79,11 +79,11 @@ export default function PantryItem(props: IngredientInterface) {
   );
 }
 
-const reorderPantryItem = (state, dispatch, itemListId, index) => {
+const reorderPantryItem = (state, dispatch, itemListId, ingredientId) => {
   
   gql_move_ingredient(state, {
     itemListId: itemListId,
-    itemToMove: index,
+    ingredientId: ingredientId,
     origin: "pantryDetails",
     destination: "shoppingDetails"
   }).then(graphqlResponse => {

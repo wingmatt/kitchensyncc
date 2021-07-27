@@ -7,11 +7,13 @@ export const updateItemList = /* GraphQL */ `
       id
       pantryDetails {
         ingredients {
+          id
           ingredient
         }
       }
       shoppingDetails {
         ingredients {
+          id
           ingredient
         }
       }
