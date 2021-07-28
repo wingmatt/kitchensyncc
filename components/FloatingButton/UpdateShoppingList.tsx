@@ -20,7 +20,7 @@ export default function UpdateShoppingList () {
         moved: [],
         unmoved: []
       })
-      itemList.pantryDetails.ingredients = updates.moved;
+      itemList.pantryDetails.ingredients = itemList.pantryDetails.ingredients.concat(updates.moved);
       itemList.shoppingDetails.ingredients = updates.unmoved;
     })
     dispatch({type: "SET_ITEM_LISTS", payload: itemLists})
