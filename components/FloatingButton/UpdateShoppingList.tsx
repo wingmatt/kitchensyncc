@@ -9,14 +9,19 @@ export default function UpdateShoppingList () {
   const updateShoppingList = () => {
     const itemLists = state.itemLists;
     itemLists.forEach(itemList => {
-      const origin = itemList.shoppingDetails.ingredients
-      const destination = itemList.pantryDetails.ingredients
-      origin.forEach((item, index) => {
+      const updates = itemList.shoppingDetails.ingredients.reduce((updates, item) => {
         if (item.checked) {
-          const displacedItem = origin.splice(index, 1)
-          destination.push(...displacedItem)
+          updates.moved.push(item)
+        } else {
+          updates.unmoved.push(item)
         }
+        return updates;
+      }, {
+        moved: [],
+        unmoved: []
       })
+      itemList.pantryDetails.ingredients = updates.moved;
+      itemList.shoppingDetails.ingredients = updates.unmoved;
     })
     dispatch({type: "SET_ITEM_LISTS", payload: itemLists})
   }
