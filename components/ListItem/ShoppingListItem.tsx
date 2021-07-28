@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePantry } from "../../src/user-context";
 import { Ingredient as IngredientInterface } from "../../types";
 import styles from "../../styles/components/ShoppingListItem.module.css";
@@ -7,6 +7,11 @@ import { FiSquare, FiCheckSquare } from "react-icons/fi"
 export default function ShoppingListItem(props: IngredientInterface) {
   const [checked, setChecked] = useState(false);
   const {state, dispatch} = usePantry();
+  useEffect(() => {
+    const listToUpdate = state.itemLists.find(list => list.id === props.itemListId)
+    const ingredientToUpdate = listToUpdate.shoppingDetails.ingredients.find(ingredient => ingredient.id === props.id)
+    setChecked(ingredientToUpdate.checked)
+  }, [])
 
   return (
     <li className={styles.listItem} key={props.id}>
