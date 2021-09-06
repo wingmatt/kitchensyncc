@@ -1,7 +1,7 @@
 import FloatingButton from './'
 import { FiCheck } from 'react-icons/fi'
 import { usePantry } from '../../src/user-context';
-
+import { gql_update_item_lists } from '../../src/graphql-actions';
 
 
 export default function UpdateShoppingList () {
@@ -23,7 +23,9 @@ export default function UpdateShoppingList () {
       itemList.pantryDetails.ingredients = itemList.pantryDetails.ingredients.concat(updates.moved);
       itemList.shoppingDetails.ingredients = updates.unmoved;
     })
-    dispatch({type: "SET_ITEM_LISTS", payload: itemLists})
+    gql_update_item_lists(itemLists).then(graphqlResponse => {
+      dispatch({type: "SET_ITEM_LISTS", payload: itemLists})
+    })
   }
   return (
     <button action="updateShoppingList" onClick={() => updateShoppingList()} label="Update List" icon={<FiCheck focusable="false"/>}>Update List</button>

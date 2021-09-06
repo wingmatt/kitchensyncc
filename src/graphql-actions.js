@@ -73,35 +73,16 @@ export const gql_move_ingredient = async (state, payload) => {
   }
 }
 
-export const gql_update_shopping_list = async (state, payload) => {
-  // Get all lists that have checked items + which of their items are checked
-  // Or, we could just go through each itemList, check its checked status, and update them 1 by one in a big forEach?
-  const listsToUpdate = state.itemLists.reduce((listsToUpdate, itemList) => {
-    const checkedItems = itemList.shoppingDetails.ingredients.filter(ingredient => ingredient.checked === true)
-    if (checkedItems) return listsToUpdate.push({
-      id: itemList.id,
-      checkedItems: checkedItems
-    })
-  }, [])
-  // For each list: Move the checked items to pantryDetails. Update shoppingDetails to only have unchecked items.
-  listsToUpdate.forEach(itemList => {
-    const currentItemList = state.itemLists.find(stateItemList => stateItemList.id === itemList.id)
-    const origin = currentItemList.shoppingDetails.ingredients
-    const destination = currentItemList.pantryDetails.ingredients
-    
-    // Right now, checkedItems is a separate array so the keys of the array we're iterating over here will be meaningless.
-    // Do we want to add IDs for each ingredient created? Could be as simple as a Date(), added to the DB, or the DB can handle it.
-    // Or, do we want to change how we work with the checked items so that we don't create a second array?
-
+export const gql_update_item_lists = async (payload) => {
+  payload.forEach (async (itemList) => {
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemList
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
   })
-
-  try {
-    return await API.graphql(graphqlOperation(updateItemList, {
-      input: listsToUpdate
-    }))
-  } catch (err) {
-    console.log("GraphQL Error:", err)
-  }
 }
 
 export const gql_move_checked_items = async (state, input) => {
