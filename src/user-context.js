@@ -28,7 +28,8 @@ function userDataReducer (state, action) {
       }
     case "UPDATE_ITEM_LIST": {
       const listToUpdate = state.itemLists.find(list => list.id === action.payload.id)
-      listToUpdate[action.payload.type].ingredients = action.payload[action.payload.type].ingredients;
+      listToUpdate.pantryDetails.ingredients = action.payload.pantryDetails.ingredients;
+      listToUpdate.shoppingDetails.ingredients = action.payload.shoppingDetails.ingredients;
       return {
         ...state,
         itemLists: state.itemLists
