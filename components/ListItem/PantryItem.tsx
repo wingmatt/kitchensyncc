@@ -87,6 +87,7 @@ const reorderPantryItem = (state, dispatch, itemListId, ingredientId) => {
     origin: "pantryDetails",
     destination: "shoppingDetails"
   }).then(graphqlResponse => {
+    // @ts-ignore: Property 'data' does not exist on type 'GraphQLResult<object> | Observable<object>'.
     const responseData = graphqlResponse.data.updateItemList;
     dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
   })

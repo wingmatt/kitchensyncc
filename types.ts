@@ -5,7 +5,7 @@ export interface Recipe {
   status?: Status["code"],
 }
 export interface Ingredient {
-  id: string,
+  id?: string,
   itemListId?: string,
   quantity: string,
   unit: string,

@@ -28,6 +28,7 @@ export default function UpdateShoppingList () {
     })
   }
   return (
+     // @ts-ignore: 'children' is not assignable to type 'Button'
     <button action="updateShoppingList" onClick={() => updateShoppingList()} label="Update List" icon={<FiCheck focusable="false"/>}>Update List</button>
   )
 }
