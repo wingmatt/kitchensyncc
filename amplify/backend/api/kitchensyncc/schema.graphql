@@ -12,10 +12,10 @@ type ItemList @model
   title: String!
   pantryDetails: PantryDetails,
   shoppingDetails: ShoppingDetails,
-  type: String!
   order: Int
 }
 type Ingredient {
+  id: ID!
   quantity: String
   unit: String
   ingredient: String!
@@ -23,6 +23,7 @@ type Ingredient {
   maxQty: String
   expires: String
   status: String
+  checked: Boolean
 }
 type PantryDetails {
   ingredients: [Ingredient],

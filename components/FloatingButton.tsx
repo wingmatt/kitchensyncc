@@ -23,7 +23,7 @@ export default function FloatingButton (props) {
   const {action, label, icon} = labelFromAction(props.action)
   
   return (
-    <button className={styles[action]} title={label} >
+    <button className={styles[action]} title={label} onClick={props.onClick} >
       {icon}{label}
     </button>
   )

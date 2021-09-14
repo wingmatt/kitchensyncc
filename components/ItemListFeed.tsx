@@ -16,9 +16,9 @@ const ItemListFeed = (props) => {
   return <>{state.itemLists.map((itemList) => {
     return (
       <ItemGroup key={itemList.id} title={itemList.title}>
-        { itemList[props.type]?.ingredients.map((ingredient) => {
+        { itemList[props.type]?.ingredients.map((ingredient, index) => {
           return (
-            <Item type={props.type} quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status}/>
+            <Item type={props.type} quantity={ingredient.quantity} unit={ingredient.unit} ingredient={ingredient.ingredient} status={ingredient.status} id={ingredient.id} key={ingredient.id} itemListId={itemList.id}/>
           )
         })}
         <NewItem itemListId={itemList.id} type={props.type} />

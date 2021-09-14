@@ -7,7 +7,7 @@ import {usePantry} from '../src/user-context'
 
 export default function NewItemList (props) {
   const {dispatch} = usePantry();
-  const [title, setTitle] = useState<any>({
+  const [title, setTitle] = useState({
     title: "",
   });
   const addList = async (event) => {
@@ -16,7 +16,6 @@ export default function NewItemList (props) {
       const graphqlResponse = await API.graphql(graphqlOperation(createItemList, {
         input: {
           title: event.target.title.value,
-          type: "shoppingList",
           pantryDetails: {
             ingredients: []
           },

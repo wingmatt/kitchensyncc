@@ -26,17 +26,18 @@ export const gql_get_item_lists = async () => {
   }
 };
 
-export async function gql_add_item (state, payload) {
-  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+export async function gql_add_item (state, input) {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === input.itemListId)
   try {
     return await API.graphql(graphqlOperation(updateItemList, {
       input: {
-        id: payload.itemListId,
-        [payload.type]: {
+        id: input.itemListId,
+        [input.type]: {
           ingredients: [
-            ...currentItemList[payload.type].ingredients,
+            ...currentItemList[input.type].ingredients,
             {
-              ingredient: payload.ingredient
+              id: input.ingredientId,
+              ingredient: input.ingredient
             }
           ]
         }
@@ -47,3 +48,61 @@ export async function gql_add_item (state, payload) {
   }
 }
 
+export const gql_move_ingredient = async (state, payload) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const origin = currentItemList[payload.origin].ingredients
+  const destination = currentItemList[payload.destination].ingredients
+  const ingredientToMove = origin.find(ingredient => ingredient.id == payload.ingredientId)
+  const remainingIngredients = origin.filter(ingredient =>  ingredient != ingredientToMove)
+  const updatedDestination = [...destination, ingredientToMove]
+  const updatedItemList = {
+    ...currentItemList,
+    [payload.origin]: { // this is getting ignored
+      ingredients: remainingIngredients
+    },
+    [payload.destination]: { // this is getting ignored
+      ingredients: updatedDestination
+    }
+  }
+  try {
+    return await API.graphql(graphqlOperation(updateItemList, {
+      input: updatedItemList
+    }))
+  } catch (err) {
+    console.log("GraphQL Error:", err)
+  }
+}
+
+export const gql_update_item_lists = async (payload) => {
+  payload.forEach (async (itemList) => {
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemList
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
+  })
+}
+
+export const gql_move_checked_items = async (state, input) => {
+    const itemLists = state.itemLists;
+    itemLists.forEach(itemList => {
+      const origin = itemList.shoppingDetails.ingredients
+      const destination = itemList.pantryDetails.ingredients
+      itemList.forEach((item, index) => {
+        if (item.checked) {
+          const displacedItem = origin.splice(index, 1)
+          destination.push(...displacedItem)
+        }
+      })
+      
+    })
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemLists
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
+}

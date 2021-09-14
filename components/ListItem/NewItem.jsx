@@ -6,13 +6,14 @@ import {usePantry} from '../../src/user-context'
 
 export default function NewItem (props) {
   const {state, dispatch} = usePantry();
-  const [title, setTitle] = useState<any>({
+  const [title, setTitle] = useState({
     title: "",
   });
   const addItem = async (event) => {
     event.preventDefault();
     try {
       const input = {
+        ingredientId: Date.now().toString(),
         itemListId: props.itemListId,
         ingredient: event.target.title.value,
         type: props.type
@@ -20,7 +21,7 @@ export default function NewItem (props) {
       gql_add_item(state, input).then(graphqlResponse => {
         const responseData = graphqlResponse.data.updateItemList;
         responseData.type = input.type;
-        dispatch({type: "ADD_ITEM", payload: responseData})
+        dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
       })
     } catch (err) {
       console.log("Nope:", err)

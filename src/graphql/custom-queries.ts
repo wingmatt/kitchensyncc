@@ -9,9 +9,9 @@ export const listItemLists = /* GraphQL */ `
         id
         title
         order
-        createdAt
         pantryDetails {
           ingredients {
+            id
             quantity
             unit
             ingredient
@@ -19,12 +19,13 @@ export const listItemLists = /* GraphQL */ `
         }
         shoppingDetails {
           ingredients {
+            id
             quantity
             unit
             ingredient
+            checked
           }
         }
-        owner
       }
       nextToken
     }

@@ -26,13 +26,25 @@ function userDataReducer (state, action) {
           ...action.payload
         ]
       }
-    case "ADD_ITEM":
+    case "UPDATE_ITEM_LIST": {
       const listToUpdate = state.itemLists.find(list => list.id === action.payload.id)
-      listToUpdate[action.payload.type].ingredients = action.payload[action.payload.type].ingredients;
+      listToUpdate.pantryDetails.ingredients = action.payload.pantryDetails.ingredients;
+      listToUpdate.shoppingDetails.ingredients = action.payload.shoppingDetails.ingredients;
       return {
         ...state,
         itemLists: state.itemLists
       }
+    }
+    case "UPDATE_INGREDIENT_CHECKBOX": {
+      // payload should have ingredientId + checkbox state to update it to. Also itemlistId
+      const listToUpdate = state.itemLists.find(list => list.id === action.payload.itemListId)
+      const ingredientToUpdate = listToUpdate.shoppingDetails.ingredients.find(ingredient => ingredient.id === action.payload.ingredientId)
+      ingredientToUpdate.checked = action.payload.checked;
+      return {
+        ...state,
+        itemLists: state.itemLists
+      }
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
