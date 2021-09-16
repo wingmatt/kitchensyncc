@@ -1,6 +1,4 @@
 import Layout from "../components/Layout";
-import ItemGroup from "../components/ItemGroup";
-import ShoppingListItem from "../components/ListItem/ShoppingListItem";
 import FloatingButton from "../components/FloatingButton";
 import NewItemList from "../components/NewItemList";
 import ItemListFeed from "../components/ItemListFeed"
