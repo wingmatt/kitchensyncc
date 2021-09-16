@@ -7,7 +7,7 @@ import styles from "../styles/components/Recipe.module.css"
 
 export default function Pantry(){
   const demoIngredients= [
-    {quantity: "1", unit: "thing", ingredient: "falafel ingredients", minQty: "1", maxQty: "2"},
+    {id: "1", quantity: "1", unit: "thing", ingredient: "falafel ingredients", minQty: "1", maxQty: "2"},
 ]
   return (
     <Layout title="Recipes">

@@ -1,0 +1,35 @@
+type Recipe @model 
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!,
+  url: String,
+  ingredients: [Ingredient],
+  status: String
+}
+
+type ItemList @model 
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  title: String!
+  pantryDetails: PantryDetails,
+  shoppingDetails: ShoppingDetails,
+  order: Int
+}
+type Ingredient {
+  id: ID!
+  quantity: String
+  unit: String
+  ingredient: String!
+  minQty: String
+  maxQty: String
+  expires: String
+  status: String
+  checked: Boolean
+}
+type PantryDetails {
+  ingredients: [Ingredient],
+  order: Int
+}
+type ShoppingDetails {
+  ingredients: [Ingredient],
+  order: Int
+}

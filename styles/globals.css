@@ -53,6 +53,11 @@ a {
   box-sizing: border-box;
   font-weight: 350;
 }
+
+*:focus-visible {
+  outline: 2px solid var(--highlight);
+}
+
 h1 {
   padding: .25em 0;
 }
@@ -253,4 +258,29 @@ ul ul {
 
 .floating-button-container button svg {
   top: .1em;
+}
+
+.data-entry {
+  display: flex;
+  align-items: center;
+}
+.data-entry label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  font-size: .75em;
+}
+
+.data-entry input {
+  flex: 1;
+  margin-left: .33em;
+  padding: .165em .33em;
+  border: 1px solid rgba(32, 59, 61, .25);
+  border-bottom: 1px solid var(--highlight);
+}
+.data-entry input:focus, .data-entry input:active {
+  border-color: var(--highlight);
+}
+.data-entry input:focus-visible {
+  border-color: transparent;
 }

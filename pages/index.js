@@ -21,8 +21,8 @@ export default function Home() {
             <li className={styles.done}>Floating button component</li>
             <li className={styles.done}>Pantry Ingredient Inputs</li>
           </ul>
-          <li className={styles.current}>Connect to persistent database</li>
-          <li>Add authentication &amp; user-specific data</li>
+          <li className={styles.done}>Connect to persistent database</li>
+          <li className={styles.done}>Add authentication &amp; user-specific data</li>
           <li>Add Pantry - Show which recipe ingredients we already have</li>
           <ul>
             <li>Context menu for Pantry ingredients</li>

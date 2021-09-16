@@ -1,0 +1,108 @@
+import { API, graphqlOperation } from 'aws-amplify'
+import { updateItemList } from './graphql/custom-mutations'
+import { listItemLists } from "./graphql/custom-queries";
+
+const setDefaultDetails = (itemList) => {
+  ['pantryDetails', 'shoppingDetails']
+  .forEach (type => {
+    if (!itemList[type]) itemList[type] = {ingredients: []}
+  })
+}
+
+export const gql_get_item_lists = async () => {
+  try {
+    const graphqlResponse = await API.graphql(graphqlOperation(listItemLists));
+    const itemLists = graphqlResponse.data.listItemLists.items
+    itemLists.forEach(itemList => {
+      setDefaultDetails(itemList)
+    })
+
+    return itemLists;
+
+
+  } catch (err) {
+    console.log("GraphQL Fetch Error:", err);
+    return;
+  }
+};
+
+export async function gql_add_item (state, input) {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === input.itemListId)
+  try {
+    return await API.graphql(graphqlOperation(updateItemList, {
+      input: {
+        id: input.itemListId,
+        [input.type]: {
+          ingredients: [
+            ...currentItemList[input.type].ingredients,
+            {
+              id: input.ingredientId,
+              ingredient: input.ingredient
+            }
+          ]
+        }
+      }
+    }))
+  } catch (err) {
+    console.log("GraphQL Error:", err)
+  }
+}
+
+export const gql_move_ingredient = async (state, payload) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const origin = currentItemList[payload.origin].ingredients
+  const destination = currentItemList[payload.destination].ingredients
+  const ingredientToMove = origin.find(ingredient => ingredient.id == payload.ingredientId)
+  const remainingIngredients = origin.filter(ingredient =>  ingredient != ingredientToMove)
+  const updatedDestination = [...destination, ingredientToMove]
+  const updatedItemList = {
+    ...currentItemList,
+    [payload.origin]: { // this is getting ignored
+      ingredients: remainingIngredients
+    },
+    [payload.destination]: { // this is getting ignored
+      ingredients: updatedDestination
+    }
+  }
+  try {
+    return await API.graphql(graphqlOperation(updateItemList, {
+      input: updatedItemList
+    }))
+  } catch (err) {
+    console.log("GraphQL Error:", err)
+  }
+}
+
+export const gql_update_item_lists = async (payload) => {
+  payload.forEach (async (itemList) => {
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemList
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
+  })
+}
+
+export const gql_move_checked_items = async (state, input) => {
+    const itemLists = state.itemLists;
+    itemLists.forEach(itemList => {
+      const origin = itemList.shoppingDetails.ingredients
+      const destination = itemList.pantryDetails.ingredients
+      itemList.forEach((item, index) => {
+        if (item.checked) {
+          const displacedItem = origin.splice(index, 1)
+          destination.push(...displacedItem)
+        }
+      })
+      
+    })
+    try {
+      return await API.graphql(graphqlOperation(updateItemList, {
+        input: itemLists
+      }))
+    } catch (err) {
+      console.log("GraphQL Error:", err)
+    }
+}

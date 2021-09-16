@@ -2,14 +2,14 @@ import { render, fireEvent, getByTestId, screen } from "@testing-library/react";
 import RecipeSearch from "../../components/RecipeSearch";
 import "@testing-library/jest-dom/extend-expect";
 
-test("GetRecipe's ingredients list starts out undefined", async () => {
+/*test("GetRecipe's ingredients list starts out undefined", async () => {
   const { container } = render(<RecipeSearch />);
   const recipeData = getByTestId(container, "recipe-search");
 
   expect(recipeData.ingredients).not.toBeDefined();
 });
 
-/*test('Clicking "Clip Recipe" on a url adds an array of ingredients to the state', async ()=> {
+test('Clicking "Clip Recipe" on a url adds an array of ingredients to the state', async ()=> {
   // Arrange
   const {container } = render(<RecipeSearch />)
   const recipeData = getByTestId(container, "recipe-search")
