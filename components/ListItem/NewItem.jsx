@@ -23,9 +23,14 @@ export default function NewItem (props) {
         responseData.type = input.type;
         dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
       })
+      setTitle({
+        title: "",
+      });
     } catch (err) {
-      console.log("Nope:", err)
+      // TODO: Add indicator on the interface when something has gone horribly awry
+      console.log("New item failed to be added:", err)
     }
+    
   } 
   return (
       <form onSubmit={addItem} className="new-item data-entry">
@@ -34,6 +39,7 @@ export default function NewItem (props) {
           id="title"
           name="title"
           defaultValue={title.title}
+          value={title.title}
           onChange={(event) =>
             setTitle({ ...title, title: event.target.value })
           }
