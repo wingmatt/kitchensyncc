@@ -5,7 +5,7 @@ import {usePantry} from '../src/user-context'
 
 
 
-export default function NewItemList (props) {
+export default function NewItemList () {
   const {dispatch} = usePantry();
   const [title, setTitle] = useState({
     title: "",
@@ -35,6 +35,9 @@ export default function NewItemList (props) {
         }
       }
       dispatch({type: "ADD_ITEM_LIST", payload: newItemList})
+      setTitle({
+        title: "",
+      });
     } catch (err) {
       console.log("Nope:", err)
     }
@@ -46,6 +49,7 @@ export default function NewItemList (props) {
           id="title"
           name="title"
           defaultValue={title.title}
+          value={title.title}
           onChange={(event) =>
             setTitle({ ...title, title: event.target.value })
           }
