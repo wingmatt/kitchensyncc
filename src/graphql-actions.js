@@ -57,10 +57,10 @@ export const gql_move_ingredient = async (state, payload) => {
   const updatedDestination = [...destination, ingredientToMove]
   const updatedItemList = {
     ...currentItemList,
-    [payload.origin]: { // this is getting ignored
+    [payload.origin]: {
       ingredients: remainingIngredients
     },
-    [payload.destination]: { // this is getting ignored
+    [payload.destination]: {
       ingredients: updatedDestination
     }
   }
