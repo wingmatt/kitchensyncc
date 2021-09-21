@@ -6,7 +6,6 @@ import EditableField from "../EditableField";
 import { FiEdit, FiRepeat } from "react-icons/fi";
 import {usePantry} from "../../src/user-context"
 import { gql_move_ingredient, gql_remove_ingredient } from "../../src/graphql-actions"
-import { updateItemList } from "../../src/graphql/custom-mutations";
 
 const PantryActions = (props: { className: string; editing: any; id: string; itemListId: string }) => {
   const {state, dispatch} = usePantry();
