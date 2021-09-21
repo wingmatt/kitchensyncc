@@ -106,3 +106,23 @@ export const gql_move_checked_items = async (state, input) => {
       console.log("GraphQL Error:", err)
     }
 }
+
+export const gql_remove_ingredient = async (state, payload) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const origin = currentItemList[payload.origin].ingredients
+  const ingredientToMove = origin.find(ingredient => ingredient.id == payload.ingredientId)
+  const remainingIngredients = origin.filter(ingredient =>  ingredient != ingredientToMove)
+  const updatedItemList = {
+    ...currentItemList,
+    [payload.origin]: {
+      ingredients: remainingIngredients
+    }
+  }
+  try {
+    return await API.graphql(graphqlOperation(updateItemList, {
+      input: updatedItemList
+    }))
+  } catch (err) {
+    console.log("GraphQL Error:", err)
+  }
+}

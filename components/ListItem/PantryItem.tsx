@@ -5,7 +5,8 @@ import styles from "../../styles/components/Ingredient.module.css";
 import EditableField from "../EditableField";
 import { FiEdit, FiRepeat } from "react-icons/fi";
 import {usePantry} from "../../src/user-context"
-import { gql_move_ingredient } from "../../src/graphql-actions"
+import { gql_move_ingredient, gql_remove_ingredient } from "../../src/graphql-actions"
+import { updateItemList } from "../../src/graphql/custom-mutations";
 
 const PantryActions = (props: { className: string; editing: any; id: string; itemListId: string }) => {
   const {state, dispatch} = usePantry();
@@ -16,18 +17,36 @@ const PantryActions = (props: { className: string; editing: any; id: string; ite
     editing: useState(false), // This also works if we just set it to props.editing
     ...(props.editing || {}), // This is apparently crucial to passing the state through
   };
-  return (
-    <div className={styles.actions}>
-      <button onClick={() => setEditing(!editing)}>
-        <FiEdit focusable="false" />
-        Edit
-      </button>
-      <button onClick={() => reorderPantryItem(state, dispatch, props.itemListId, props.id)}>
-        <FiRepeat focusable="false" />
-        Reorder
-      </button>
-    </div>
-  );
+  if (editing) {
+    return (
+      <div className={styles.actions}>
+        <button onClick={() => {
+          setEditing(!editing)
+          }}>
+          <FiEdit focusable="false" />
+          Update
+        </button>
+        <button onClick={() => removePantryItem(state, dispatch, props.itemListId, props.id)}>
+          <FiRepeat focusable="false" />
+          Remove
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.actions}>
+        <button onClick={() => setEditing(!editing)}>
+          <FiEdit focusable="false" />
+          Edit
+        </button>
+        <button onClick={() => reorderPantryItem(state, dispatch, props.itemListId, props.id)}>
+          <FiRepeat focusable="false" />
+          Reorder
+        </button>
+      </div>
+    );
+  }
+ 
 };
 
 const statusToLabel = (status) => {
@@ -91,4 +110,21 @@ const reorderPantryItem = (state, dispatch, itemListId, ingredientId) => {
     const responseData = graphqlResponse.data.updateItemList;
     dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
   })
+}
+
+const removePantryItem = (state, dispatch, itemListId, ingredientId) => {
+  gql_remove_ingredient(state, {
+    itemListId: itemListId,
+    ingredientId: ingredientId,
+    origin: "pantryDetails",
+    destination: "shoppingDetails"
+  }).then(graphqlResponse => {
+    // @ts-ignore: Property 'data' does not exist on type 'GraphQLResult<object> | Observable<object>'.
+    const responseData = graphqlResponse.data.updateItemList;
+    dispatch({type: "UPDATE_ITEM_LIST", payload: responseData})
+  })
+}
+
+const processUpdates = (state, dispatch, itemListId, ingredientId) => {
+
 }
