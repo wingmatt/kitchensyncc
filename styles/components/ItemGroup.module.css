@@ -1,0 +1,20 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--off-black);
+  margin: 1em 0 0;
+}
+.heading h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.actions {
+  font-size: 1.25rem;
+}
+.actions > svg {
+  margin: 0 .25rem;
+  cursor: pointer;
+}
