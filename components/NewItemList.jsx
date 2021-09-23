@@ -48,7 +48,6 @@ export default function NewItemList () {
           type="text"
           id="title"
           name="title"
-          defaultValue={title.title}
           value={title.title}
           onChange={(event) =>
             setTitle({ ...title, title: event.target.value })
