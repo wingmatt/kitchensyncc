@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import { updateItemList } from './graphql/custom-mutations'
 import { listItemLists } from "./graphql/custom-queries";
+import { deleteItemList } from './graphql/mutations'
 
 const setDefaultDetails = (itemList) => {
   ['pantryDetails', 'shoppingDetails']
@@ -73,6 +74,19 @@ export const gql_move_ingredient = async (state, payload) => {
   }
 }
 
+export const gql_update_item_list = async (state, input) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const updatedItemList = {
+    ...currentItemList,
+    // Update the order or the title, depending on what is passed as the input
+    // So input can be {order: currentItemList.order +/- 1} or {title: 'new string'}
+    input
+  }
+  return await API.graphql(graphqlOperation(updateItemList, {
+    input: itemList
+  }))
+}
+
 export const gql_update_item_lists = async (payload) => {
   payload.forEach (async (itemList) => {
     try {
@@ -83,6 +97,12 @@ export const gql_update_item_lists = async (payload) => {
       console.log("GraphQL Error:", err)
     }
   })
+}
+
+export const gql_delete_item_list = async (payload) => {
+  return await API.graphql(graphqlOperation(deleteItemList, {
+    input: {id: payload}
+  }))
 }
 
 export const gql_move_checked_items = async (state, input) => {

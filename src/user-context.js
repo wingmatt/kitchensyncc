@@ -35,6 +35,12 @@ function userDataReducer (state, action) {
         itemLists: state.itemLists
       }
     }
+    case "DELETE_ITEM_LIST": {
+      return {
+        ...state,
+        itemLists: state.itemLists.filter(itemList => itemList.id !== action.payload)
+      }
+    }
     case "UPDATE_INGREDIENT_CHECKBOX": {
       // payload should have ingredientId + checkbox state to update it to. Also itemlistId
       const listToUpdate = state.itemLists.find(list => list.id === action.payload.itemListId)

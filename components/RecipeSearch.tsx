@@ -39,7 +39,7 @@ const RecipeSearch = () => {
           className={styles.search}
           id="url"
           name="url"
-          defaultValue={recipe.url}
+          value={recipe.url}
           onChange={(event) =>
             setRecipe({ ...recipe, url: event.target.value })
           }
