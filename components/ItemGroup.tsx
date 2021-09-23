@@ -25,6 +25,7 @@ const EditItemGroup = (props) => {
   const {dispatch} = usePantry()
   const deleteItemList = (id) => {
     gql_delete_item_list(props.id).then(graphqlResponse => {
+      //@ts-ignore: Property 'data' does not exist on type 'GraphQLResult<object> | Observable<object>'.
       const responseData = graphqlResponse.data.deleteItemList
       dispatch({type: "DELETE_ITEM_LIST", payload: responseData.id})
     })
