@@ -1,7 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import { updateItemList } from './graphql/custom-mutations'
 import { listItemLists } from "./graphql/custom-queries";
-import { deleteItemList } from './graphql/mutations'
+import { createItemList, deleteItemList } from './graphql/mutations'
 
 const setDefaultDetails = (itemList) => {
   ['pantryDetails', 'shoppingDetails']
@@ -49,19 +49,19 @@ export async function gql_add_item (state, input) {
   }
 }
 
-export const gql_move_ingredient = async (state, payload) => {
-  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
-  const origin = currentItemList[payload.origin].ingredients
-  const destination = currentItemList[payload.destination].ingredients
-  const ingredientToMove = origin.find(ingredient => ingredient.id == payload.ingredientId)
+export const gql_move_ingredient = async (state, input) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === input.itemListId)
+  const origin = currentItemList[input.origin].ingredients
+  const destination = currentItemList[input.destination].ingredients
+  const ingredientToMove = origin.find(ingredient => ingredient.id == input.ingredientId)
   const remainingIngredients = origin.filter(ingredient =>  ingredient != ingredientToMove)
   const updatedDestination = [...destination, ingredientToMove]
   const updatedItemList = {
     ...currentItemList,
-    [payload.origin]: {
+    [input.origin]: {
       ingredients: remainingIngredients
     },
-    [payload.destination]: {
+    [input.destination]: {
       ingredients: updatedDestination
     }
   }
@@ -73,9 +73,33 @@ export const gql_move_ingredient = async (state, payload) => {
     console.log("GraphQL Error:", err)
   }
 }
+export const gql_add_item_list = async (title) => {
+  const graphqlResponse = await API.graphql(graphqlOperation(createItemList, {
+    input: {
+      title: title,
+      pantryDetails: {
+        ingredients: []
+      },
+      shoppingDetails: {
+        ingredients: []
+      }
+    }
+  }))
+  const newItemList = {
+    id: graphqlResponse.data.createItemList.id,
+    title: graphqlResponse.data.createItemList.title,
+    pantryDetails: {
+      ingredients: []
+    },
+    shoppingDetails: {
+      ingredients: []
+    }
+  }
+  return newItemList;
+}
 
 export const gql_update_item_list = async (state, input) => {
-  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
+  const currentItemList = state.itemLists.find(itemList => itemList.id === input.itemListId)
   const updatedItemList = {
     ...currentItemList,
     // Update the order or the title, depending on what is passed as the input
@@ -87,8 +111,8 @@ export const gql_update_item_list = async (state, input) => {
   }))
 }
 
-export const gql_update_item_lists = async (payload) => {
-  payload.forEach (async (itemList) => {
+export const gql_update_item_lists = async (input) => {
+  input.forEach (async (itemList) => {
     try {
       return await API.graphql(graphqlOperation(updateItemList, {
         input: itemList
@@ -99,9 +123,9 @@ export const gql_update_item_lists = async (payload) => {
   })
 }
 
-export const gql_delete_item_list = async (payload) => {
+export const gql_delete_item_list = async (input) => {
   return await API.graphql(graphqlOperation(deleteItemList, {
-    input: {id: payload}
+    input: {id: input}
   }))
 }
 
@@ -127,14 +151,14 @@ export const gql_move_checked_items = async (state, input) => {
     }
 }
 
-export const gql_remove_ingredient = async (state, payload) => {
-  const currentItemList = state.itemLists.find(itemList => itemList.id === payload.itemListId)
-  const origin = currentItemList[payload.origin].ingredients
-  const ingredientToMove = origin.find(ingredient => ingredient.id == payload.ingredientId)
+export const gql_remove_ingredient = async (state, input) => {
+  const currentItemList = state.itemLists.find(itemList => itemList.id === input.itemListId)
+  const origin = currentItemList[input.origin].ingredients
+  const ingredientToMove = origin.find(ingredient => ingredient.id == input.ingredientId)
   const remainingIngredients = origin.filter(ingredient =>  ingredient != ingredientToMove)
   const updatedItemList = {
     ...currentItemList,
-    [payload.origin]: {
+    [input.origin]: {
       ingredients: remainingIngredients
     }
   }
