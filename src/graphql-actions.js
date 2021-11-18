@@ -1,7 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import { updateItemList } from './graphql/custom-mutations'
 import { listItemLists } from "./graphql/custom-queries";
-import { deleteItemList } from './graphql/mutations'
+import { createItemList, deleteItemList } from './graphql/mutations'
 
 const setDefaultDetails = (itemList) => {
   ['pantryDetails', 'shoppingDetails']
@@ -72,6 +72,30 @@ export const gql_move_ingredient = async (state, payload) => {
   } catch (err) {
     console.log("GraphQL Error:", err)
   }
+}
+export const gql_add_item_list = async (title) => {
+  const graphqlResponse = await API.graphql(graphqlOperation(createItemList, {
+    input: {
+      title: title,
+      pantryDetails: {
+        ingredients: []
+      },
+      shoppingDetails: {
+        ingredients: []
+      }
+    }
+  }))
+  const newItemList = {
+    id: graphqlResponse.data.createItemList.id,
+    title: graphqlResponse.data.createItemList.title,
+    pantryDetails: {
+      ingredients: []
+    },
+    shoppingDetails: {
+      ingredients: []
+    }
+  }
+  return newItemList;
 }
 
 export const gql_update_item_list = async (state, input) => {
